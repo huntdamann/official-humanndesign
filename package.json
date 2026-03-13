@@ -12,7 +12,6 @@
     "@gsap/react": "^2.1.2",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.4.2",
-    "@studio-freight/lenis": "^1.0.42",
     "@supabase/supabase-js": "^2.90.1",
     "@tabler/icons-react": "^3.36.0",
     "clsx": "^2.1.1",
