@@ -9,24 +9,13 @@
   --background: #ffffff;
   --foreground: #171717;
 }
-.header {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  height: 60px;
-  padding: 40px;
-  position: fixed;
-  top: 10px;
-  transform: translateX(-50%);
-  left: 50%;
-  color: white;
-  background-color: transparent;
-  overflow: hidden;
-  align-items: center;
-  z-index: 99;
 
+.menu-text {
+  font-size: 1em;
+  cursor: pointer;
 }
+
+
 .middle {
   display: flex;
   flex-direction: column;
@@ -53,18 +42,22 @@
   align-items: center;
   justify-content: center;
   h1 {
-    font-size: 9em;
+    font-size: 3em;
   }
 }
 .sub-heading {
   display: flex;
   align-items: center;
   gap: 30px;
+
+  font-size: 12px;
+  margin: 10px;
+ 
 }
 .super-script {
   position: absolute;
   right: 20px;
-  top: 30px;
+  top: 2px;
 }
 .circle {
   width: 10px;
@@ -92,11 +85,10 @@
   gap: 30px;
 }
 .grid-element {
-  object-fit: cover;
+  
   
   position: relative;
   border-radius: 20px;
-  overflow: hidden;
  
 }
 .el-1 {
@@ -145,11 +137,13 @@
 .el-5 {
   grid-column: 4 / span 3;
   grid-row: 2 / span 7;
+  width: 100%;
  
 
-  background-color: aqua;
   
 }
+
+
 
 
 .grid-element.el-5.fullscreen {
@@ -160,7 +154,7 @@
   background-color: transparent;
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 100%;
   height: 100dvh;
   
 }
@@ -182,8 +176,8 @@
   z-index: 0;
   border-radius: 20px;
   /* filter: blur(2px); */
-  min-block-size: 100%;
-  background: linear-gradient(#8dd4f7, #9080fa 85%) no-repeat, url(/snowy.jpg) fixed no-repeat center / cover;
+  /* min-block-size: 100%; */
+  /* background: linear-gradient(#8dd4f7, #9080fa 85%) no-repeat, url(/snowy.jpg) fixed no-repeat center / cover; */
   background-blend-mode: soft-light;
 }
 .snowflake,
@@ -242,13 +236,14 @@
   position: relative;
   z-index: 1;
   color: white;
+  gap: 30px;
   
 
 }
 .hero-tag {
   font-family: var(--font-orbitron);
   position: absolute;
-  top: 35rem;
+  top: 23rem;
   left: 50%;
   transform: translateX(-50%);
 }
@@ -345,12 +340,13 @@
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
     width: 100%;
-    height: 100dvh;
+    min-height: 100dvh;
     border-radius: 20px;
+
     position: relative;
     gap: 15px;
     padding: 0.4rem;
-
+    background-color: white;
   
 }
 
@@ -391,6 +387,15 @@ h1, h3, h2 {
 h3 {
   font-weight: 900;
 }
+.instructions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  position: absolute;
+  width: 100%;
+  top: 30rem;
+}
 
 
 @media (min-width: 320px) and (max-width: 425px) {
@@ -398,6 +403,50 @@ h3 {
   .middle {
     display: none;
   }
+  .el-6 {
+    grid-column: unset;
+    grid-row: unset;
+    padding: 10px;
+    font-size: 2em;
+  
+  
+  }
+  .el-5 {
+    /* height: auto; */
+    height: 100dvh;
+    grid-column: unset;
+    grid-row: unset;
+    
+  }
+  .el-1 {
+
+    padding: 1rem;
+    height: auto;
+
+
+  }
+ 
+  .burger {
+    color: black;
+    border: 1px red solid;
+  }
+  .section-content-1 {
+   
+  
+    h2 {
+      font-size: 1em;
+    }
+  }
+
+  /* .profile-pic {
+    position: unset;
+  } */
+  .grid-element.el-5.fullscreen {
+    position: unset;
+    width: 100%;
+  }
+
+
   .header {
     left: 20%;
     justify-content: space-evenly;
@@ -411,26 +460,54 @@ h3 {
   .sub-heading {
 
     gap: 20px;
-    border: 3px red solid;
+    width: 90%;
+    margin-top: 2rem;
     span {
 
-      font-size: 0.5em;
+      font-size: 0.8em;
 
     }
+    p {
+      font-size: 0.6rem;
+    }
   }
+  .blog-plug {
+ 
+  h2 {
+    font-size: 1em;
+  }
+ 
+  span {
+    font-family: var(--font-orbitron);
+    font-size: 2em;
+    color: #97d4d4;
+    text-align: center;
+  }
+}
   .hero-tag {
    
-    top: 25rem;
+    top: 27rem;
     width: 300px;
     
   }
   .grid-container {
     display: flex;
     flex-direction: column;
-
-  
+    height: auto;
+    /* min-height: 100dvh; */
+    
+ 
+}
+.menu-text {
+  font-size: 1.5em;
 }
 
-  
+.el-4, .el-2 {
+  display: none;
+}
+  .instructions {
+    top: unset;
+    bottom: -15rem;
+  }
 }
 

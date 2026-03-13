@@ -50,7 +50,8 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-md flex flex-col gap-7 mt-12 space-y-5"
+      className="flex flex-col gap-7 space-y-5 mt-5"
+      // className="max-w-md flex sm:border-3 flex-col gap-7 mt-12 space-y-5"
     >
       {/* Name */}
       <input
@@ -93,7 +94,7 @@ export function ContactForm() {
 
       {/* Budget */}
       <div className="space-y-2">
-        <p className="text-sm opacity-80">Project Budget</p>
+        <p className="text-[1.2rem] opacity-80">Project Budget</p>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[

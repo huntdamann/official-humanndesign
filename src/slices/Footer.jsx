@@ -47,10 +47,8 @@ function Footer() {
           <p className="text-sm text-gray-300 mb-6 leading-relaxed">
             I would love to hear from you! Click on the button below to schedule a call to discuss the next step together.
           </p>
-          <a href="https://calendly.com/hunter-mann2433/30min">
             <GenericButton text="Need a Quote" link="https://calendly.com/hunter-mann2433/30min" />
 
-          </a>
         </div>
       </div>
 

@@ -1,12 +1,14 @@
 "use client"
 
-import { useEffect, useLayoutEffect, useRef } from "react"
+import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { motion } from "motion/react"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Flip } from "gsap/Flip"
 
 import { TiArrowDown } from "react-icons/ti";
+import { TbMenu } from "react-icons/tb"
+
 
 import WhoWeAre from "@/src/slices/WhoWeAre"
 import RecentWork from "@/src/slices/RecentWork"
@@ -14,7 +16,6 @@ import CTA from "@/src/slices/CTA"
 import Scene from "@/src/components/3d/Scene"
 import SimpleMenu from '../src/components/SimpleMenu'
 import GenericButton from "@/src/components/ui/GenericButton"
-import Parallax from "@/src/slices/Parallax"
 import Header from '@/src/slices/Header'
 import Footer from '../src/slices/Footer'
 import useMediaQuery from '../src/hooks/useMediaQuery'
@@ -32,7 +33,6 @@ export default function Home() {
   const profileRef = useRef<HTMLDivElement>(null)
 
 
-  const iconsRef = useRef<HTMLDivElement>(null)
   const elementRef = useRef<HTMLDivElement>(null)
   const elementFourRef = useRef<HTMLDivElement>(null)
   const elementThreeRef = useRef<HTMLDivElement>(null)
@@ -46,29 +46,30 @@ export default function Home() {
 
 
   const headerRef = useRef<HTMLElement>(null)
-  const emblem = useRef<HTMLHeadingElement>(null)
   const elementFiveRef = useRef<HTMLDivElement>(null)
   const elementSixRef = useRef<HTMLDivElement>(null)
+  const burgerRef = useRef(null)
+
 
 
 
 
   useLayoutEffect(() => {
-    if (
-      !containerRef.current ||
-      !contentRef.current ||
-      !gridRef.current ||
-      !elementRef.current ||
-      !elementFourRef.current ||
-      !elementThreeRef.current ||
-      !elementTwoRef.current ||
-      !elementFiveRef.current ||
-      !profileRef.current ||
-      !elementSixRef.current ||
-      !headerRef.current
-    ) {
-      return
-    }
+    // if (
+    //   !containerRef.current ||
+    //   !contentRef.current ||
+    //   !gridRef.current ||
+    //   !elementRef.current ||
+    //   !elementFourRef.current ||
+    //   !elementThreeRef.current ||
+    //   !elementTwoRef.current ||
+    //   !elementFiveRef.current ||
+    //   !profileRef.current ||
+    //   !elementSixRef.current ||
+    //   !headerRef.current
+    // ) {
+    //   return
+    // }
   
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
@@ -80,60 +81,108 @@ export default function Home() {
           scrub: true,
           pinSpacing: true,
           anticipatePin: 1,
+          invalidateOnRefresh: true, // ← add this
+
         },
       })
       
   
       const el = elementFiveRef.current!
+
+      if (!isSmallDevice) {
+        // Set fullscreen styles as the starting state directly in CSS/className
+        // Then animate TO the collapsed grid state
+        tl.to(
+          el,
+          {
+            height: "auto",      // whatever your non-fullscreen height should be
+            width: "auto",        // keep it in grid flow
+            gridColumn: "4 / span 3",
+            gridRow: "2 / span 7",
+            position: "relative",
+            borderRadius: "20px",
+            duration: 0.3,
+            ease: "power3.inOut",
+            clearProps: "none",   // don't clear on reverse
+          },
+          0.001
+        )
+      } else {
+         tl.to(el, { height: "50dvh" }, 0.001)
+       }
+
+
+
+      tl.to(
+        profileRef.current!, {
+          y: "0",
+          opacity: 1,
+        },
+        0.003
+      )
+
+      if(isSmallDevice) {
+
+        tl.to(
+          gridRef.current!, {
+            // height: "50dvh",
+            y: 60,
+          },
+          0.001
+        )
+
+
+      }
+   
+     
   
-      tl.add(() => {
-        if (!isSmallDevice) {
-          // NOT small device → do Flip
-          const state = Flip.getState(el);
+   
       
-          el.classList.remove("fullscreen");
-      
-          Flip.from(state, {
-            duration: 1,
-            ease: "power4.inOut",
-            absolute: true,
-          });
-        } else {
-          // Small device → just remove fullscreen
-          el.classList.add("fullscreen");
-        }
-      }, 0.2);
-      
-  
-      tl.add(() => {
-        const state = Flip.getState(el)
-  
-        el.classList.add("fullscreen")
-  
-        Flip.from(state, {
-          duration: 1,
-          ease: "power4.inOut",
-          absolute: true,
-        })
-      }, 0.1)
+
+      if(!isSmallDevice) {
+
+        tl.to(
+          headerRef.current!,
+          {
+            width: "50%",
+            borderRadius: "15px",
+            duration: 0.6,
+            ease: "power3.out",
+            left: "",
+          },
+          0.001
+        )
+      }
+     
   
       tl.to(
-        headerRef.current!,
+        gridRef.current!,
         {
-          width: "50%",
-          borderRadius: "15px",
-          duration: 0.6,
-          ease: "power3.out",
+          backgroundColor: "#1d9797",
+          duration: 0.1,
+          ease: "power2.out",
         },
         0.001
       )
-  
+
+
+      // Header background fades in
       tl.to(
         headerRef.current!,
         {
           color: "#000000",
           backgroundColor: "hsl(0, 0%, 80%, 0.9)",
-          // border: "1px gray solid",
+          duration: 0.1,
+          ease: "power2.out",
+        },
+        0.001
+      )
+
+      // Menu Burger change colors 
+      tl.to(
+        burgerRef.current!,
+        {
+          color: "#ffffff",
           duration: 0.1,
           ease: "power2.out",
         },
@@ -150,112 +199,106 @@ export default function Home() {
         0.001
       )
   
-      tl.from(
-        elementRef.current!,
-        {
-          y: 200,
-          x: -600,
-          duration: 0.4,
-          ease: "power3.out",
-        },
-        0.3
-      )
+      if (!isSmallDevice) {
+        tl.from(
+          elementRef.current!,
+          {
+            y: 200,
+            x: -600,
+            duration: 0.4,
+            ease: "power3.out",
+          },
+          0.3
+        )
+        tl.from(
+          elementFourRef.current!,
+          {
+            y: 200,
+            x: -600,
+            duration: 0.4,
+            ease: "power3.out",
+          },
+          0.35
+        )
+        tl.from(
+          elementSixRef.current!,
+          {
+            y: 300,
+            duration: 0.4,
+            ease: "power3.out",
+          },
+          0.35
+        )
+    
+        tl.from(
+          elementThreeRef.current!,
+          {
+            y: 200,
+            x: 600,
+            duration: 0.4,
+            ease: "power3.out",
+          },
+          0.4
+        )
+    
+        tl.from(
+          elementTwoRef.current!,
+          {
+            y: 200,
+            x: 600,
+            duration: 0.4,
+            ease: "power3.out",
+          },
+          0.45
+        )
+      }
   
-      tl.from(
-        elementFourRef.current!,
-        {
-          y: 200,
-          x: -600,
-          duration: 0.4,
-          ease: "power3.out",
-        },
-        0.35
-      )
-      tl.from(
-        elementSixRef.current!,
-        {
-          y: 300,
-          duration: 0.4,
-          ease: "power3.out",
-        },
-        0.35
-      )
+      
   
-      tl.from(
-        elementThreeRef.current!,
-        {
-          y: 200,
-          x: 600,
-          duration: 0.4,
-          ease: "power3.out",
-        },
-        0.4
-      )
-  
-      tl.from(
-        elementTwoRef.current!,
-        {
-          y: 200,
-          x: 600,
-          duration: 0.4,
-          ease: "power3.out",
-        },
-        0.45
-      )
-  
-      tl.to(
-        profileRef.current!,
-        {
-          
-          duration: 0.4,
-          opacity: 1,
-          y: 0,
-          ease: "power3.out",
-        },
-        0.35
-      )
-    }, containerRef)
+    
+    }, )
 
 
     ScrollTrigger.refresh()
 
   
     return () => ctx.revert()
-  }, [])
+  }, [isSmallDevice])
   
 
  
   return (
     <>
-     <Header ref={headerRef}/>
-      <div style={{}} ref={containerRef}>
-       
-        <section ref={gridRef} className="grid-container">
-        <div ref={elementFiveRef} className="grid-element el-5 fullscreen">
+     <Header ref={headerRef} menuRef={burgerRef}/>
+    
+     
+        <section  ref={gridRef} className="grid-container">
+
+          {/* Hero */}
+          <div ref={elementFiveRef} className="grid-element el-5">
              {/* Background video */}
              <div className="bg-video">
-              {/* <div className="snowflake">
+               <Image src='/snowy.jpg' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
 
-              </div> */}
              </div>
               
             <div ref={profileRef} className="profile-pic">
-                <Image src='/images/profile.png' fill alt="Profile Pic" style={{objectFit: 'cover'}} />
+                <Image src='/images/profile.png' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
             </div>
 
             <div ref={contentRef} className="element-content">
               <div className="hero-heading">
               <h1>Design Engineer</h1>
               <div className="sub-heading">
-                <span>Web Design</span>
+                <p>Web Design</p>
                 <div className="circle"></div>
-                <span>Web Development</span>
-                <div className="circle"></div>
-
-                <span>Graphic Design</span>
+                <p>Web Development</p>
                 <div className="circle"></div>
 
-                <span>Vision Creation</span>
+                <p>Graphic Design</p>
+                <div className="circle"></div>
+
+                <p>Vision Creation</p>
 
               </div>
               <div className="super-script">
@@ -263,9 +306,9 @@ export default function Home() {
               </div>
               </div>
               <div className="hero-tag">
-                <span>Just a regular guy that likes to make things look cool for people </span>
+                <span>Just a regular guy that likes to make cool things for people </span>
               </div>
-              <div style={{ display: "flex ", justifyContent: "space-between", padding: "2rem", position: "absolute", width:"100%", top: "35rem"}}>
+              <div className="instructions">
                 <span style={{fontSize: "2.5em"}}><TiArrowDown />
                 </span>
                 <span>Scroll Down</span>
@@ -273,10 +316,19 @@ export default function Home() {
             </div>
 
           </div>
-          <div ref={elementRef} className="grid-element el-1">
+           {/* Name */}
+           <div ref={elementSixRef} className="grid-element el-6">
+              <span>Hunter Mann</span>
+          </div> 
+
+
+          {/* About Me */}
+         <div ref={elementRef} className="grid-element el-1">
               <h3>About Me:</h3>
-              <p className="">Engineer by day, creator always. I design and build things driven by curiosity and a desire to create work that’s useful, engaging, and genuinely enjoyable for others.</p>
+              <p className="">Your everyday engineer. I design, build, and find solutions — mostly anything touching design.</p>
           </div>
+          
+          {/* Offerings */}
           <div ref={elementTwoRef} className="grid-element el-2">
           <h3>Offerings:</h3>
               <ul>
@@ -288,6 +340,7 @@ export default function Home() {
 
               </ul>
           </div>
+           
           <div ref={elementThreeRef} className="grid-element el-3">
           <video
               src="/videos/Rough_Draft.mp4"
@@ -318,17 +371,15 @@ export default function Home() {
               }}
             />
           </div>
-          <div ref={elementSixRef} className="grid-element el-6">
-              <span>Hunter Mann</span>
-          </div>
-
+         
           
           
         </section>
-      </div>
 
 
-        <section className="section-info">
+
+
+        {/* <section className="section-info">
           <div style={{
             position: "absolute",
             height: "500px",
@@ -348,7 +399,7 @@ export default function Home() {
             </span>
           </div>
             <Scene />
-        </section>
+        </section> */}
         <WhoWeAre />
         <section className="section-info">
           <h2>Offerings</h2>

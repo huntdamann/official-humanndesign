@@ -52,11 +52,11 @@ export default function WhoWeAre() {
       {...staggerContainer}
     >
       {/* Logo */}
-      <motion.div {...fadeUp}>
+      <motion.div className="mt-20" {...fadeUp}>
         <Image
           src="/images/Humann_design_logo.png"
           alt="Second Logo"
-          width={500}
+          width={300}
           height={300}
         />
       </motion.div>
@@ -71,8 +71,30 @@ export default function WhoWeAre() {
         Design system. From this, we’ve built our agency around five core pillars:
       </motion.p>
 
+      <div className="flex">
+        <motion.span className="pillars word-1" {...fadeUp}>
+          1. Ideas
+        </motion.span>
+
+        <motion.span className="pillars word-2" {...fadeUp}>
+        2. Instinct
+        </motion.span>
+
+        <motion.span className="pillars word-4" {...fadeUp}>
+          3. Drive
+        </motion.span>
+
+        <motion.span className="pillars word-5" {...fadeUp}>
+          4. Emotion
+        </motion.span>
+        <motion.span className="pillars word-3" {...fadeUp}>
+          5. Love
+        </motion.span>
+
+      </div>
+
       {/* Pillars */}
-      <motion.span className="pillars word-1" {...fadeUp}>
+      {/* <motion.span className="pillars word-1" {...fadeUp}>
         1. Ideas
       </motion.span>
 
@@ -90,7 +112,7 @@ export default function WhoWeAre() {
 
       <motion.span className="pillars word-5" {...fadeUp}>
         4. Emotion
-      </motion.span>
+      </motion.span> */}
     </motion.section>
     </AnimatePresence>
   )

@@ -47,12 +47,12 @@ export const AnimatedTestimonials = ({
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
         <div>
-          <motion.div viewport={{ amount: 0.5}} transition={{ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }} initial={{rotate: -30, x: -60, opacity: 0}} whileInView={{rotate: 0, x: 0, opacity: 1}} className="relative h-80 w-full">
+          <motion.div viewport={{ amount: 0.1}} transition={{ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }} initial={{rotate: -30, x: -60, opacity: 0}} whileInView={{rotate: 0, x: 0, opacity: 1}} className="relative h-80 w-full">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
-                  key={testimonial.src}
-                  initial={{
+                key={`${testimonial.src}-${index}`}
+                initial={{
                     opacity: 0,
                     scale: 0.9,
                     z: -100,
@@ -88,7 +88,7 @@ export const AnimatedTestimonials = ({
                     draggable={false}
                     className="h-full w-full transition-all group-hover:blur-sm  rounded-3xl object-cover object-center"
                   />
-                   <video
+                   {/* <video
                     src="/videos/site.mp4"
                     autoPlay
                     muted
@@ -96,7 +96,7 @@ export const AnimatedTestimonials = ({
                     playsInline
                     className="absolute top-1/2 left-1/2 group-hover:w-[90%] group-hover:h-[90%] opacity-0 group-hover:opacity-100 transition-all delay-75 w-full h-full -translate-x-1/2 -translate-y-1/2 rounded-3xl object-cover"
 
-                  />
+                  /> */}
                   
                 </motion.div>
               ))}
@@ -172,7 +172,7 @@ export const AnimatedTestimonials = ({
             </button>
             <button
               onClick={handleNext}
-              className={`group/button flex h-[50px] w-[200px] ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} items-center justify-center rounded-md transition-all  dark:bg-neutral-800`}
+              className={`group/button flex h-[50px] w-[200px] ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all  dark:bg-neutral-800`}
             >
               {testimonials[active].drop ? <span>View</span> : <span>Coming Soon</span>}
             </button>
