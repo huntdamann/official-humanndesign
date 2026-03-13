@@ -336,7 +336,7 @@ export default function Home() {
           {/* About Me */}
          <div ref={elementRef} className="grid-element el-1">
               <h3>About Me:</h3>
-              <p className="">Your everyday engineer. I design, build, and find solutions — mostly anything touching design.</p>
+              <p className=""> Your favorite engineer's favorite engineer — I build, design, and solve whatever you need.</p>
           </div>
           
           {/* Offerings */}

@@ -26,7 +26,7 @@ function Footer() {
                     <span>Recent Work</span>
                 </li>
                 <li className="transition-colors duration-200 hover:text-[#72d0c8] active:text-[#72d0c8] cursor-pointer">
-                    <Link href="/solutions/freeaudit">Solutions</Link>
+                    <Link href="/solutions">Solutions</Link>
                 </li>
                 
                 <li className="transition-colors duration-200 hover:text-[#72d0c8] active:text-[#72d0c8] cursor-pointer">
