@@ -3,6 +3,8 @@
 import { useState, forwardRef, RefObject } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { TbMenu } from "react-icons/tb"
+import { useInView } from "react-intersection-observer";
+import { Link, Element } from 'react-scroll';
 
 interface HeaderProps {
   menuRef: RefObject<HTMLSpanElement | null>
@@ -10,6 +12,22 @@ interface HeaderProps {
 
 const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef }, ref) {
   const [open, setOpen] = useState(false)
+
+  const handleNavClick = (id: string) => {
+    setOpen(false)
+    const section = document.getElementById(id)
+    if (section) {
+      console.log('section is ready')
+      section.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
+  const navItems = [
+    { label: "About", id: "section-content-1" },
+    { label: "Services", id: "section-info" },
+    { label: "Work", id: "section-work" },
+    { label: "Blog", id: "blog" },
+  ]
 
   return (
     <header ref={ref} className="fixed w-full left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
@@ -47,11 +65,23 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
             style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
           >
             <ul className="flex flex-col gap-6 px-6 py-8">
-              <li>About</li>
-              <li>Services</li>
-              <li>Work</li>
-              <li>Blog</li>
-              <li className="border-2 text-center bg-black">Let's Connect</li>
+              {navItems.map(({ label, id }) => (
+                <li
+                  key={id}
+                  onClick={() => handleNavClick(id)}
+                  className="cursor-pointer hover:opacity-70 transition-opacity"
+                >
+                  <Link to={id} smooth={true} duration={500}>
+                
+                  {label} 
+
+                  </Link>
+
+                </li>
+              ))}
+              <li className="border-2 text-center bg-black cursor-pointer hover:opacity-70 transition-opacity">
+                Let's Connect
+              </li>
             </ul>
           </motion.nav>
         )}

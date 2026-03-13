@@ -17,7 +17,7 @@ export default function RecentWork() {
         },
         {
           quote:
-          "A website designed for a brand that sells handcrafted items and gifts to their supporters",
+          "Only Fly Shit is a brand that creates handcrafted items and gifts for their supporters.",
           name: "Only Fly Shit",
           designation: "Brand Website",
           src: "/images/ofs.PNG",
@@ -28,12 +28,12 @@ export default function RecentWork() {
           "Numbers gives everyday sports fans the data-backed confidence to place smarter bets without needing to be an expert.",
           name: "Numbers",
           designation: "Mobile Application",
-          src: "/images/numbers.png",
+          src: "/images/numbers_logo.png",
           drop: false,
         },
         {
           quote:
-          "A professional, modern, and fully responsive website template for restaurants, built with NextJS, TailwindCSS, and Framer Motion. This template includes various features seen across other professional brands for a sleek user experience.",
+          "Professional product showcase/promotional. This is just a template!",
           name: "Drip",
           designation: "Promotional Video",
           src:"/images/drip_final.png",
@@ -49,7 +49,7 @@ export default function RecentWork() {
         },
         {
           quote:
-          "A fun and playful website for a Ready-To-Drink (RTD) tea brand located in Dallas, Texas.",
+          "Lucky Liquids is a fun and playful Ready-To-Drink (RTD) tea brand located in Dallas, Texas. It's a fruit-flavored, flavor-focused tea primed to takeover.",
           name: "LuckyLiquids",
           designation: "Web Application + Content",
           src:"/images/lucky.png",
@@ -57,7 +57,7 @@ export default function RecentWork() {
         },
         {
           quote:
-          "A Website",
+          "Calisthenics & Conversation is a movement based emotional wellness program that helps boys build confidence, discipline, and emotional intelligence",
           name: "Calisthenics & Conversation",
           designation: "Web Application",
           src:"/images/logo.png",
@@ -70,7 +70,7 @@ export default function RecentWork() {
 
     return (
         <>
-            <section className="text-center">
+            <section style={{textAlign: "center", paddingBottom: "48px"}} className="section-work">
 
                 <motion.h2 style={{fontSize: "2em", }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4}}>Work</motion.h2>
 

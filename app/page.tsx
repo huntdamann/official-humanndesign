@@ -207,6 +207,8 @@ export default function Home() {
             x: -600,
             duration: 0.4,
             ease: "power3.out",
+            opacity: 0
+
           },
           0.3
         )
@@ -217,6 +219,8 @@ export default function Home() {
             x: -600,
             duration: 0.4,
             ease: "power3.out",
+            opacity: 0
+
           },
           0.35
         )
@@ -226,6 +230,8 @@ export default function Home() {
             y: 300,
             duration: 0.4,
             ease: "power3.out",
+            opacity: 0
+
           },
           0.35
         )
@@ -237,6 +243,9 @@ export default function Home() {
             x: 600,
             duration: 0.4,
             ease: "power3.out",
+            opacity: 0,
+
+
           },
           0.4
         )
@@ -248,6 +257,8 @@ export default function Home() {
             x: 600,
             duration: 0.4,
             ease: "power3.out",
+            opacity: 0,
+
           },
           0.45
         )

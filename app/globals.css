@@ -99,7 +99,9 @@
   flex-direction: column;
   gap: 10px;
   border: 3px gray solid;
-}
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-600px), translateY(200px);}
 .el-6 {
   grid-column: 4 / span 3;
   grid-row: 9 / span 3;
@@ -113,6 +115,9 @@
   font-size: 3em;
   font-family: var(--font-orbitron);
   font-weight: 700;
+  opacity: 1;
+  transform: translateX(-600px), translateY(200px);  
+
 }
 .el-2 {
   grid-column: 7 / span 2;
@@ -123,16 +128,26 @@
   padding: 1.5rem;
   gap: 10px;
   flex-direction: column;
+  opacity: 1;
+  transform: translateX(600px), translateY(200px);
+
 
 }
 
 .el-3 {
   grid-column: 7 / span 3;
   grid-row: 7 / span 3;
+  opacity: 1;
+  transform: translateX(600px), translateY(200px);
+
+
+
 }
 .el-4 {
   grid-column: 2 / span 2;
   grid-row: 4 / span 3;
+  opacity: 1;
+  transform: translateX(-600px), translateY(200px); 
 }
 .el-5 {
   grid-column: 4 / span 3;

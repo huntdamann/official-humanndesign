@@ -49,6 +49,7 @@ export default function WhoWeAre() {
     <AnimatePresence mode="wait">
     <motion.section
       className="section-content-1 noise"
+      id="about"
       {...staggerContainer}
     >
       {/* Logo */}
