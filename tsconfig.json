@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-, "src/components/3d/Scene.jsx", "src/components/3d/Model.jsx"  ],
+, "src/components/3d/Scene.jsx", "src/components/3d/Model.jsx", "src/slices/Header.tsx"  ],
   "exclude": ["node_modules"]
 }

@@ -1,12 +1,14 @@
 "use client"
 
-import { useState, forwardRef } from "react"
-import Image from "next/image"
+import { useState, forwardRef, RefObject } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { TbMenu } from "react-icons/tb"
-import { FaArrowLeft } from "react-icons/fa6"
 
-const Header = forwardRef(function Header({ menuRef, ...props }, ref) {
+interface HeaderProps {
+  menuRef: RefObject<HTMLSpanElement | null>
+}
+
+const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef }, ref) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -23,7 +25,13 @@ const Header = forwardRef(function Header({ menuRef, ...props }, ref) {
           aria-label="Toggle menu"
           className="px-3 rounded flex-shrink-0"
         >
-          {open ? "X" : <TbMenu ref={menuRef} style={{color: "black", fontSize: "32px"}} className="burger" />}
+          {open ? (
+            "X"
+          ) : (
+            <span ref={menuRef} style={{ display: "inline-flex" }}>
+              <TbMenu style={{ color: "black", fontSize: "32px" }} className="burger" />
+            </span>
+          )}
         </button>
       </div>
 

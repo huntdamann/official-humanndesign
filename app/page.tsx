@@ -48,7 +48,7 @@ export default function Home() {
   const headerRef = useRef<HTMLElement>(null)
   const elementFiveRef = useRef<HTMLDivElement>(null)
   const elementSixRef = useRef<HTMLDivElement>(null)
-  const burgerRef = useRef(null)
+  const burgerRef = useRef<HTMLSpanElement>(null)
 
 
 
