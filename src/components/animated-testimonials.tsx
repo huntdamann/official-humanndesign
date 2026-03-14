@@ -2,7 +2,8 @@
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
-
+import useMediaQuery from '../../src/hooks/useMediaQuery'
+import Image from 'next/image'
 import { useEffect, useState } from "react";
 
 type Testimonial = {
@@ -40,14 +41,22 @@ export const AnimatedTestimonials = ({
     }
   }, [autoplay]);
 
+
+  // Adding Mobile Media Query to decrease size 
+  const isSmallDevice = useMediaQuery("(min-width: 320px) and (max-width: 425px)");
+
+
+
+
+
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-20 md:grid-cols-2">
-        <div>
-          <motion.div viewport={{ amount: 0.1}} transition={{ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }} initial={{rotate: -30, x: -60, opacity: 0}} whileInView={{rotate: 0, x: 0, opacity: 1}} className="relative h-80 w-full">
+      <div className="relative grid justify-center grid-cols-1 gap-20 md:grid-cols-2">
+        <div className=" flex flex-col items-center justify-center">
+          <motion.div viewport={{ amount: 0.1, once: isSmallDevice ? true : false}} transition={{ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }} initial={{rotate: -30, x: -60, opacity: 0}} whileInView={{rotate: 0, x: 0, opacity: 1}}  style={{width: isSmallDevice? "200px" : "", height: isSmallDevice ?  "200px" : "320px"}} className="relative self-center h-80 w-full">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -78,13 +87,13 @@ export const AnimatedTestimonials = ({
                     duration: 0.4,
                     ease: "easeInOut",
                   }}
-                  className="absolute  group  inset-0 origin-bottom"
+                  className="absolute   group  inset-0 origin-bottom"
                 >
-                  <img
+                  <Image
                     src={testimonial.src}
                     alt={testimonial.name}
-                    width={500}
-                    height={500}
+                    fill
+                    style={{objectFit: "cover"}}
                     draggable={false}
                     className="h-full w-full transition-all group-hover:blur-sm  rounded-3xl object-cover object-center"
                   />
@@ -129,7 +138,7 @@ export const AnimatedTestimonials = ({
             <p className="text-sm text-gray-300 dark:text-neutral-300">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-8 text-lg text-gray-300 dark:text-neutral-300">
+            <motion.p className="mt-8 border-2 text-lg h-36 overflow-visible text-gray-300 dark:text-neutral-300">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}

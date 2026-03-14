@@ -72,9 +72,10 @@ export default function RecentWork() {
         <>
             <section style={{textAlign: "center", paddingBottom: "48px"}} className="section-work">
 
-                <motion.h2 style={{fontSize: "2em", }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4}}>Work</motion.h2>
+                <motion.h2 style={{fontSize: "2em", }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4, once: true}}>Work</motion.h2>
 
-                <AnimatedTestimonials testimonials={testimonials}/>
+                  <AnimatedTestimonials testimonials={testimonials}/>
+
                 
             </section>
         
