@@ -26,7 +26,7 @@ export default function SimpleMenu() {
 
 
     return (
-        <section className='w-full h-3/4 flex flex-col items-center justify-center'>
+        <section className='w-full  h-3/4 flex flex-col items-center justify-center'>
             <ul className='flex flex-col w-[90%] lg:w-2/4 gap-5 mt-5'>
                 
                 {/* Web Menu */}

@@ -4,7 +4,6 @@ import { useEffect, useLayoutEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { motion } from "motion/react"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Flip } from "gsap/Flip"
 
 import { TiArrowDown } from "react-icons/ti";
 import { TbMenu } from "react-icons/tb"
@@ -15,6 +14,7 @@ import RecentWork from "@/src/slices/RecentWork"
 import CTA from "@/src/slices/CTA"
 import Scene from "@/src/components/3d/Scene"
 import SimpleMenu from '../src/components/SimpleMenu'
+import { StockTicker } from "@/src/components/ui/Marquee"
 import GenericButton from "@/src/components/ui/GenericButton"
 import Header from '@/src/slices/Header'
 import Footer from '../src/slices/Footer'
@@ -23,7 +23,6 @@ import useMediaQuery from '../src/hooks/useMediaQuery'
 import Image from "next/image"
 
 gsap.registerPlugin(ScrollTrigger)
-gsap.registerPlugin(Flip)
 
 
 export default function Home() {
@@ -98,7 +97,7 @@ export default function Home() {
             height: "auto",      // whatever your non-fullscreen height should be
             width: "auto",        // keep it in grid flow
             gridColumn: "4 / span 3",
-            gridRow: "2 / span 7",
+            gridRow: "1 / span 6",
             position: "relative",
             borderRadius: "20px",
             duration: 0.3,
@@ -278,6 +277,9 @@ export default function Home() {
   
 
  
+
+  
+ 
   return (
     <>
      <Header ref={headerRef} menuRef={burgerRef}/>
@@ -300,18 +302,19 @@ export default function Home() {
             <div ref={contentRef} className="element-content">
               <div className="hero-heading">
               <h1>Design Engineer</h1>
-              <div className="sub-heading">
-                <p>Web Design</p>
-                <div className="circle"></div>
-                <p>Web Development</p>
-                <div className="circle"></div>
+              {/* <div className="slider-containter">
 
-                <p>Graphic Design</p>
-                <div className="circle"></div>
-
-                <p>Vision Creation</p>
+              <div ref={slider} className="sub-heading">
+                <p ref={firstText}>Web Design</p>
+                <p ref={secondText}>Web Development</p>
 
               </div>
+
+              </div> */}
+
+                  <StockTicker />
+
+            
               <div className="super-script">
                 [2433]
               </div>
@@ -319,11 +322,7 @@ export default function Home() {
               <div className="hero-tag">
                 <span>Just a regular guy that likes to make cool things for people </span>
               </div>
-              <div className="instructions">
-                <span style={{fontSize: "2.5em"}}><TiArrowDown />
-                </span>
-                <span>Scroll Down</span>
-              </div>
+             
             </div>
 
           </div>
@@ -381,6 +380,11 @@ export default function Home() {
                 borderRadius: "20px",
               }}
             />
+          </div>
+          <div id="instructions" className="animate-bounce">
+                <span style={{fontSize: "2.5em"}}><TiArrowDown />
+                </span>
+                <span>Scroll Down</span>
           </div>
          
           

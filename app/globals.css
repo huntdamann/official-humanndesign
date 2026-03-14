@@ -46,13 +46,28 @@
   }
 }
 .sub-heading {
+  
+  position: relative;
+  white-space: nowrap;
   display: flex;
-  align-items: center;
-  gap: 30px;
-
-  font-size: 12px;
-  margin: 10px;
+  p {
+    position: relative;
+    margin: 0px;
+    color: white;
+    font-size: 20px;
+    font-weight: 500;
+    padding-right: 50px;
+  }
  
+}
+.sub-heading p:nth-of-type(2){
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+.slider-container {
+  position: absolute;
+  top: calc(100vh - 350px);
 }
 .super-script {
   position: absolute;
@@ -93,7 +108,7 @@
 }
 .el-1 {
   grid-column: 1 / span 3;
-  grid-row: 7 / span 3;
+  grid-row: 6 / span 2;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
@@ -104,7 +119,7 @@
   transform: translateX(-600px), translateY(200px);}
 .el-6 {
   grid-column: 4 / span 3;
-  grid-row: 9 / span 3;
+  grid-row: 7 / span 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -121,7 +136,7 @@
 }
 .el-2 {
   grid-column: 7 / span 2;
-  grid-row: 4 / span 3;
+  grid-row: 2 / span 2;
   display: flex;
   justify-content: flex-start;
   border: 3px gray solid;
@@ -136,7 +151,7 @@
 
 .el-3 {
   grid-column: 7 / span 3;
-  grid-row: 7 / span 3;
+  grid-row: 5 / span 3;
   opacity: 1;
   transform: translateX(600px), translateY(200px);
 
@@ -145,14 +160,15 @@
 }
 .el-4 {
   grid-column: 2 / span 2;
-  grid-row: 4 / span 3;
+  grid-row: 4 / span 2;
   opacity: 1;
   transform: translateX(-600px), translateY(200px); 
 }
 .el-5 {
   grid-column: 4 / span 3;
-  grid-row: 2 / span 7;
+  grid-row: 1 / span 6;
   width: 100%;
+  overflow-x: hidden;
  
 
   
@@ -402,14 +418,14 @@ h1, h3, h2 {
 h3 {
   font-weight: 900;
 }
-.instructions {
+#instructions {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
   position: absolute;
   width: 100%;
-  top: 30rem;
+  bottom: 15rem;
 }
 
 
@@ -520,7 +536,7 @@ h3 {
 .el-4, .el-2 {
   display: none;
 }
-  .instructions {
+  #instructions {
     top: unset;
     bottom: -15rem;
   }
