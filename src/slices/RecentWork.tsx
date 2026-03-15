@@ -23,7 +23,7 @@ export default function RecentWork() {
           name: "Only Fly Shit",
           designation: "Brand Website",
           src: "/images/ofs.PNG",
-          drop: false,
+          drop: true,
           link: "https://www.onlyflyshit.com",
         },
         {
@@ -72,7 +72,7 @@ export default function RecentWork() {
           name: "Calisthenics & Conversation",
           designation: "Website",
           src:"/images/logo.png",
-          drop: false,
+          drop: true,
           link: "https://www.calisthenicsandconversations.com",
 
           

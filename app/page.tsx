@@ -346,7 +346,7 @@ export default function Home() {
 
 
 
-        <section className="section-info">
+        {/* <section className="section-info">
           <div style={{
             position: "absolute",
             height: "500px",
@@ -366,7 +366,7 @@ export default function Home() {
             </span>
           </div>
             <Scene />
-        </section>
+        </section> */}
         <WhoWeAre />
         <section className="section-info">
           <h2>Offerings</h2>
