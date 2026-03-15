@@ -3,7 +3,7 @@ import { Banner, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-blog/style.css'
 import '../../app/globals.css'
-import Image from "next/Image"
+import Image from "next/image"
 
 export const metadata = {
   title: 'Blog Example',
