@@ -305,10 +305,8 @@ export default function Home() {
  
   return (
     <>
-     <Header ref={headerRef} menuRef={burgerRef}/>
-    
-     
-        <section  ref={gridRef} className="grid-container">
+     {/* <Header ref={headerRef} menuRef={burgerRef}/> */} 
+     <section  ref={gridRef} className="grid-container">
 
           {/* Hero */}
           <div ref={elementFiveRef} className="grid-element el-5">
