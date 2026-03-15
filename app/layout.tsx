@@ -20,7 +20,7 @@ const orbitron = Orbitron({
 })
 
 export const metadata: Metadata = {
-  title: "Hunter Mann | Creative Developer",
+  title: "Hunter Mann | Design Engineer",
   description: "Just a regular guy that likes to make things look cool for people.",
 };
 
