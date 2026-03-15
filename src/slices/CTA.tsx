@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useState } from "react"
-import Image from "next/image"
 import "../css/CTA.css"
 import { FaArrowLeft } from "react-icons/fa6"
 
@@ -147,7 +146,7 @@ export function ContactForm() {
 export default function CTA() {
   return (
     <section className="section-content">
-      <p className="cta-heading">Let's Build Something Great Together...</p>
+      <p className="cta-heading">Let&apos;s Build Something Great Together...</p>
       <ContactForm />
 
       {/* Animated Particles

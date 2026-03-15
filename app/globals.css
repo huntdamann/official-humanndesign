@@ -14,8 +14,12 @@
 }
 
 .menu-text {
-  font-size: 1em;
+  font-size: 2em;
   cursor: pointer;
+  color: #97d4d4;
+
+  font-family: var(--font-orbitron);
+
 }
 
 
@@ -118,7 +122,8 @@
   gap: 10px;
   border: 3px gray solid;
   visibility: visible;
-  opacity: 1;
+  opacity: 0;
+
   transform: translateX(-600px), translateY(200px);}
 .el-6 {
   grid-column: 4 / span 3;
@@ -133,8 +138,9 @@
   font-size: 3em;
   font-family: var(--font-orbitron);
   font-weight: 700;
-  opacity: 1;
   transform: translateX(-600px), translateY(200px);  
+  opacity: 0;
+
 
 }
 .el-2 {
@@ -146,8 +152,8 @@
   padding: 1.5rem;
   gap: 10px;
   flex-direction: column;
-  opacity: 1;
   transform: translateX(600px), translateY(200px);
+  opacity: 0;
 
 
 }
@@ -155,8 +161,8 @@
 .el-3 {
   grid-column: 7 / span 3;
   grid-row: 5 / span 3;
-  opacity: 1;
   transform: translateX(600px), translateY(200px);
+  opacity: 0;
 
 
 
@@ -164,14 +170,16 @@
 .el-4 {
   grid-column: 2 / span 2;
   grid-row: 4 / span 2;
-  opacity: 1;
   transform: translateX(-600px), translateY(200px); 
+  opacity: 0;
+
 }
 .el-5 {
   grid-column: 4 / span 3;
   grid-row: 1 / span 6;
   width: 100%;
   overflow-x: hidden;
+
  
 
   
@@ -541,16 +549,18 @@ h3 {
  
 }
 .menu-text {
-  font-family: var(--font-orbitron);
   font-size: 1.2em;
-  color: #97d4d4;}
-
+  color: #97d4d4;
+}
+.el-1, .el-3, .el-6 {
+  opacity: 1;
+}
 .el-4, .el-2 {
   display: none;
 }
   #instructions {
     top: unset;
-    bottom: 30rem;
+    bottom: 29rem;
     color: white;
   }
 }

@@ -1,8 +1,9 @@
 import { Footer, Layout, Navbar, ThemeSwitch } from 'nextra-theme-blog'
-import { Banner, Head, Search } from 'nextra/components'
+import { Banner, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-blog/style.css'
 import '../../app/globals.css'
+import Image from "next/Image"
 
 export const metadata = {
   title: 'Blog Example',
@@ -37,7 +38,7 @@ export default async function BlogLayout({ children, metadata }) {
 
       {/* Hero Image Section */}
       <div style={{ width: '100%', height: 'auto', marginBottom: '20px' }}>
-        <img
+        <Image
           src={heroImage}
           alt="Hero Image"
           style={{ width: '100%', height: 'auto', objectFit: 'cover' }}

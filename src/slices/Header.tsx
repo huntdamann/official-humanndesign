@@ -3,8 +3,7 @@
 import { useState, forwardRef, RefObject } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { TbMenu } from "react-icons/tb"
-import { useInView } from "react-intersection-observer";
-import { Link, Element } from 'react-scroll';
+import { Link } from 'react-scroll';
 
 interface HeaderProps {
   menuRef: RefObject<HTMLSpanElement | null>
@@ -37,7 +36,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
       <button
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle menu"
-          className="px-3 rounded flex-shrink-0"
+          className="px-3 rounded shrink-0"
         >
           {open ? (
             "X"
@@ -71,7 +70,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
                 <li
                   key={id}
                   onClick={() => handleNavClick(id)}
-                  className="cursor-pointer transition-all duration-75 hover:border p-2 rounded-md hover:bg-black hover:opacity-70 transition-opacity"
+                  className="cursor-pointer transition-all duration-75 hover:border p-2 rounded-md hover:bg-black hover:opacity-70"
                 >
                   <Link to={id} smooth={true} duration={500}>
                 
@@ -81,8 +80,8 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
 
                 </li>
               ))}
-              <li className="border-2 self-center text-center bg-black w-[150px] rounded-md cursor-pointer hover:opacity-70 transition-opacity">
-                Let's Connect
+              <li className="border-2 self-center text-center bg-black w-37.5 rounded-md cursor-pointer hover:opacity-70 transition-opacity">
+                Let&apos;s Connect
               </li>
             </ul>
           </motion.nav>

@@ -1,5 +1,5 @@
+"use client"
 import React from "react";
-import Image from "next/image";
 import '../css/WhoWeAre.css'
 import { motion } from "motion/react"
 import { AnimatedTestimonials } from "../components/animated-testimonials";

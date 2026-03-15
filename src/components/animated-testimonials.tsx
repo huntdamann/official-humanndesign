@@ -4,7 +4,7 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "motion/react";
 import useMediaQuery from '../../src/hooks/useMediaQuery'
 import Image from 'next/image'
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 type Testimonial = {
   quote: string;
@@ -13,6 +13,7 @@ type Testimonial = {
   src: string;
   drop: boolean;
 };
+
 export const AnimatedTestimonials = ({
   testimonials,
   autoplay = false,
@@ -41,96 +42,83 @@ export const AnimatedTestimonials = ({
     }
   }, [autoplay]);
 
-
-  // Adding Mobile Media Query to decrease size 
   const isSmallDevice = useMediaQuery("(min-width: 320px) and (max-width: 425px)");
 
+  // Memoized rotation values — generated once per testimonial, never change on re-render
+  const rotations = useMemo(
+    () => testimonials.map(() => Math.floor(Math.random() * 21) - 10),
+    [testimonials]
+  )
 
-
-
-
-  const randomRotateY = () => {
-    return Math.floor(Math.random() * 21) - 10;
-  };
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid justify-center grid-cols-1 gap-20 md:grid-cols-2">
-        <div className=" flex flex-col items-center justify-center">
-          <motion.div viewport={{ amount: 0.1, once: isSmallDevice ? true : false}} transition={{ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }} initial={{rotate: -30, x: -60, opacity: 0}} whileInView={{rotate: 0, x: 0, opacity: 1}}  style={{width: isSmallDevice? "200px" : "", height: isSmallDevice ?  "200px" : "320px"}} className="relative self-center h-80 w-full">
+        <div className="flex flex-col items-center justify-center">
+          <motion.div
+            viewport={{ amount: 0.1, once: isSmallDevice ? true : false }}
+            transition={{ ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }}
+            initial={{ rotate: -30, x: -60, opacity: 0 }}
+            whileInView={{ rotate: 0, x: 0, opacity: 1 }}
+            style={{ width: isSmallDevice ? "200px" : "", height: isSmallDevice ? "200px" : "320px" }}
+            className="relative self-center h-80 w-full"
+          >
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
-                key={`${testimonial.src}-${index}`}
-                initial={{
+                  key={`${testimonial.src}-${index}`}
+                  initial={{
                     opacity: 0,
                     scale: 0.9,
                     z: -100,
-                    rotate: randomRotateY(),
+                    rotate: rotations[index],
                   }}
                   animate={{
                     opacity: isActive(index) ? 1 : 0.7,
                     scale: isActive(index) ? 1 : 0.95,
                     z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
-                    zIndex: isActive(index)
-                      ? 40
-                      : testimonials.length + 2 - index,
+                    rotate: isActive(index) ? 0 : rotations[index],
+                    zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
                     y: isActive(index) ? [0, -80, 0] : 0,
                   }}
                   exit={{
                     opacity: 0,
                     scale: 0.9,
                     z: 100,
-                    rotate: randomRotateY(),
+                    rotate: rotations[index],
                   }}
                   transition={{
                     duration: 0.4,
                     ease: "easeInOut",
                   }}
-                  className="absolute   group  inset-0 origin-bottom"
+                  className="absolute group inset-0 origin-bottom"
                 >
                   <Image
                     src={testimonial.src}
                     alt={testimonial.name}
                     fill
-                    style={{objectFit: "cover"}}
+                    style={{ objectFit: "cover" }}
                     draggable={false}
-                    className="h-full w-full transition-all group-hover:blur-sm  rounded-3xl object-cover object-center"
+                    className="h-full w-full transition-all group-hover:blur-sm rounded-3xl object-cover object-center"
                   />
-                   {/* <video
-                    src="/videos/site.mp4"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    className="absolute top-1/2 left-1/2 group-hover:w-[90%] group-hover:h-[90%] opacity-0 group-hover:opacity-100 transition-all delay-75 w-full h-full -translate-x-1/2 -translate-y-1/2 rounded-3xl object-cover"
-
-                  /> */}
-                  
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
         </div>
-        <motion.div viewport={{ amount: 0.5}} transition={{ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }} initial={{rotate: 30, x: 60, opacity: 0}} whileInView={{rotate: 0, x: 0, opacity: 1}} className="flex flex-col justify-between py-4">
+
+        <motion.div
+          viewport={{ amount: 0.5 }}
+          transition={{ ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }}
+          initial={{ rotate: 30, x: 60, opacity: 0 }}
+          whileInView={{ rotate: 0, x: 0, opacity: 1 }}
+          className="flex flex-col justify-between py-4"
+        >
           <motion.div
             key={active}
-            initial={{
-              y: 20,
-              opacity: 0,
-            }}
-            animate={{
-              y: 0,
-              opacity: 1,
-            }}
-            exit={{
-              y: -20,
-              opacity: 0,
-            }}
-            transition={{
-              duration: 0.2,
-              ease: "easeInOut",
-            }}
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -20, opacity: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             <h3 className="text-2xl font-bold text-black dark:text-white">
               {testimonials[active].name}
@@ -142,21 +130,9 @@ export const AnimatedTestimonials = ({
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
-                  initial={{
-                    filter: "blur(10px)",
-                    opacity: 0,
-                    y: 5,
-                  }}
-                  animate={{
-                    filter: "blur(0px)",
-                    opacity: 1,
-                    y: 0,
-                  }}
-                  transition={{
-                    duration: 0.2,
-                    ease: "easeInOut",
-                    delay: 0.02 * index,
-                  }}
+                  initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                  animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2, ease: "easeInOut", delay: 0.02 * index }}
                   className="inline-block"
                 >
                   {word}&nbsp;
@@ -181,7 +157,7 @@ export const AnimatedTestimonials = ({
             </button>
             <button
               onClick={handleNext}
-              className={`group/button flex h-12.5 w-50 ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all  dark:bg-neutral-800`}
+              className={`group/button flex h-12.5 w-50 ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all dark:bg-neutral-800`}
             >
               {testimonials[active].drop ? <span>View</span> : <span>Coming Soon</span>}
             </button>
