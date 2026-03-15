@@ -12,6 +12,7 @@ type Testimonial = {
   designation: string;
   src: string;
   drop: boolean;
+  link: string
 };
 
 export const AnimatedTestimonials = ({
@@ -45,10 +46,8 @@ export const AnimatedTestimonials = ({
   const isSmallDevice = useMediaQuery("(min-width: 320px) and (max-width: 425px)");
 
   // Memoized rotation values — generated once per testimonial, never change on re-render
-  const rotations = useMemo(
-    () => testimonials.map(() => Math.floor(Math.random() * 21) - 10),
-    [testimonials]
-  )
+  const rotations = [-8, 4, -3, 7, -5, 2, 9, -6]
+
 
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
@@ -126,7 +125,7 @@ export const AnimatedTestimonials = ({
             <p className="text-sm text-gray-300 dark:text-neutral-300">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-8 border-2 text-lg h-36 overflow-visible text-gray-300 dark:text-neutral-300">
+            <motion.p className="mt-8 text-lg h-36 overflow-visible text-gray-600 dark:text-neutral-300">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -145,21 +144,21 @@ export const AnimatedTestimonials = ({
           <div className="flex gap-4 mt-5 pt-12 md:pt-0">
             <button
               onClick={handlePrev}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button cursor-pointer flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
             >
               <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
             </button>
             <button
               onClick={handleNext}
-              className="group/button flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button cursor-pointer flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
             >
               <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
             </button>
+            
             <button
-              onClick={handleNext}
               className={`group/button flex h-12.5 w-50 ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all dark:bg-neutral-800`}
             >
-              {testimonials[active].drop ? <span>View</span> : <span>Coming Soon</span>}
+              {testimonials[active].drop ? <span className="w-full h-full flex items-center  rounded-md justify-center"><a href={testimonials[active].link} target="_blank" rel="noopener noreferrer" className=" rounded-md w-full h-full justify-center items-center flex">View</a></span> : <span>Coming Soon</span>}
             </button>
           </div>
         </motion.div>

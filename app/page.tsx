@@ -372,7 +372,7 @@ export default function Home() {
           <h2>Offerings</h2>
           <SimpleMenu />
         </section>
-        {/* <RecentWork /> */}
+        <RecentWork />
         {/* Desing is invisible Section */}
         <section className="section-content-1">
             <motion.h2
