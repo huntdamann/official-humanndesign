@@ -150,7 +150,7 @@ export default function CTA() {
       <p className="cta-heading">Let's Build Something Great Together...</p>
       <ContactForm />
 
-      {/* Animated Particles */}
+      {/* Animated Particles
       {[...Array(12)].map((_, i) => (
         <div key={i} className={`bubble bubble--${i + 1}`}>
           <Image
@@ -160,7 +160,7 @@ export default function CTA() {
             height={300}
           />
         </div>
-      ))}
+      ))} */}
     </section>
   )
 }

@@ -9,6 +9,9 @@
   --background: #ffffff;
   --foreground: #171717;
 }
+* {
+  outline: 3px blue solid;
+}
 
 .menu-text {
   font-size: 1em;
@@ -168,7 +171,7 @@
   grid-column: 4 / span 3;
   grid-row: 1 / span 6;
   width: 100%;
-  /* overflow-x: hidden; */
+  overflow-x: hidden;
  
 
   
