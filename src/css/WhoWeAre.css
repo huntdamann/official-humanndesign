@@ -13,6 +13,7 @@
     height: 100dvh;
     width: 100%;
     display: flex;
+    text-align: center;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -24,12 +25,12 @@
     }
   }
   
-  .who-we-are {
+  
+  .ham {
     position: absolute;
-    font-family: "Orbitron", sans-serif;
-    right: 80px;
-    top: 80px;
-    color: #3fb1b7;
+    top: 40px;
+    width: 630px;
+    font-family: var(--font-orbitron);
   }
 
   .pillars {
@@ -68,7 +69,6 @@
   .noise::before {
     content: "";
     position: absolute;
-    inset: 0;
     pointer-events: none;
   
     background-image: url("/noise.jpeg");
@@ -95,19 +95,18 @@
 
 
   .who-we-are {
-    position: unset;
-    right: unset;
-    /* left: 10%; */
-    /* transform: translateX(-50%, -50%); */
-    top: unset;
-    align-self: center;
-    border: 3px red solid;
+   
+    border: 1px blue solid;
+
 
     
   }
+  .ham {
+    font-family: var(--font-orbitron);
+    width: 300px;
+  }
   .section-content-1 {
     text-align: center;
-    gap: 50px;
     display: flex;
     justify-content: center;
     align-items: center;

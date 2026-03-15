@@ -24,6 +24,7 @@
 .cta-heading {
     font-family: var(--font-orbitron);
     font-size: 2em;
+    color: white;
 }
 
 .bubble {

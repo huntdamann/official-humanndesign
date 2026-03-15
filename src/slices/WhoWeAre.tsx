@@ -51,9 +51,16 @@ export default function WhoWeAre() {
       className="section-content-1 noise"
       id="about"
       {...staggerContainer}
+
     >
+       <p className="ham"> 
+        
+        At HumannDesign, our values are inspired by the principles of the Human
+      Design system. From this, we’ve built our agency around five core pillars:
+      </p>
+        
       {/* Logo */}
-      <motion.div className="mt-20" {...fadeUp}>
+      <motion.div className="mt-5 lg:mt-20" {...fadeUp}>
         <Image
           src="/images/Humann_design_logo.png"
           alt="Second Logo"
@@ -63,14 +70,7 @@ export default function WhoWeAre() {
       </motion.div>
 
       {/* Description */}
-      <motion.p
-        className="who-we-are"
-        style={{ width: "300px" }}
-        {...fadeUp}
-      >
-        At HumannDesign, our values are inspired by the principles of the Human
-        Design system. From this, we’ve built our agency around five core pillars:
-      </motion.p>
+    
 
       <div className="flex">
         <motion.span className="pillars word-1" {...fadeUp}>
@@ -93,27 +93,9 @@ export default function WhoWeAre() {
         </motion.span>
 
       </div>
+   
 
-      {/* Pillars */}
-      {/* <motion.span className="pillars word-1" {...fadeUp}>
-        1. Ideas
-      </motion.span>
 
-      <motion.span className="pillars word-2" {...fadeUp}>
-       2. Instinct
-      </motion.span>
-
-      <motion.span className="pillars word-3" {...fadeUp}>
-        5. Love
-      </motion.span>
-
-      <motion.span className="pillars word-4" {...fadeUp}>
-        3. Drive
-      </motion.span>
-
-      <motion.span className="pillars word-5" {...fadeUp}>
-        4. Emotion
-      </motion.span> */}
     </motion.section>
     </AnimatePresence>
   )

@@ -348,7 +348,6 @@
 }
 .blog-plug {
   height: 50dvh;
-  padding-left: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -513,9 +512,11 @@ h3 {
     }
   }
   .blog-plug {
+
  
   h2 {
-    font-size: 1em;
+    font-size: 0.5em;
+
   }
  
   span {
