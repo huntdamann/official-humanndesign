@@ -32,13 +32,7 @@
     }
   }
   
-  .stock-ticker ul:first-child {
-    /* background-color: yellow; */
-  }
-  
-  .stock-ticker ul:last-child {
-    /* background-color: pink; */
-  }
+
   
   .stock-ticker .company,
   .stock-ticker .price {

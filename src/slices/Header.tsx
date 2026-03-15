@@ -30,15 +30,11 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
   ]
 
   return (
-    <header ref={ref} className="fixed w-full left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
+    <header ref={ref} className=" w-auto min-w-screen fixed border left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
       {/* Top Bar */}
       <div className="flex items-center justify-between w-full lg:px-12 py-2 bg-transparent text-white">
-        <div className="flex rounded-[20px] min-w-0 text-center p-2 bg-black text-xs flex-col">
-          <span>Freelance Availability:</span>
-          <span>April 2026</span>
-        </div>
         
-        <button
+      <button
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle menu"
           className="px-3 rounded flex-shrink-0"
@@ -47,10 +43,16 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
             "X"
           ) : (
             <span ref={menuRef} style={{ display: "inline-flex" }}>
-              <TbMenu style={{ color: "black", fontSize: "32px" }} className="burger" />
+              <TbMenu style={{ fontSize: "32px" }} className="burger" />
             </span>
           )}
         </button>
+        <div className="flex rounded-[20px] min-w-0 text-center p-2 bg-black text-xs flex-col">
+          <span>Freelance Availability:</span>
+          <span>April 2026</span>
+        </div>
+        
+       
       </div>
 
       {/* Expandable Menu */}
@@ -61,7 +63,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="overflow-hidden rounded-md text-white w-full"
+            className="overflow-hidden rounded-md text-white w-full border"
             style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
           >
             <ul className="flex flex-col gap-6 px-6 py-8">
@@ -69,7 +71,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
                 <li
                   key={id}
                   onClick={() => handleNavClick(id)}
-                  className="cursor-pointer hover:opacity-70 transition-opacity"
+                  className="cursor-pointer transition-all duration-75 hover:border p-2 rounded-md hover:bg-black hover:opacity-70 transition-opacity"
                 >
                   <Link to={id} smooth={true} duration={500}>
                 
@@ -79,7 +81,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
 
                 </li>
               ))}
-              <li className="border-2 text-center bg-black cursor-pointer hover:opacity-70 transition-opacity">
+              <li className="border-2 self-center text-center bg-black w-[150px] rounded-md cursor-pointer hover:opacity-70 transition-opacity">
                 Let's Connect
               </li>
             </ul>

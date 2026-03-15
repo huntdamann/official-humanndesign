@@ -168,7 +168,7 @@
   grid-column: 4 / span 3;
   grid-row: 1 / span 6;
   width: 100%;
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
  
 
   
@@ -458,8 +458,7 @@ h3 {
   }
  
   .burger {
-    color: black;
-    border: 1px red solid;
+    color: white;
   }
   .section-content-1 {
    
@@ -538,7 +537,8 @@ h3 {
 }
   #instructions {
     top: unset;
-    bottom: -15rem;
+    bottom: 30rem;
+    color: white;
   }
 }
 

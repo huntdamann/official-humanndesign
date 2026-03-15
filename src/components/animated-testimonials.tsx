@@ -181,7 +181,7 @@ export const AnimatedTestimonials = ({
             </button>
             <button
               onClick={handleNext}
-              className={`group/button flex h-[50px] w-[200px] ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all  dark:bg-neutral-800`}
+              className={`group/button flex h-12.5 w-50 ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all  dark:bg-neutral-800`}
             >
               {testimonials[active].drop ? <span>View</span> : <span>Coming Soon</span>}
             </button>

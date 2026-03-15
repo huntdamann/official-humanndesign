@@ -29,6 +29,8 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  const instructionRef = useRef<HTMLDivElement>(null)
+
   const profileRef = useRef<HTMLDivElement>(null)
 
 
@@ -129,6 +131,15 @@ export default function Home() {
           },
           0.001
         )
+        tl.to(
+          burgerRef.current!,
+          {
+            color: "blue",
+            duration: 0.1,
+            ease: "power2.out",
+          },
+          0.001
+        )
 
 
       }
@@ -147,7 +158,6 @@ export default function Home() {
             borderRadius: "15px",
             duration: 0.6,
             ease: "power3.out",
-            left: "",
           },
           0.001
         )
@@ -170,6 +180,7 @@ export default function Home() {
         headerRef.current!,
         {
           color: "#000000",
+          width: "auto",
           backgroundColor: "hsl(0, 0%, 80%, 0.9)",
           duration: 0.1,
           ease: "power2.out",
@@ -187,6 +198,7 @@ export default function Home() {
         },
         0.001
       )
+     
   
       tl.to(
         contentRef.current!,
@@ -197,6 +209,17 @@ export default function Home() {
         },
         0.001
       )
+
+      tl.to(
+        instructionRef.current!,
+        {
+          opacity: 0,
+          duration: 0.1,
+          scale: 0.55,
+        },
+        0.001
+      )
+  
   
       if (!isSmallDevice) {
         tl.from(
@@ -381,7 +404,7 @@ export default function Home() {
               }}
             />
           </div>
-          <div id="instructions" className="animate-bounce">
+          <div ref={instructionRef} id="instructions" className="animate-bounce">
                 <span style={{fontSize: "2.5em"}}><TiArrowDown />
                 </span>
                 <span>Scroll Down</span>
