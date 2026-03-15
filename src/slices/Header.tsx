@@ -30,7 +30,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
   ]
 
   return (
-    <header ref={ref} className=" w-auto min-w-screen fixed border left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
+    <header ref={ref} className=" w-screen fixed px-6 left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
       {/* Top Bar */}
       <div className="flex items-center justify-between w-full lg:px-12 py-2 bg-transparent text-white">
         
@@ -43,7 +43,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
             "X"
           ) : (
             <span ref={menuRef} style={{ display: "inline-flex" }}>
-              <TbMenu style={{ fontSize: "32px" }} className="burger" />
+              <TbMenu style={{  fontSize: "32px" }} className="burger" />
             </span>
           )}
         </button>

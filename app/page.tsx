@@ -154,7 +154,8 @@ export default function Home() {
         tl.to(
           headerRef.current!,
           {
-            width: "50%",
+            width: "50vw",
+            
             borderRadius: "15px",
             duration: 0.6,
             ease: "power3.out",
@@ -180,7 +181,6 @@ export default function Home() {
         headerRef.current!,
         {
           color: "#000000",
-          width: "auto",
           backgroundColor: "hsl(0, 0%, 80%, 0.9)",
           duration: 0.1,
           ease: "power2.out",
@@ -305,14 +305,14 @@ export default function Home() {
  
   return (
     <>
-     {/* <Header ref={headerRef} menuRef={burgerRef}/> */} 
+     <Header ref={headerRef} menuRef={burgerRef}/> 
      <section  ref={gridRef} className="grid-container">
 
           {/* Hero */}
           <div ref={elementFiveRef} className="grid-element el-5">
              {/* Background video */}
              <div className="bg-video">
-               <Image src='/snowy.jpg' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
+               <Image loading="eager" src='/snowy.jpg' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
 
              </div>
               
@@ -441,7 +441,7 @@ export default function Home() {
           <h2>Offerings</h2>
           <SimpleMenu />
         </section>
-        <RecentWork />
+        {/* <RecentWork /> */}
         {/* Desing is invisible Section */}
         <section className="section-content-1">
             <motion.h2

@@ -10,7 +10,7 @@
   --foreground: #171717;
 }
 * {
-  outline: 3px blue solid;
+  /* outline: 3px blue solid; */
 }
 
 .menu-text {
@@ -409,8 +409,10 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   position: relative;
   padding: 10px;
+  overflow-x: hidden;
 
 }
+
 
 html,
 body {
@@ -538,8 +540,9 @@ h3 {
  
 }
 .menu-text {
-  font-size: 1.5em;
-}
+  font-family: var(--font-orbitron);
+  font-size: 1.2em;
+  color: #97d4d4;}
 
 .el-4, .el-2 {
   display: none;

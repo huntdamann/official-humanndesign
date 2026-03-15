@@ -37,11 +37,11 @@ export default function SimpleMenu() {
 
                 >
                     <motion.div
-                        className='flex w-full justify-between text-sm items-center border-b p-2'
+                        className='flex w-full justify-between items-center border-b p-2'
                         whileTap={{ scale: 0.95 }}
                         whileHover={{ scale: 1.02 }}
                     >
-                        <span className='menu-text'>UI/UX Design</span>
+                        <p className='menu-text'>UI/UX Design</p>
                         {webPlus ? <IoRemoveCircleOutline className="cursor-pointer" /> : <IoAddCircleOutline className="cursor-pointer" />}
                     </motion.div>
 
@@ -77,7 +77,7 @@ export default function SimpleMenu() {
                         whileHover={{ scale: 1.02 }}
                         onClick={handleBrandClick}
                     >
-                        <span  className='menu-text'>Branding</span>
+                        <p className='menu-text'>Branding</p>
                         {brandPlus ? <IoRemoveCircleOutline className="cursor-pointer" /> : <IoAddCircleOutline className="cursor-pointer" />}
                     </motion.div>
 
@@ -148,7 +148,7 @@ export default function SimpleMenu() {
                         whileHover={{ scale: 1.02 }}
                         onClick={handleThreeClick}
                     >
-                        <span className='menu-text'>3D Experiences</span>
+                        <p className='menu-text'>3D Experiences</p>
                         {threePlus ? <IoRemoveCircleOutline className="cursor-pointer" /> : <IoAddCircleOutline className="cursor-pointer" />}
                     </motion.div>
 
@@ -183,7 +183,7 @@ export default function SimpleMenu() {
                         whileHover={{ scale: 1.02 }}
                         onClick={handleAppClick}
                     >
-                        <span className='menu-text'>App Development</span>
+                        <p className='menu-text'>App Development</p>
                         {appPlus ? <IoRemoveCircleOutline className="cursor-pointer" /> : <IoAddCircleOutline className="cursor-pointer" />}
                     </motion.div>
 
