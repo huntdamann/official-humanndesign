@@ -35,6 +35,7 @@
 
   .pillars {
     position: absolute;
+    cursor: pointer;
     font-family: "Orbitron", sans-serif;
 
   }
@@ -90,6 +91,22 @@
 	100% {
 		background-position: 0% 50%;
 	}
+}
+#pillar-close {
+  cursor: pointer;
+  border: 1px black solid;
+  border-radius: 5px;
+  width: 70px;
+}
+#pillar-close:hover {
+  background-color: black;
+  color: white;
+  transition: all 0.1s ease;
+
+}
+
+#pillar-description, #pillar-description-header, #pillar-close {
+  font-family: var(--font-orbitron);
 }
 @media (min-width: 320px) and (max-width: 425px) {
 

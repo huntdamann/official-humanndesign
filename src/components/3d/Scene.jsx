@@ -32,7 +32,7 @@ export default function Scene() {
                     trigger: sceneRef.current,
                     start: "top+=1000 top",
                     end: "bottom+=1000 bottom", 
-                    markers: true,
+                    // markers: true,
                     scrub: 1,
 
                 }
@@ -62,43 +62,43 @@ export default function Scene() {
     )
 }
 
-function Box(props) {
-    // This reference gives us direct access to the THREE.Mesh object
-    const ref = useRef();
-    // Hold state for hovered and clicked events
-    const [hovered, hover] = useState(false);
-    const [clicked, click] = useState(false);
+// function Box(props) {
+//     // This reference gives us direct access to the THREE.Mesh object
+//     const ref = useRef();
+//     // Hold state for hovered and clicked events
+//     const [hovered, hover] = useState(false);
+//     const [clicked, click] = useState(false);
   
-    useLayoutEffect(() => {
-      if (!ref.current) return
+//     useLayoutEffect(() => {
+//       if (!ref.current) return
     
-      const ctx = gsap.context(() => {
-        gsap.to(ref.current.rotation, {
-          x: ref.current.rotation.x + 1,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".scene-container",
-            scrub: true,
-          },
-        })
-      })
+//       const ctx = gsap.context(() => {
+//         gsap.to(ref.current.rotation, {
+//           x: ref.current.rotation.x + 1,
+//           ease: "none",
+//           scrollTrigger: {
+//             trigger: ".scene-container",
+//             scrub: true,
+//           },
+//         })
+//       })
     
-      return () => ctx.revert()
-    }, [])
+//       return () => ctx.revert()
+//     }, [])
     
   
-    // Return the view, these are regular Threejs elements expressed in JSX
-    return (
-      <mesh
-        {...props}
-        ref={ref}
-        scale={clicked ? 1.5 : 1}
-        onClick={(event) => click(!clicked)}
-        onPointerOver={(event) => hover(true)}
-        onPointerOut={(event) => hover(false)}
-      >
-        <boxGeometry args={[2, 2, 2]} />
-        <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
-      </mesh>
-    );
-  }
+//     // Return the view, these are regular Threejs elements expressed in JSX
+//     return (
+//       <mesh
+//         {...props}
+//         ref={ref}
+//         scale={clicked ? 1.5 : 1}
+//         onClick={(event) => click(!clicked)}
+//         onPointerOver={(event) => hover(true)}
+//         onPointerOut={(event) => hover(false)}
+//       >
+//         <boxGeometry args={[2, 2, 2]} />
+//         <meshStandardMaterial color={hovered ? "hotpink" : "orange"} />
+//       </mesh>
+//     );
+//   }

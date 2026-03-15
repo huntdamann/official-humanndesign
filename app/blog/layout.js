@@ -3,7 +3,6 @@ import { Banner, Search } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-blog/style.css'
 import '../../app/globals.css'
-import Image from "next/image"
 
 export const metadata = {
   title: 'Blog Example',
@@ -38,7 +37,7 @@ export default async function BlogLayout({ children, metadata }) {
 
       {/* Hero Image Section */}
       <div style={{ width: '100%', height: 'auto', marginBottom: '20px' }}>
-        <Image
+        <img
           src={heroImage}
           alt="Hero Image"
           style={{ width: '100%', height: 'auto', objectFit: 'cover' }}
