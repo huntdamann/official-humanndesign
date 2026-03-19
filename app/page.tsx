@@ -20,6 +20,7 @@ import Footer from '../src/slices/Footer'
 import useMediaQuery from '../src/hooks/useMediaQuery'
 
 import Image from "next/image"
+import { truncateSync } from "fs"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -27,6 +28,8 @@ gsap.registerPlugin(ScrollTrigger)
 export default function Home() {
   // const containerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null)
+    const grid = useRef<HTMLDivElement>(null)
+
   const contentRef = useRef<HTMLDivElement>(null)
   const instructionRef = useRef<HTMLDivElement>(null)
 
@@ -51,6 +54,23 @@ export default function Home() {
   const burgerRef = useRef<HTMLSpanElement>(null)
 
 
+  //Process Adding Apple Like Animation
+
+  //Prepare Image Sequence Frames
+  //Setup Canvas and image dimensions
+  //Load Images 
+  //Draw first frame immediately 
+  //Setup trigger to update canvas image on scroll
+  //Animate in
+  //Handle Heading Text transitions
+
+
+  // Not covered is ...
+
+  //Mobile responsiveness
+  //loading images upfront
+  //Error Handling
+
 
 
 
@@ -58,7 +78,7 @@ export default function Home() {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: gridRef.current,
+          trigger: grid.current,
           pin: true,
           start: "top top",
           end: "+=1000",
@@ -237,112 +257,116 @@ export default function Home() {
   return (
     <>
      <Header ref={headerRef} menuRef={burgerRef}/> 
-     <section  ref={gridRef} className="grid-container">
+     <section ref={grid} className="h-[150svh]  w-full">
+       
+        <div  ref={gridRef} className="grid-container">
 
-          {/* Hero */}
-          <div ref={elementFiveRef} className="grid-element el-5">
-             {/* Background video */}
-             <div className="bg-video">
-               <Image loading="eager" src='/snowy.jpg' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
+            {/* Hero */}
+            <div ref={elementFiveRef} className="grid-element el-5">
+              {/* Background video */}
+              <div className="bg-video">
+                <Image loading="eager" src='/snowy.jpg' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
 
-             </div>
+              </div>
+                
+              <div ref={profileRef} className="profile-pic">
+                  <Image src='/images/profile.png' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
+              </div>
+
+              <div ref={contentRef} className="element-content">
+                <div className="hero-heading">
+                <h1>Design Engineer</h1>
+                {/* <div className="slider-containter">
+
+                <div ref={slider} className="sub-heading">
+                  <p ref={firstText}>Web Design</p>
+                  <p ref={secondText}>Web Development</p>
+
+                </div>
+
+                </div> */}
+
+                    <StockTicker />
+
               
-            <div ref={profileRef} className="profile-pic">
-                <Image src='/images/profile.png' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
-            </div>
-
-            <div ref={contentRef} className="element-content">
-              <div className="hero-heading">
-              <h1>Design Engineer</h1>
-              {/* <div className="slider-containter">
-
-              <div ref={slider} className="sub-heading">
-                <p ref={firstText}>Web Design</p>
-                <p ref={secondText}>Web Development</p>
-
+                <div className="super-script">
+                  [2433]
+                </div>
+                </div>
+                <div className="hero-tag">
+                  <span>Just a regular guy that likes to make cool things for people </span>
+                </div>
+              
               </div>
 
-              </div> */}
+            </div>
+            {/* Name */}
+            <div ref={elementSixRef} className="grid-element el-6">
+                <span>Hunter Mann</span>
+            </div> 
 
-                  <StockTicker />
 
+            {/* About Me */}
+          <div ref={elementRef} className="grid-element el-1">
+                <h3>About Me:</h3>
+                <p className=""> Your favorite engineer&apos;s favorite engineer — I build, design, and solve whatever you need.</p>
+            </div>
             
-              <div className="super-script">
-                [2433]
-              </div>
-              </div>
-              <div className="hero-tag">
-                <span>Just a regular guy that likes to make cool things for people </span>
-              </div>
-             
+            {/* Offerings */}
+            <div ref={elementTwoRef} className="grid-element el-2">
+            <h3>Offerings:</h3>
+                <ul>
+                  <li>Web Design</li>
+                  <li>Web Development</li>
+                  <li>Graphic Design</li>
+                  <li>Vision Creation</li>
+                  <li>Product Visualization</li>
+
+                </ul>
             </div>
-
-          </div>
-           {/* Name */}
-           <div ref={elementSixRef} className="grid-element el-6">
-              <span>Hunter Mann</span>
-          </div> 
-
-
-          {/* About Me */}
-         <div ref={elementRef} className="grid-element el-1">
-              <h3>About Me:</h3>
-              <p className=""> Your favorite engineer&apos;s favorite engineer — I build, design, and solve whatever you need.</p>
-          </div>
-          
-          {/* Offerings */}
-          <div ref={elementTwoRef} className="grid-element el-2">
-          <h3>Offerings:</h3>
-              <ul>
-                <li>Web Design</li>
-                <li>Web Development</li>
-                <li>Graphic Design</li>
-                <li>Vision Creation</li>
-                <li>Product Visualization</li>
-
-              </ul>
-          </div>
-           
-          <div ref={elementThreeRef} className="grid-element el-3">
-          <video
-              src="/videos/Rough_Draft.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "20px",
-              }}
-            />
-          </div>
-          <div ref={elementFourRef} className="grid-element el-4">
+            
+            <div ref={elementThreeRef} className="grid-element el-3">
             <video
-              src="/videos/site.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "20px",
-              }}
-            />
-          </div>
-          <div ref={instructionRef} id="instructions" className="animate-bounce">
-                <span style={{fontSize: "2.5em"}}><TiArrowDown />
-                </span>
-                <span>Scroll Down</span>
-          </div>
-         
+                src="/videos/Rough_Draft.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
+              />
+            </div>
+            <div ref={elementFourRef} className="grid-element el-4">
+              <video
+                src="/videos/site.mp4"
+                autoPlay
+                muted
+                loop
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
+              />
+            </div>
+            <div ref={instructionRef} id="instructions" className="animate-bounce">
+                  <span style={{fontSize: "2.5em"}}><TiArrowDown />
+                  </span>
+                  <span>Scroll Down</span>
+            </div>
           
-          
-        </section>
+            
+            
+        </div>
 
+     </section>
+  
 
 
 

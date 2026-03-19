@@ -9,7 +9,7 @@ export function Model(props) {
   
     const ctx = gsap.context(() => {
       gsap.to(ref.current.rotation, {
-        x: -0.4,
+        x: -0.04,
         ease: "none",
         scrollTrigger: {
           trigger: ".scene-container",

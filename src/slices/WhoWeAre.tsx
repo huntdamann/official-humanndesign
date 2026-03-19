@@ -87,7 +87,7 @@ export default function WhoWeAre() {
         </motion.div>
 
         {/* Pillars */}
-        <div className="flex">
+        <div className="flex gap-2">
           {pillars.map((pillar) => (
             <motion.span
               key={pillar.header}

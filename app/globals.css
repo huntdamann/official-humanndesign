@@ -178,7 +178,7 @@
   grid-column: 4 / span 3;
   grid-row: 1 / span 6;
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: clip;
 
  
 
@@ -292,7 +292,7 @@
 
 
 .section-info {
-  height: 100dvh;
+  height: 100lvh;
   width: 100vw;
   display: flex;
   flex-direction: column;
@@ -331,7 +331,7 @@
     
     background-size: 400% 400%;
 
-  height: 100dvh;
+  height: 100lvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -384,7 +384,7 @@
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(9, 1fr);
     width: 100%;
-    min-height: 100dvh;
+    height: 100%;
     border-radius: 20px;
 
     position: relative;
@@ -411,24 +411,23 @@
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  position: relative;
-  padding: 10px;
-  overflow-x: hidden;
-
-}
-
-
-html,
-body {
-  height: 100%;
+  min-height: 100dvh; /* grows with content, doesn't constrain */
   margin: 0;
   padding: 0;
-  /* overflow-x: hidden; */
+  width: 100%;
+  position: relative;
+
+  -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
 
 }
+html, body {
+  overflow-x: hidden;
+}
+
+
+
 
 h1, h3, h2 {
   font-family: "Orbitron", sans-serif;
@@ -447,6 +446,7 @@ h3 {
 }
 
 
+
 @media (min-width: 320px) and (max-width: 425px) {
 
   .middle {
@@ -462,7 +462,7 @@ h3 {
   }
   .el-5 {
     /* height: auto; */
-    height: 100dvh;
+    height: 100lvh;
     grid-column: unset;
     grid-row: unset;
     
@@ -563,5 +563,6 @@ h3 {
     bottom: 29rem;
     color: white;
   }
+  
 }
 
