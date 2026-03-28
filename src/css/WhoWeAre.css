@@ -37,7 +37,21 @@
     position: absolute;
     cursor: pointer;
     font-family: "Orbitron", sans-serif;
+    border: 1px black solid; 
+    min-width: 100px;
+    border-radius: 10px;
+    background-color: rgb(67, 65, 65);
+    color: white;
+    transition: all 0.2s ease;
 
+
+  }
+  .pillars:hover {
+    background-color: rgb(197, 196, 196);
+    color: black;
+  }
+  .pillars:active {
+    transform: scale(0.95);
   }
 
   .word-1 {

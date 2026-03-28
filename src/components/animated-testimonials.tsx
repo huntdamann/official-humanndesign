@@ -51,7 +51,7 @@ export const AnimatedTestimonials = ({
 
   return (
     <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
-      <div className="relative grid justify-center grid-cols-1 gap-20 md:grid-cols-2">
+      <div className="relative grid justify-center grid-cols-1 gap-8 md:gap-20 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center">
           <motion.div
             viewport={{ amount: 0.1, once: isSmallDevice ? true : false }}
@@ -125,7 +125,7 @@ export const AnimatedTestimonials = ({
             <p className="text-sm text-gray-300 dark:text-neutral-300">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-8 text-lg h-36 overflow-visible text-gray-600 dark:text-neutral-300">
+            <motion.p className="mt-3 text-lg h-36 overflow-visible text-gray-600 dark:text-neutral-300">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -141,7 +141,7 @@ export const AnimatedTestimonials = ({
           </motion.div>
 
           {/* Arrow Buttons */}
-          <div className="flex gap-4 mt-5 pt-12 md:pt-0">
+          <div className="flex gap-4 md:mt-5 mt-1 pt-6 md:pt-0">
             <button
               onClick={handlePrev}
               className="group/button cursor-pointer flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"

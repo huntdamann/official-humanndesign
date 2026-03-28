@@ -1,0 +1,46 @@
+.mockup-container {
+
+    min-height: 300px;
+    position: relative;
+}
+.mockup-controls {
+    display: flex;
+    position: absolute;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 5;
+    height: 100%;
+}
+.control-back, .control-front {
+    border: 1px rgb(187, 187, 187) solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, 0.4);
+    border-radius: 20px;
+}
+.control-back:active, .control-front:active {
+    background-color: rgba(192, 192, 192, 0.4) ;
+}
+.control-back {
+    left: 10px;
+}
+.control-front {
+    right: 10px;
+}
+
+.mockup-description {
+    text-align: center;
+    width: 300px;
+    border-radius: 5px;
+}
+.mockup-use {
+    font-size: 1.125rem;
+    margin-top: 1rem;
+    height: auto;
+    overflow: visible;
+    color: #4b5563;
+}
+.viewer-container {
+    min-height: 300px;
+}

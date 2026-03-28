@@ -73,7 +73,7 @@ export default function WhoWeAre() {
       >
         <p className="ham">
           At HumannDesign, our values are inspired by the principles of the Human
-          Design system. From this, we&apos;ve built our agency around five core pillars:
+          Design system. From this, we&apos;ve built our agency around five core pillars. Click to learn more about them!
         </p>
 
         {/* Logo */}
@@ -87,7 +87,7 @@ export default function WhoWeAre() {
         </motion.div>
 
         {/* Pillars */}
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {pillars.map((pillar) => (
             <motion.span
               key={pillar.header}

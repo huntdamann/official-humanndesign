@@ -15,12 +15,12 @@ import Scene from "@/src/components/3d/Scene"
 import SimpleMenu from '../src/components/SimpleMenu'
 import { StockTicker } from "@/src/components/ui/Marquee"
 import GenericButton from "@/src/components/ui/GenericButton"
+import Mockups from "@/src/slices/Mockups"
 import Header from '@/src/slices/Header'
 import Footer from '../src/slices/Footer'
 import useMediaQuery from '../src/hooks/useMediaQuery'
 
 import Image from "next/image"
-import { truncateSync } from "fs"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -101,7 +101,7 @@ export default function Home() {
             height: "auto",
             width: "auto",
             gridColumn: "4 / span 3",
-            gridRow: "1 / span 6",
+            gridRow: "2 / span 6",
             position: "relative",
             borderRadius: "20px",
             duration: 0.3,
@@ -257,7 +257,7 @@ export default function Home() {
   return (
     <>
      <Header ref={headerRef} menuRef={burgerRef}/> 
-     <section ref={grid} className="h-[150svh]  w-full">
+     <section ref={grid} className="h-[150svh] lg:h-[100svh] w-full">
        
         <div  ref={gridRef} className="grid-container">
 
@@ -294,7 +294,7 @@ export default function Home() {
                 </div>
                 </div>
                 <div className="hero-tag">
-                  <span>Just a regular guy that likes to make cool things for people </span>
+                  <span>Multi-disciplined engineer that builds across different domains</span>
                 </div>
               
               </div>
@@ -397,6 +397,7 @@ export default function Home() {
           <SimpleMenu />
         </section>
         <RecentWork />
+        <Mockups />
         {/* Desing is invisible Section */}
         <section className="section-content-1">
             <motion.h2
