@@ -33,9 +33,9 @@ export default function Mockups() {
 
     return (
         <>
-            <section style={{textAlign: "left", paddingBottom: "48px", display: "flex", flexDirection: "column", gap: "20px", alignItems: "center"}} className="section-work">
+            <section style={{textAlign: "left", paddingBottom: "48px", display: "flex", flexDirection: "column", gap: "20px", alignItems: "center", marginTop:"140px", paddingTop: "40px"}} className="section-work">
 
-                <motion.h2 style={{fontSize: "2em", }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4, once: true}}>Mockups</motion.h2>
+                <motion.h2 style={{fontSize: "2em", color: "#4dc9c9" }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4, once: true}}>Mockups</motion.h2>
                 <div className="mockup-container">
                   <div className="mockup-controls">
                     <div onClick={handleBack} className="control-back">

@@ -77,6 +77,8 @@ export default function Home() {
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({
+        yPercent: -100, // slides the pinned section up
+
         scrollTrigger: {
           trigger: grid.current,
           pin: true,
@@ -147,7 +149,7 @@ export default function Home() {
       tl.to(
         gridRef.current!,
         {
-          backgroundColor: "#1d9797",
+          backgroundColor: "#0d0d0d",
           duration: 0.1,
           ease: "power2.out",
         },
@@ -250,14 +252,29 @@ export default function Home() {
   }, [isSmallDevice])
   
 
- 
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        elementFiveRef.current!,
+        { opacity: 0, y: 100 },
+        { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: 0.2 }
+      )
+      gsap.fromTo(
+        headerRef.current!,
+        { opacity: 0, y: -60 },
+        { opacity: 1, y: 0, duration: 1.5, animationDelay: 1, ease: "power2.out", delay: 0.2 }
+      )
+    })
+  
+    return () => ctx.revert()
+  }, [])
 
   
  
   return (
     <>
      <Header ref={headerRef} menuRef={burgerRef}/> 
-     <section ref={grid} className="h-[150svh] lg:h-[100svh] w-full">
+     <section ref={grid} className="h-[150svh] relative z-10 lg:h-[100svh] w-full">
        
         <div  ref={gridRef} className="grid-container">
 
@@ -275,7 +292,7 @@ export default function Home() {
 
               <div ref={contentRef} className="element-content">
                 <div className="hero-heading">
-                <h1>Design Engineer</h1>
+                <h1>Design <span className="text-[#4dc9c9]">Engineer</span></h1>
                 {/* <div className="slider-containter">
 
                 <div ref={slider} className="sub-heading">
@@ -302,20 +319,20 @@ export default function Home() {
             </div>
             {/* Name */}
             <div ref={elementSixRef} className="grid-element el-6">
-                <span>Hunter Mann</span>
+                <span className="text-[#4dc9c9]">Hunter Mann</span>
             </div> 
 
 
             {/* About Me */}
           <div ref={elementRef} className="grid-element el-1">
-                <h3>About Me:</h3>
-                <p className=""> Your favorite engineer&apos;s favorite engineer — I build, design, and solve whatever you need.</p>
+                <h3 className="text-[#4dc9c9]">About Me</h3>
+                <p className="text-[#c8c8c8]"> Your favorite engineer&apos;s favorite engineer — I build, design, and solve whatever you need.</p>
             </div>
             
             {/* Offerings */}
             <div ref={elementTwoRef} className="grid-element el-2">
-            <h3>Offerings:</h3>
-                <ul>
+            <h3 className="text-[#4dc9c9]">Offerings</h3>
+                <ul className="text-[#c8c8c8]">
                   <li>Web Design</li>
                   <li>Web Development</li>
                   <li>Graphic Design</li>
@@ -366,32 +383,18 @@ export default function Home() {
         </div>
 
      </section>
-  
 
-
-
-        {/* <section className="section-info">
-          <div style={{
-            position: "absolute",
-            height: "500px",
-            borderRadius: "20px",
-            width: "500px",
-            right: "2rem",
-            top: "5rem",
-            padding: "1rem",
-            marginLeft: "1rem",
-            backgroundColor: "rgb(255, 255, 255, 0.9)",
-            color: "black"
-          }}>
-            <span>
-              
-              Design is the backbone of creativity—the invisible structure that unites music, art, photography, videography, and every expressive medium into a coherent experience.
-
-            </span>
-          </div>
-            <Scene />
-        </section> */}
         <WhoWeAre />
+        <section className="relative h-screen w-screen">
+
+        <div id="scene-data-container" className='absolute border  text-[#4dc9c9] rounded-[10px] top-20 p-6 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10'>
+              <span id="scene-data" className="lg:text-[2.2em] text-[1.2em]">
+                Design is the backbone of creativity, the unseen force that connects everything together...
+              </span>
+            </div>
+            <Scene />
+
+        </section>
         <section className="section-info">
           <h2>Offerings</h2>
           <SimpleMenu />
@@ -399,7 +402,7 @@ export default function Home() {
         <RecentWork />
         <Mockups />
         {/* Desing is invisible Section */}
-        <section className="section-content-1">
+        <section className="section-content-2">
             <motion.h2
               initial={{
                 opacity: 0,

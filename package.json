@@ -43,6 +43,7 @@
     "@types/react-dom": "^19",
     "@types/react-scroll": "^1.8.10",
     "@types/stats.js": "^0.17.4",
+    "baseline-browser-mapping": "^2.10.12",
     "eslint": "^9.39.4",
     "eslint-config-next": "16.0.10",
     "eslint-config-prettier": "^10.1.8",

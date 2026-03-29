@@ -54,7 +54,7 @@ export const AnimatedTestimonials = ({
       <div className="relative grid justify-center grid-cols-1 gap-8 md:gap-20 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center">
           <motion.div
-            viewport={{ amount: 0.1, once: isSmallDevice ? true : false }}
+            viewport={{ amount: 0.1, once: isSmallDevice ? true : true }}
             transition={{ ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }}
             initial={{ rotate: -30, x: -60, opacity: 0 }}
             whileInView={{ rotate: 0, x: 0, opacity: 1 }}
@@ -106,7 +106,7 @@ export const AnimatedTestimonials = ({
         </div>
 
         <motion.div
-          viewport={{ amount: 0.5 }}
+          viewport={{ amount: 0.5, once: true }}
           transition={{ ease: [0.25, 0.1, 0.25, 1], duration: 0.3 }}
           initial={{ rotate: 30, x: 60, opacity: 0 }}
           whileInView={{ rotate: 0, x: 0, opacity: 1 }}
@@ -119,13 +119,13 @@ export const AnimatedTestimonials = ({
             exit={{ y: -20, opacity: 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
-            <h3 className="text-2xl font-bold text-black dark:text-white">
+            <h3 className="text-2xl font-bold text-[#49cdcd] dark:text-[#49cdcd]">
               {testimonials[active].name}
             </h3>
             <p className="text-sm text-gray-300 dark:text-neutral-300">
               {testimonials[active].designation}
             </p>
-            <motion.p className="mt-3 text-lg h-36 overflow-visible text-gray-600 dark:text-neutral-300">
+            <motion.p className="mt-3 text-lg h-36 overflow-visible text-[#c8c8c8] dark:text-neutral-300">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}

@@ -17,7 +17,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: fixed;
+    top: 0;
     animation: gradient 15s ease infinite;
 
     h2 {
@@ -47,7 +48,7 @@
 
   }
   .pillars:hover {
-    background-color: rgb(197, 196, 196);
+    background-color: rgba(77,201,201,0.1);
     color: black;
   }
   .pillars:active {
@@ -122,12 +123,16 @@
 #pillar-description, #pillar-description-header, #pillar-close {
   font-family: var(--font-orbitron);
 }
+.section-work {
+  border: 1px black solid;
+  border-radius: 20px;
+  background: linear-gradient(0deg, #0d0d0d, #1a1a2e);
+}
 @media (min-width: 320px) and (max-width: 425px) {
 
 
   .who-we-are {
    
-    border: 1px blue solid;
 
 
     

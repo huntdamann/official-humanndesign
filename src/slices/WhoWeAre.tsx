@@ -108,7 +108,7 @@ export default function WhoWeAre() {
       exit={{ opacity: 0, y: 10 }}
       transition={{ duration: 0.3 }}
       style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
-      className="absolute flex flex-col rounded-lg items-center p-8 gap-6 w-100 h-100 border"
+      className="absolute flex flex-col rounded-lg border-[rgba(77,201,201,0.1)] items-center shadow-md p-8 gap-6 w-100 h-100 border"
     >
       <span id="pillar-description-header" className="text-[2em]">
         {activePillar.header}

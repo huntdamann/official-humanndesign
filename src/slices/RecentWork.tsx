@@ -73,7 +73,7 @@ export default function RecentWork() {
           designation: "Website",
           src:"/images/logo.png",
           drop: true,
-          link: "https://www.calisthenicsandconversations.com",
+          link: "https://www.calisthenicsandconversation.com/",
 
           
         },
@@ -83,9 +83,9 @@ export default function RecentWork() {
 
     return (
         <>
-            <section style={{textAlign: "center", paddingBottom: "48px"}} className="section-work">
+            <section style={{textAlign: "center", paddingBottom: "48px", paddingTop:"40px"}} className="section-work">
 
-                <motion.h2 style={{fontSize: "2em", }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4, once: true}}>Work</motion.h2>
+                <motion.h2 style={{fontSize: "2em", color: "#49cdcd" }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4, once: true}}>Work</motion.h2>
 
                   <AnimatedTestimonials testimonials={testimonials}/>
 
