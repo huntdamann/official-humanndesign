@@ -83,7 +83,7 @@ export default function RecentWork() {
 
     return (
         <>
-            <section style={{textAlign: "center", paddingBottom: "48px", paddingTop:"40px"}} className="section-work">
+            <section id="work" style={{textAlign: "center", paddingBottom: "48px", paddingTop:"40px"}} className="section-work">
 
                 <motion.h2 style={{fontSize: "2em", color: "#49cdcd" }}  whileInView={{y: 0, opacity: 1}} transition={{ease: "circOut"}} initial={{y:40, opacity: 0}} viewport={{amount: 0.4, once: true}}>Work</motion.h2>
 

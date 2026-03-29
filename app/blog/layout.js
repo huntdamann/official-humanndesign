@@ -44,7 +44,7 @@ export default async function BlogLayout({ children, metadata }) {
         />
       </div>
 
-      <div className='text-black'>
+      <div className='text-black dark:text-white'>
 
         {children}
 

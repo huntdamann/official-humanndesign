@@ -395,7 +395,7 @@ export default function Home() {
             <Scene />
 
         </section>
-        <section className="section-info">
+        <section id="services" className="section-info">
           <h2>Offerings</h2>
           <SimpleMenu />
         </section>
@@ -452,7 +452,7 @@ export default function Home() {
           </div>
 
           
-          <GenericButton text={"Go"} link={"/blog"} />
+          <GenericButton text={"Read"} link={"/blog"} />
         </div>
         <Footer />
        

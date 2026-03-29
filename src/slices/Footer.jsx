@@ -20,10 +20,10 @@ function Footer() {
                     <Link href="/">Home</Link>
                 </li>
                 <li className="transition-colors duration-200 hover:text-[#72d0c8] active:text-[#72d0c8] cursor-pointer">
-                    <Link href="/">Web Services</Link>
+                    <Link href="#services">Web Services</Link>
                 </li>
                 <li  className="transition-colors duration-200 hover:text-[#72d0c8] active:text-[#72d0c8] cursor-pointer">
-                    <span>Recent Work</span>
+                    <Link href="#work">Recent Work</Link>
                 </li>
                 <li className="transition-colors duration-200 hover:text-[#72d0c8] active:text-[#72d0c8] cursor-pointer">
                     <Link href="/solutions">Solutions</Link>

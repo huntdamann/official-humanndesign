@@ -13,6 +13,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 // import * as THREE from 'three'
 import { Model } from './Skybox'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -24,6 +25,7 @@ export default function Scene() {
     const [frameloop, setFrameloop] = useState('always');
 
     const [skyboxActive, setSkyboxActive] = useState(false)
+    const isSmallDevice = useMediaQuery("(min-width: 320px) and (max-width: 425px)");
 
 
 
@@ -56,11 +58,11 @@ export default function Scene() {
     useEffect(() => {
       ScrollTrigger.create({
         trigger: sceneRef.current,
-        start: "top+=1000 top",
+        start: isSmallDevice ? "top+=1000 top" : "top 80%",
         once: true, // only fires once
         onEnter: () => setSkyboxActive(true),
       })
-    }, [])
+    }, [isSmallDevice])
 
    
     return (
