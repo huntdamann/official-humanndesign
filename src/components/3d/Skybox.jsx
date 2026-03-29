@@ -26,7 +26,7 @@ export function Model({ active, ...props }) {
       }
   
       // Lerp toward target — higher factor = faster
-      groupRef.current.rotation.y = THREE.MathUtils.lerp(current, targetRotation, 0.025)
+      groupRef.current.rotation.y = THREE.MathUtils.lerp(current, targetRotation, 0.01)
     })
   
     return (
