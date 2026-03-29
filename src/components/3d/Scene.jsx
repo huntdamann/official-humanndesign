@@ -56,8 +56,9 @@ export default function Scene() {
     useEffect(() => {
       ScrollTrigger.create({
         trigger: sceneRef.current,
-        start: "top 80%",
+        start: "top+=1000 top",
         once: true, // only fires once
+        markers: true,
         onEnter: () => setSkyboxActive(true),
       })
     }, [])
