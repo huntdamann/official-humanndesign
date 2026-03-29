@@ -58,7 +58,6 @@ export default function Scene() {
         trigger: sceneRef.current,
         start: "top+=1000 top",
         once: true, // only fires once
-        markers: true,
         onEnter: () => setSkyboxActive(true),
       })
     }, [])
