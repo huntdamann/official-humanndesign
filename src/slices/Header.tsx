@@ -29,7 +29,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
   ]
 
   return (
-    <header ref={ref} className=" w-screen opacity-0 fixed px-6 left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
+    <header style={{padding: "0.5rem", paddingLeft: '0.25rem'}} ref={ref} className=" w-screen p-4 opacity-0 fixed  left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
       {/* Top Bar */}
       <div className="flex items-center justify-between w-full lg:px-12 py-2 bg-transparent text-white">
         
@@ -46,7 +46,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
             </span>
           )}
         </button>
-        <div className="flex rounded-[20px] min-w-0 text-center p-2 bg-black text-xs flex-col">
+        <div style={{padding: "0.35rem"}} className="flex rounded-[20px] min-w-1 h-10 text-center  bg-black text-xs flex-col">
           <span>Freelance Availability:</span>
           <span>April 2026</span>
         </div>

@@ -144,19 +144,19 @@ export const AnimatedTestimonials = ({
           <div className="flex gap-4 md:mt-5 mt-1 pt-6 md:pt-0">
             <button
               onClick={handlePrev}
-              className="group/button cursor-pointer flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button active:bg-[#4dc9c9] active:scale-95 cursor-pointer flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
             >
               <IconArrowLeft className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:rotate-12 dark:text-neutral-400" />
             </button>
             <button
               onClick={handleNext}
-              className="group/button cursor-pointer flex h-7 w-7 items-center justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
+              className="group/button cursor-pointer flex h-7 w-7 items-center active:bg-[#4dc9c9] justify-center rounded-full bg-gray-100 dark:bg-neutral-800"
             >
-              <IconArrowRight className="h-5 w-5 text-black transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
+              <IconArrowRight className="h-5 w-5 text-black  transition-transform duration-300 group-hover/button:-rotate-12 dark:text-neutral-400" />
             </button>
             
             <button
-              className={`group/button flex h-12.5 w-50 ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all dark:bg-neutral-800`}
+              className={`group/button active:bg-[#4dc9c9] active:scale-95 flex h-12.5 w-50 ${testimonials[active].drop ? 'bg-black hover:bg-teal-200' : 'bg-gray-500 hover:bg-gray-200'} text-white items-center justify-center rounded-md transition-all dark:bg-neutral-800`}
             >
               {testimonials[active].drop ? <span className="w-full h-full flex items-center  rounded-md justify-center"><a href={testimonials[active].link} target="_blank" rel="noopener noreferrer" className=" rounded-md w-full h-full justify-center items-center flex">View</a></span> : <span>Coming Soon</span>}
             </button>

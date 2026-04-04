@@ -40,7 +40,7 @@ export default function Viewer({ modelSelect, positionX }: { modelSelect: string
                 <Float>
                     <Scene3D modelSelect={modelSelect} index={positionX} />
                 </Float>
-                <Environment preset="city" />
+                {/* <Environment preset="city" /> */}
             </Canvas>
         </div>
     )

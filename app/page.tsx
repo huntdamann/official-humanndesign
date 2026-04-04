@@ -17,6 +17,7 @@ import { StockTicker } from "@/src/components/ui/Marquee"
 import GenericButton from "@/src/components/ui/GenericButton"
 import Mockups from "@/src/slices/Mockups"
 import Header from '@/src/slices/Header'
+import InteractiveGradient  from '../src/webgl/InteractiveGradient'
 import Footer from '../src/slices/Footer'
 import useMediaQuery from '../src/hooks/useMediaQuery'
 
@@ -54,23 +55,7 @@ export default function Home() {
   const burgerRef = useRef<HTMLSpanElement>(null)
 
 
-  //Process Adding Apple Like Animation
-
-  //Prepare Image Sequence Frames
-  //Setup Canvas and image dimensions
-  //Load Images 
-  //Draw first frame immediately 
-  //Setup trigger to update canvas image on scroll
-  //Animate in
-  //Handle Heading Text transitions
-
-
-  // Not covered is ...
-
-  //Mobile responsiveness
-  //loading images upfront
-  //Error Handling
-
+ 
 
 
 
@@ -274,13 +259,11 @@ export default function Home() {
   return (
     <>
      <Header ref={headerRef} menuRef={burgerRef}/> 
-     <section ref={grid} className="h-[150svh] relative z-10 lg:h-[100svh] w-full">
+     <section ref={grid} className="h-[150svh] relative z-10 lg:h-[100svh] w-screen">
        
         <div  ref={gridRef} className="grid-container">
 
-            {/* Hero */}
             <div ref={elementFiveRef} className="grid-element el-5">
-              {/* Background video */}
               <div className="bg-video">
                 <Image loading="eager" src='/snowy.jpg' fill alt="Profile Pic" style={{objectFit: 'cover', borderRadius: "20px"}} />
 
@@ -293,15 +276,11 @@ export default function Home() {
               <div ref={contentRef} className="element-content">
                 <div className="hero-heading">
                 <h1>Design <span className="text-[#4dc9c9]">Engineer</span></h1>
-                {/* <div className="slider-containter">
+                 <div className="slider-containter">
 
-                <div ref={slider} className="sub-heading">
-                  <p ref={firstText}>Web Design</p>
-                  <p ref={secondText}>Web Development</p>
+                
 
-                </div>
-
-                </div> */}
+                </div> 
 
                     <StockTicker />
 
@@ -317,19 +296,16 @@ export default function Home() {
               </div>
 
             </div>
-            {/* Name */}
             <div ref={elementSixRef} className="grid-element el-6">
                 <span className="text-[#4dc9c9]">Hunter Mann</span>
             </div> 
 
 
-            {/* About Me */}
           <div ref={elementRef} className="grid-element el-1">
                 <h3 className="text-[#4dc9c9]">About Me</h3>
                 <p className="text-[#c8c8c8]"> Your favorite engineer&apos;s favorite engineer — I build, design, and solve whatever you need.</p>
             </div>
             
-            {/* Offerings */}
             <div ref={elementTwoRef} className="grid-element el-2">
             <h3 className="text-[#4dc9c9]">Offerings</h3>
                 <ul className="text-[#c8c8c8]">
@@ -377,11 +353,27 @@ export default function Home() {
                   </span>
                   <span>Scroll Down</span>
             </div>
+           
           
             
             
         </div>
+        <InteractiveGradient
+              brushSize={50.0}
+              brushStrength={0.5}
+              distortionAmount={5.5}
+              fluidDecay={0.98}
+              trailLength={0.2}
+              stopDecay={0.85}
+              color1="#000000"  // mint / light cyan
+              color2="#000000"  // deep purple
+              color3="#ffffff"  // electric blue
+              color4="#66d1fe"  // sky blue
+              colorIntensity={1.0}
+              softness={8.0}
+            />
 
+       
      </section>
 
         <WhoWeAre />

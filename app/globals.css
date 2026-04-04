@@ -11,6 +11,19 @@
 }
 * {
   /* outline: 3px blue solid; */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.gradient-interactive {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px teal solid;
+  z-index: 999;
 }
 
 .menu-text {
@@ -190,7 +203,7 @@
 
 .grid-element.el-5.fullscreen {
   position: fixed;
-  z-index: 80;
+  z-index: 8;
   grid-column: unset;
   grid-row: unset;
   background-color: transparent;
@@ -392,10 +405,11 @@
     height: 100%;
     border-radius: 20px;
 
-    position: relative;
+    position: absolute;
     gap: 15px;
     padding: 0.4rem;
-    background-color: hsl(0, 0%, 97%);
+    background-color: transparent;
+    z-index: 50;
   
 }
 
