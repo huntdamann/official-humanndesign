@@ -50,7 +50,7 @@ export const AnimatedTestimonials = ({
 
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
+    <div style={{marginTop: "3rem"}} className="mx-auto max-w-sm  px-4 py-20 font-sans antialiased md:max-w-4xl md:px-8 lg:px-12">
       <div className="relative grid justify-center grid-cols-1 gap-8 md:gap-20 md:grid-cols-2">
         <div className="flex flex-col items-center justify-center">
           <motion.div

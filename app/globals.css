@@ -65,6 +65,26 @@
     font-size: 3em;
   }
 }
+
+#footer-container {
+
+  width: 100%;
+  background-color: black;
+  color: white;
+  padding-inline: 24px;
+  padding-block: 48px;
+
+
+}
+.footer-left, .footer-right {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+}
+.special-right {
+  gap: 20px;
+}
 .sub-heading {
   
   position: relative;
@@ -328,12 +348,14 @@
   background-color: transparent;
   z-index: -1;
   position: relative;
+  
 }
 #scene-data {
   font-family: var(--font-orbitron);
 }
 #scene-data-container {
   background-color: hsl(0, 0%, 97%, 0.9);
+  padding: 1.5rem;
 }
 
 
@@ -383,7 +405,7 @@
   gap: 3rem;
 
   h2 {
-    font-size: 3em;
+    font-size: 2.5em;
   }
  
   span {

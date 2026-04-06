@@ -358,7 +358,7 @@ export default function Home() {
             
             
         </div>
-        <InteractiveGradient
+        {/* <InteractiveGradient
               brushSize={50.0}
               brushStrength={0.5}
               distortionAmount={5.5}
@@ -371,7 +371,7 @@ export default function Home() {
               color4="#66d1fe"  // sky blue
               colorIntensity={1.0}
               softness={8.0}
-            />
+            /> */}
 
        
      </section>
@@ -379,7 +379,7 @@ export default function Home() {
         <WhoWeAre />
         <section className="relative h-screen w-screen">
 
-        <div id="scene-data-container" className='absolute border  text-[#4dc9c9] rounded-[10px] top-20 p-6 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10'>
+        <div id="scene-data-container" className='absolute border  text-[#4dc9c9] rounded-[10px] top-20 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10'>
               <span id="scene-data" className="lg:text-[2.2em] text-[1.2em]">
                 Design is the backbone of creativity, the unseen force that connects everything together...
               </span>

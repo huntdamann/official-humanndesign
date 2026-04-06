@@ -48,8 +48,9 @@ export function ContactForm() {
 
   return (
     <form
+    id="form-submit"
       onSubmit={handleSubmit}
-      className="flex flex-col gap-7 space-y-5 mt-5"
+      className="space-y-5"
       // className="max-w-md flex sm:border-3 flex-col gap-7 mt-12 space-y-5"
     >
       {/* Name */}
@@ -108,7 +109,7 @@ export function ContactForm() {
                 value={option.value}
                 className="peer hidden"
               />
-              <div className="border rounded-md px-3 py-2 text-center transition peer-checked:border-black peer-checked:bg-black peer-checked:text-white">
+              <div style={{padding: "0.5rem"}} className="border rounded-md text-center transition peer-checked:border-black peer-checked:bg-black peer-checked:text-white">
                 {option.label}
               </div>
             </label>
@@ -119,8 +120,9 @@ export function ContactForm() {
       {/* Submit */}
       <button
         type="submit"
+        style={{padding: "0.8rem"}}
         disabled={loading}
-        className="w-full flex items-center justify-center gap-2 rounded-md bg-black text-white py-2 hover:opacity-90 transition disabled:opacity-50"
+        className="w-full flex items-center justify-center gap-2 rounded-md bg-black text-white p-2 hover:opacity-90 transition disabled:opacity-50"
       >
         <span>{loading ? "Sending..." : "Let's Connect"}</span>
         <FaArrowLeft style={{ transform: "rotate(135deg)" }} />

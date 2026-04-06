@@ -29,7 +29,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
   ]
 
   return (
-    <header style={{padding: "0.5rem", paddingLeft: '0.25rem'}} ref={ref} className=" w-screen p-4 opacity-0 fixed  left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
+    <header style={{padding: "0.5rem", paddingLeft: '1rem', paddingRight: '1rem'}} ref={ref} className=" w-screen p-4 opacity-0 fixed  left-0 lg:left-1/2 lg:-translate-x-1/2 z-50 overflow-hidden">
       {/* Top Bar */}
       <div className="flex items-center justify-between w-full lg:px-12 py-2 bg-transparent text-white">
         
