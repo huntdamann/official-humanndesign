@@ -11,6 +11,7 @@ import { TiArrowDown } from "react-icons/ti";
 import WhoWeAre from "@/src/slices/WhoWeAre"
 import RecentWork from "@/src/slices/RecentWork"
 import CTA from "@/src/slices/CTA"
+import { SocialCTASection } from "@/src/slices/SocialCTA"
 import Scene from "@/src/components/3d/Scene"
 import SimpleMenu from '../src/components/SimpleMenu'
 import { StockTicker } from "@/src/components/ui/Marquee"
@@ -428,24 +429,10 @@ export default function Home() {
         <CTA />
 
 
-        <div className="blog-plug">
-          <div className="">
-            {text.split(" ").map((word, index) => (
-              <motion.span
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.05, duration: 0.3, ease: "easeOut" }}
-                className="inline-block"
-              >
-                {word}&nbsp;
-              </motion.span>
-             ))}
-          </div>
-
+       
+        <SocialCTASection />
           
-          <GenericButton text={"Read"} link={"/blog"} />
-        </div>
+          
         <Footer />
        
 
