@@ -84,7 +84,7 @@ export function SocialCTASection() {
         <span className="cta-handle">@HUMANNDesign</span>
         </div>
         
-        <GenericButton text="Read" link="Follow" />
+        <GenericButton text="Follow" link="Follow" />
       </motion.div>
       </div>
       

@@ -62,7 +62,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header({ menuRef },
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="overflow-hidden rounded-md text-white w-full border"
+            className="overflow-hidden rounded-md text-white w-full "
             style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
           >
             <ul className="flex flex-col gap-6 px-6 py-8">
