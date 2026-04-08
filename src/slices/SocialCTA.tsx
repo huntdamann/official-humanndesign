@@ -1,4 +1,4 @@
-import { motion } from "motion/react"
+import { motion, Variants } from "motion/react"
 import React from "react";
 import GenericButton from "@/src/components/ui/GenericButton"
 import { FaYoutube } from "react-icons/fa";
@@ -7,14 +7,14 @@ import { FaSquareInstagram } from "react-icons/fa6";
 
 import '../css/SocialCTA.css'
 import { FaBlog } from "react-icons/fa6";
-const containerVariants = {
+const containerVariants: Variants = {
   hidden: {},
   visible: {
     transition: { staggerChildren: 0.05 },
   },
 };
 
-const wordVariants = {
+const wordVariants: Variants = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.3, ease: "easeOut" } },
 };
