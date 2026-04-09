@@ -276,7 +276,7 @@ export default function Home() {
 
               <div ref={contentRef} className="element-content">
                 <div className="hero-heading">
-                <h1>Design <span className="text-[#4dc9c9]">Engineer</span></h1>
+                <h1 className="hero-lead">Design <span className="text-[#4dc9c9]">Engineer</span></h1>
                  
 
                     {/* <StockTicker /> */}
