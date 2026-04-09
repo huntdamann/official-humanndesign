@@ -61,6 +61,7 @@
   position: relative;
   align-items: center;
   justify-content: center;
+  border: 1px red solid;
   h1 {
     font-size: 3em;
   }

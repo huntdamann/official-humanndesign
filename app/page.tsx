@@ -277,13 +277,9 @@ export default function Home() {
               <div ref={contentRef} className="element-content">
                 <div className="hero-heading">
                 <h1>Design <span className="text-[#4dc9c9]">Engineer</span></h1>
-                 <div className="slider-containter">
+                 
 
-                
-
-                </div> 
-
-                    <StockTicker />
+                    {/* <StockTicker /> */}
 
               
                 <div className="super-script">
@@ -378,7 +374,7 @@ export default function Home() {
      </section>
 
         <WhoWeAre />
-        <section className="relative h-screen w-screen">
+        {/* <section className="relative h-screen w-screen">
 
         <div id="scene-data-container" className='absolute border  text-[#4dc9c9] rounded-[10px] top-20 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10'>
               <span id="scene-data" className="lg:text-[2.2em] text-[1.2em]">
@@ -387,15 +383,15 @@ export default function Home() {
             </div>
             <Scene />
 
-        </section>
-        <section id="services" className="section-info">
+        </section> */}
+        {/* <section id="services" className="section-info">
           <h2>Offerings</h2>
           <SimpleMenu />
         </section>
         <RecentWork />
-        <Mockups />
+        <Mockups /> */}
         {/* Desing is invisible Section */}
-        <section className="section-content-2">
+        {/* <section className="section-content-2">
             <motion.h2
               initial={{
                 opacity: 0,
@@ -423,17 +419,17 @@ export default function Home() {
             >
               The best design is invisible...
             </motion.h2>
-        </section>
+        </section> */}
 
         {/* Call To Action Section */}
-        <CTA />
+        {/* <CTA /> */}
 
 
        
-        <SocialCTASection />
+        {/* <SocialCTASection /> */}
           
           
-        <Footer />
+        {/* <Footer /> */}
        
 
     </>
