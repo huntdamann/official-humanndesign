@@ -61,14 +61,13 @@
   position: relative;
   align-items: center;
   justify-content: center;
-  border: 1px red solid;
   h1 {
-    font-size: 3rem;
+    font-size: 2.6rem;
   }
 }
 .hero-lead {
   font-family: var(--font-orbitron);
-  border: 1px blue solid;
+ min-width: 25rem;
 }
 
 #footer-container {
@@ -616,3 +615,18 @@ h3 {
   
 }
 
+@media (min-resolution: 1.5dppx) {
+  .hero-lead {
+   font-size: 2.8em;
+  }
+  .element-content {
+    padding-top: 8rem;
+  }
+  .hero-tag {
+  font-family: var(--font-orbitron);
+  position: absolute;
+  top: 15rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+}
