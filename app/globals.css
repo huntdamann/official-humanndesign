@@ -614,8 +614,17 @@ h3 {
   }
   
 }
+@media (min-resolution: 1dppx) and (min-width: 320px) and (max-width: 425px) {
 
-@media (min-resolution: 1.5dppx) {
+  .hero-tag {
+    top: 120%;
+  }
+  
+  #instructions {
+    bottom: 40%;
+  }
+}
+@media (min-resolution: 1.5dppx) and (min-width: 1024px) {
   .hero-lead {
    font-size: 2.8em;
   }
@@ -623,8 +632,6 @@ h3 {
     padding-top: 8rem;
   }
   .hero-tag {
-  font-family: var(--font-orbitron);
-  position: absolute;
   top: 15rem;
   left: 50%;
   transform: translateX(-50%);
