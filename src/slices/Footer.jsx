@@ -8,7 +8,7 @@ import { motion } from 'motion/react'
 function Footer() {
   return (
     <motion.footer id="footer-container" initial={{y: 40, opacity: 0}} whileInView={{y:0, opacity: 1}} viewport={{amount: 0.2, once: true }} className="w-full bg-black text-white px-6 py-12 lg:py-16">
-      <div className="max-w-7xl mx-auto flex flex-col lg:flex-row justify-between gap-12">
+      <div className="w-full  mx-auto flex flex-col lg:flex-row justify-between gap-12">
         
         {/* Left Section — Resources */}
         <div className="footer-left">

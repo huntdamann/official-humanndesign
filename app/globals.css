@@ -72,10 +72,10 @@
 
 #footer-container {
 
-  width: 100%;
+  width: 100dvw;
   background-color: black;
   color: white;
-  padding-inline: 24px;
+  padding-inline: 36px;
   padding-block: 48px;
 
 
