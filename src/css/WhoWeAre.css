@@ -1,111 +1,99 @@
+.section-content-1 {
+  background: linear-gradient(120deg, #e9e4e4, #d3cfcf, #d3d2d2, #c2bfbf);
 
-  .section-content-1 {
-    background: linear-gradient(
-  120deg,
-  #e9e4e4,
-  #d3cfcf,
-  #d3d2d2,
-  #c2bfbf
-);
-      
-      background-size: 400% 400%;
+  background-size: 400% 400%;
 
-    height: 100dvh;
-    width: 100%;
-    display: flex;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    top: 0;
-    animation: gradient 15s ease infinite;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  /* border: 3px purple solid; */
+  top: 0;
+  animation: gradient 15s ease infinite;
 
-    h2 {
-      font-size: 3em;
-    }
+  h2 {
+    font-size: 3em;
   }
-  
-  
-  .ham {
-    position: absolute;
-    top: 40px;
-    width: 630px;
-    font-family: var(--font-orbitron);
-  }
+}
 
-  .pillars {
-    position: absolute;
-    cursor: pointer;
-    font-family: "Orbitron", sans-serif;
-    border: 1px black solid; 
-    min-width: 100px;
-    border-radius: 10px;
-    background-color: rgb(67, 65, 65);
-    color: white;
-    transition: all 0.2s ease;
+.ham {
+  position: absolute;
+  top: 40px;
+  width: 630px;
+  font-family: var(--font-orbitron);
+}
 
+.pillars {
+  position: absolute;
+  cursor: pointer;
+  font-family: "Orbitron", sans-serif;
+  border: 1px black solid;
+  min-width: 100px;
+  border-radius: 10px;
+  background-color: rgb(67, 65, 65);
+  color: white;
+  transition: all 0.2s ease;
+}
+.pillars:hover {
+  background-color: rgba(77, 201, 201, 0.1);
+  color: black;
+}
+.pillars:active {
+  transform: scale(0.95);
+}
 
-  }
-  .pillars:hover {
-    background-color: rgba(77,201,201,0.1);
-    color: black;
-  }
-  .pillars:active {
-    transform: scale(0.95);
-  }
+.word-1 {
+  left: 40%;
+  top: 18%;
+}
+.word-2 {
+  left: 30%;
+  top: 70%;
+}
+.word-3 {
+  right: 40%;
+  top: 38%;
+}
+.word-4 {
+  bottom: 10%;
+  left: 40%;
+}
+.word-5 {
+  top: 70%;
+  right: 30%;
+}
+.noise {
+  position: relative;
+  overflow: hidden;
+}
 
-  .word-1 {
-    left: 40%;
-    top: 18%;
-  }
-  .word-2 {
-    left: 30%;
-    top: 70%;
-  }
-  .word-3 {
-    right: 40%;
-    top: 38%;
-  }
-  .word-4 {
+.noise::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
 
-    bottom: 10%;
-    left: 40%;
+  background-image: url("/noise.jpeg");
+  background-repeat: repeat;
+  background-size: 128px 128px; /* or 64px for finer grain */
 
-  }
-  .word-5 {
-    top: 70%;
-    right: 30%;
-  }
-  .noise {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .noise::before {
-    content: "";
-    position: absolute;
-    pointer-events: none;
-  
-    background-image: url("/noise.jpeg");
-    background-repeat: repeat;
-    background-size: 128px 128px; /* or 64px for finer grain */
-  
-    opacity: 0.02;
-    mix-blend-mode: overlay;
-  }
+  opacity: 0.02;
+  mix-blend-mode: overlay;
+}
 
-
-  @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 #pillar-close {
   cursor: pointer;
@@ -117,10 +105,11 @@
   background-color: black;
   color: white;
   transition: all 0.1s ease;
-
 }
 
-#pillar-description, #pillar-description-header, #pillar-close {
+#pillar-description,
+#pillar-description-header,
+#pillar-close {
   font-family: var(--font-orbitron);
 }
 .section-work {
@@ -133,31 +122,24 @@
   min-height: 70dvh;
   background: linear-gradient(0deg, #0d0d0d, #1a1a2e);
 }
-@media (min-width: 320px) and (max-width: 425px) {
-
-
+@media (min-width: 320px) and (max-width: 1024px) {
   .who-we-are {
-   
-
-
-    
   }
   .ham {
     font-family: var(--font-orbitron);
     width: 300px;
+    position: unset;
+    margin-top: 1rem;
   }
   .section-content-1 {
     text-align: center;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     padding: 1rem;
   }
 
   .pillars {
     position: unset;
-
   }
-
-  
 }

@@ -32,9 +32,17 @@
   color: #97d4d4;
 
   font-family: var(--font-orbitron);
-
 }
 
+header {
+  justify-content: space-evenly;
+  position: fixed;
+  top: 10px;
+  z-index: 150;
+  width: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .middle {
   display: flex;
@@ -61,36 +69,33 @@
   position: relative;
   align-items: center;
   justify-content: center;
+  /* border: 3px purple solid; */
   h1 {
     font-size: 2.6rem;
   }
 }
 .hero-lead {
   font-family: var(--font-orbitron);
- min-width: 25rem;
+  min-width: 25rem;
 }
 
 #footer-container {
-
   width: 100%;
   background-color: black;
   color: white;
   padding-inline: 24px;
   padding-block: 48px;
-
-
 }
-.footer-left, .footer-right {
+.footer-left,
+.footer-right {
   display: flex;
   flex-direction: column;
   gap: 10px;
-
 }
 .special-right {
   gap: 20px;
 }
 .sub-heading {
-  
   position: relative;
   white-space: nowrap;
   display: flex;
@@ -102,9 +107,8 @@
     font-weight: 500;
     padding-right: 50px;
   }
- 
 }
-.sub-heading p:nth-of-type(2){
+.sub-heading p:nth-of-type(2) {
   position: absolute;
   left: 100%;
   top: 0;
@@ -124,7 +128,8 @@
   border-radius: 100%;
   background-color: red;
 }
-.left, .right {
+.left,
+.right {
   display: flex;
   gap: 80px;
   align-items: center;
@@ -144,55 +149,49 @@
   gap: 30px;
 }
 .grid-element {
-  
-  
   position: relative;
   border-radius: 20px;
- 
 }
 .el-1 {
   grid-column: 1 / span 3;
-  grid-row: 5 / span 2;
+  grid-row: 7 / span 2;
   padding: 1.5rem;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 3px rgba(77,201,201,0.1) solid;
+  border: 3px rgba(77, 201, 201, 0.1) solid;
   visibility: visible;
   opacity: 0;
 
-  transform: translateX(-600px), translateY(200px);}
+  transform: translateX(-600px), translateY(200px);
+}
 .el-6 {
   grid-column: 4 / span 3;
   grid-row: 8 / span 1;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  border: 3px rgba(77,201,201,0.1) solid;
+  border: 3px rgba(77, 201, 201, 0.1) solid;
   align-items: center;
   justify-content: center;
   text-align: center;
   font-size: 3em;
   font-family: var(--font-orbitron);
   font-weight: 700;
-  transform: translateX(-600px), translateY(200px);  
+  transform: translateX(-600px), translateY(200px);
   opacity: 0;
-
-
 }
 .el-2 {
   grid-column: 7 / span 2;
   grid-row: 2 / span 3;
   display: flex;
   justify-content: flex-start;
-  border: 3px rgba(77,201,201,0.1) solid;
+  border: 3px rgba(77, 201, 201, 0.1) solid;
   padding: 1.5rem;
   gap: 10px;
   flex-direction: column;
   transform: translateX(600px), translateY(200px);
   opacity: 0;
-
-
 }
 
 .el-3 {
@@ -200,16 +199,12 @@
   grid-row: 5 / span 3;
   transform: translateX(600px), translateY(200px);
   opacity: 0;
-
-
-
 }
 .el-4 {
   grid-column: 2 / span 2;
-  grid-row: 3 / span 2;
-  transform: translateX(-600px), translateY(200px); 
+  grid-row: 4 / span 3;
+  transform: translateX(-600px), translateY(200px);
   opacity: 0;
-
 }
 .el-5 {
   grid-column: 4 / span 3;
@@ -217,13 +212,7 @@
   width: 100%;
   overflow-x: clip;
   opacity: 0;
- 
-
-  
 }
-
-
-
 
 .grid-element.el-5.fullscreen {
   position: fixed;
@@ -235,7 +224,6 @@
   justify-content: center;
   width: 100%;
   height: 100dvh;
-  
 }
 .profile-pic {
   inset: 0;
@@ -262,20 +250,18 @@
 .snowflake,
 .snowflake::before,
 .snowflake::after {
-
   position: absolute;
   inset: 0;
-  content: '';
+  content: "";
   overflow: hidden;
   pointer-events: none;
-  background-image: radial-gradient(
-    circle at 5% calc(var(--y) * 1),
-    #fff 3px, transparent 6px
-  ),
-  radial-gradient(
-    circle at 65% calc(var(--y) * 1.3),
-    #fff 2px, transparent 4px
-  );
+  background-image:
+    radial-gradient(circle at 5% calc(var(--y) * 1), #fff 3px, transparent 6px),
+    radial-gradient(
+      circle at 65% calc(var(--y) * 1.3),
+      #fff 2px,
+      transparent 4px
+    );
 }
 .snowflake {
   animation: snowfall 20s linear infinite;
@@ -305,7 +291,7 @@
     --y: 101%;
   }
 }
-.element-content { 
+.element-content {
   display: flex;
   justify-content: flex-start;
   flex-direction: column;
@@ -316,8 +302,6 @@
   z-index: 1;
   color: white;
   gap: 30px;
-  
-
 }
 .hero-tag {
   font-family: var(--font-orbitron);
@@ -326,7 +310,18 @@
   left: 50%;
   transform: translateX(-50%);
 }
-
+.offering-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  color: black;
+  border-radius: 0.375rem; /* Equivalent to Tailwind's rounded-md */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Equivalent to Tailwind's shadow-md */
+  padding: 1rem; /* Equivalent to Tailwind's p-2 */
+  z-index: 10;
+}
 
 .section-info {
   height: 100lvh;
@@ -338,7 +333,6 @@
   padding: 3.5rem;
   h2 {
     font-size: 3em;
-    
   }
   span {
     font-family: var(--font-orbitron);
@@ -352,7 +346,6 @@
   background-color: transparent;
   z-index: -1;
   position: relative;
-  
 }
 #scene-data {
   font-family: var(--font-orbitron);
@@ -362,17 +355,10 @@
   padding: 1.5rem;
 }
 
-
 .section-content-2 {
-  background: linear-gradient(
-120deg,
-#272626,
-#d3cfcf,
-#060606,
-#fffefe
-);
-    
-    background-size: 400% 400%;
+  background: linear-gradient(120deg, #272626, #d3cfcf, #060606, #fffefe);
+
+  background-size: 400% 400%;
 
   height: 100lvh;
   display: flex;
@@ -388,15 +374,15 @@
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 .blog-plug {
   height: 50dvh;
@@ -411,7 +397,7 @@
   h2 {
     font-size: 2.5em;
   }
- 
+
   span {
     font-family: var(--font-orbitron);
     font-size: 5em;
@@ -421,25 +407,46 @@
 }
 .burger {
   color: black;
+  cursor: pointer;
+}
+.burger-container:hover .burger {
+  transition: all 0.1s ease;
+  color: #97d4d4; /* Change this to your desired hover color */
+}
+.available {
+  /* color: #97d4d4; */
+  font-family: var(--font-orbitron);
+  font-size: 12px;
+  display: flex;
+  min-width: 0.25rem;
+  min-height: 2.5rem;
+  text-align: center;
+  background-color: black;
+  flex-direction: column;
+  padding: 0.35rem;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.available:hover {
+  background-color: #97d4d4;
+  color: black;
+  transition: all 0.2s ease;
 }
 
 .grid-container {
-    display: grid;
-    grid-template-columns: repeat(9, 1fr);
-    grid-template-rows: repeat(9, 1fr);
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  grid-template-rows: repeat(9, 1fr);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 
-    position: absolute;
-    gap: 15px;
-    padding: 0.4rem;
-    background-color: transparent;
-    z-index: 50;
-  
+  position: absolute;
+  gap: 15px;
+  padding: 0.4rem;
+  background-color: transparent;
+  z-index: 50;
 }
-
-
 
 @theme inline {
   --color-background: var(--background);
@@ -463,11 +470,11 @@ body {
   position: relative;
 
   -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
-html, body {
+html,
+body {
   overflow-x: clip;
 }
 
@@ -475,9 +482,9 @@ html {
   scroll-behavior: smooth;
 }
 
-
-
-h1, h3, h2 {
+h1,
+h3,
+h2 {
   font-family: "Orbitron", sans-serif;
 }
 h3 {
@@ -493,10 +500,24 @@ h3 {
   bottom: 2rem;
 }
 
+#grid-section {
+  min-height: 100dvh;
+  position: relative;
+  z-index: 10;
+  /* width: 100vw; */
+}
 
-
+@media (max-width: 900px) {
+  .hero-heading {
+    h1 {
+      font-size: 1.5em;
+    }
+    .super-script {
+      font-size: 0.7em;
+    }
+  }
+}
 @media (min-width: 320px) and (max-width: 425px) {
-
   .middle {
     display: none;
   }
@@ -505,30 +526,22 @@ h3 {
     grid-row: unset;
     padding: 10px;
     font-size: 2em;
-  
-  
   }
   .el-5 {
     /* height: auto; */
     height: 100lvh;
     grid-column: unset;
     grid-row: unset;
-    
   }
   .el-1 {
-
     padding: 1rem;
     height: auto;
-
-
   }
- 
+
   .burger {
     color: white;
   }
   .section-content-1 {
-   
-  
     h2 {
       font-size: 1em;
     }
@@ -542,98 +555,86 @@ h3 {
     width: 100%;
   }
 
-
-  .header {
-    left: 20%;
-    justify-content: space-evenly;
-  }
   .hero-heading {
     h1 {
       font-size: 3em;
-
     }
   }
   .sub-heading {
-
     gap: 20px;
     width: 90%;
     margin-top: 2rem;
     span {
-
       font-size: 0.8em;
-
     }
     p {
       font-size: 0.6rem;
     }
   }
   .blog-plug {
+    h2 {
+      font-size: 0.5em;
+    }
 
- 
-  h2 {
-    font-size: 0.5em;
-
+    span {
+      font-family: var(--font-orbitron);
+      font-size: 2em;
+      color: #97d4d4;
+      text-align: center;
+    }
   }
- 
-  span {
-    font-family: var(--font-orbitron);
-    font-size: 2em;
-    color: #97d4d4;
-    text-align: center;
-  }
-}
   .hero-tag {
-   
     top: 27rem;
     width: 300px;
-    
   }
   .grid-container {
     display: flex;
     flex-direction: column;
     height: auto;
     /* min-height: 100dvh; */
-    
- 
-}
-.menu-text {
-  font-size: 1.2em;
-  color: #97d4d4;
-}
-.el-1, .el-3, .el-6 {
-  opacity: 1;
-}
-.el-4, .el-2 {
-  display: none;
-}
+  }
+  .menu-text {
+    font-size: 1.2em;
+    color: #97d4d4;
+  }
+  .el-1,
+  .el-3,
+  .el-6 {
+    opacity: 1;
+  }
+  .el-4,
+  .el-2 {
+    display: none;
+  }
   #instructions {
     top: unset;
     bottom: 29rem;
     color: white;
-  
   }
-  
 }
 @media (min-resolution: 1dppx) and (min-width: 320px) and (max-width: 425px) {
-
   .hero-tag {
     top: 120%;
   }
-  
+
   #instructions {
     bottom: 40%;
   }
 }
-@media (min-resolution: 1.5dppx) and (min-width: 1024px) {
+@media (max-resolution: 1.5dppx) and (min-width: 1024px) {
   .hero-lead {
-   font-size: 2.8em;
+    font-size: 2.8em;
   }
   .element-content {
     padding-top: 8rem;
   }
   .hero-tag {
-  top: 15rem;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    top: 15rem;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  #grid-section {
+    min-height: 100svh;
+    max-width: 100%;
+  }
 }
