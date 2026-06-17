@@ -70,23 +70,20 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
             className="overflow-hidden rounded-md text-white mt-5 w-full "
-            style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
           >
-            <ul className="flex flex-col gap-6 px-6 py-8">
+            <ul className="drop-down">
               {navItems.map(({ label, id }) => (
                 <li
                   key={id}
                   onClick={() => handleNavClick(id)}
-                  className="cursor-pointer  transition-all duration-75 hover:border p-5 rounded-md hover:bg-black hover:opacity-70"
+                  className="drop-down-link"
                 >
                   <Link to={id} smooth={true} duration={500}>
                     {label}
                   </Link>
                 </li>
               ))}
-              <li className="border-2 self-center text-center bg-black w-37.5 rounded-md cursor-pointer hover:opacity-70 transition-opacity">
-                Let&apos;s Connect
-              </li>
+              <li className="drop-down-button">Let&apos;s Connect</li>
             </ul>
           </motion.nav>
         )}

@@ -17,7 +17,7 @@ import { StockTicker } from "@/src/components/ui/Marquee";
 import GenericButton from "@/src/components/ui/GenericButton";
 import Mockups from "@/src/slices/Mockups";
 import Header from "@/src/slices/Header";
-import InteractiveGradient from "../src/webgl/InteractiveGradient";
+import VideoPlayer from "@/src/components/ui/VideoPlayer";
 import Footer from "../src/slices/Footer";
 import useMediaQuery from "../src/hooks/useMediaQuery";
 
@@ -260,18 +260,6 @@ export default function Home() {
         { opacity: 0, y: 100 },
         { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: 0.2 }
       );
-      // gsap.fromTo(
-      //   headerRef.current!,
-      //   { opacity: 0, y: -60 },
-      //   {
-      //     opacity: 1,
-      //     y: 0,
-      //     duration: 1.5,
-      //     animationDelay: 1,
-      //     ease: "power2.out",
-      //     delay: 0.2,
-      //   }
-      // );
     });
 
     return () => ctx.revert();
@@ -582,6 +570,7 @@ export default function Home() {
         <SimpleMenu />
       </section>
       <RecentWork />
+      {/* <VideoPlayer /> */}
       <Mockups />
       {/* Desing is invisible Section */}
       <section className="section-content-2">
