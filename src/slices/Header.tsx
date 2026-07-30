@@ -43,21 +43,17 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
           aria-label="Toggle menu"
           className="px-3 rounded shrink-0"
         >
-          {open ? (
-            "X"
-          ) : (
-            <span
-              ref={menuRef}
-              style={{ display: "inline-flex" }}
-              className="burger-container"
-            >
-              <TbMenu style={{ fontSize: "32px" }} className="burger" />
-            </span>
-          )}
+          <span
+            ref={menuRef}
+            style={{ display: "inline-flex" }}
+            className="burger-container"
+          >
+            <TbMenu style={{ fontSize: "32px" }} className="burger" />
+          </span>
         </button>
         <div className="available">
           <span>Freelance Availability:</span>
-          <span>April 2026</span>
+          <span>October 2026</span>
         </div>
       </div>
 
@@ -69,7 +65,7 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.4, ease: "easeInOut" }}
-            className="overflow-hidden rounded-md text-white mt-5 w-full "
+            className="my-class"
           >
             <ul className="drop-down">
               {navItems.map(({ label, id }) => (
@@ -78,7 +74,16 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
                   onClick={() => handleNavClick(id)}
                   className="drop-down-link"
                 >
-                  <Link to={id} smooth={true} duration={500}>
+                  <Link
+                    className="menu-label"
+                    style={{
+                      fontFamily: "var(--fort-orbitron)",
+                      color: "white",
+                    }}
+                    to={id}
+                    smooth={true}
+                    duration={500}
+                  >
                     {label}
                   </Link>
                 </li>

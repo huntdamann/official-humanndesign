@@ -1,7 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
-import gsap from "gsap";
+import { gsap } from "gsap";
 import { motion } from "motion/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -14,12 +14,12 @@ import { SocialCTASection } from "@/src/slices/SocialCTA";
 import Scene from "@/src/components/3d/Scene";
 import SimpleMenu from "../src/components/SimpleMenu";
 import { StockTicker } from "@/src/components/ui/Marquee";
-import GenericButton from "@/src/components/ui/GenericButton";
 import Mockups from "@/src/slices/Mockups";
 import Header from "@/src/slices/Header";
 import VideoPlayer from "@/src/components/ui/VideoPlayer";
 import Footer from "../src/slices/Footer";
 import useMediaQuery from "../src/hooks/useMediaQuery";
+import InteractiveGradient from "../src/webgl/InteractiveGradient";
 
 import Image from "next/image";
 
@@ -32,8 +32,17 @@ export default function Home() {
 
   const contentRef = useRef<HTMLDivElement>(null);
   const instructionRef = useRef<HTMLDivElement>(null);
+  const vibeRef = useRef<HTMLDivElement>(null);
 
+  const videoPrevRef = useRef<HTMLDivElement>(null);
+  const [videoPrev, setVideoPrevActive] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
+  const [vibeSelect, setVibeSelect] = useState("main");
   const profileRef = useRef<HTMLDivElement>(null);
+
+  const mRef = useRef<HTMLLIElement>(null);
+  const pRef = useRef<HTMLLIElement>(null);
+  const dRef = useRef<HTMLLIElement>(null);
 
   const elementRef = useRef<HTMLDivElement>(null);
   const elementFourRef = useRef<HTMLDivElement>(null);
@@ -48,222 +57,107 @@ export default function Home() {
   const elementFiveRef = useRef<HTMLDivElement>(null);
   const elementSixRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLSpanElement>(null);
+  const createRef = useRef<HTMLSpanElement>(null);
 
   const [windowSize, setWindowSize] = useState({ width: 1024, height: 0 });
 
-  // Listen for window resize
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowSize({ width: window.innerWidth, height: window.innerHeight });
-      console.log(
-        "Window resized:",
-        window.innerWidth,
-        "x",
-        window.innerHeight
-      );
-    };
+  // useLayoutEffect(() => {
+  //   if (!videoPrevRef.current) return;
+  //   const state = Flip.getState(videoPrevRef.current);
+  //   Flip.from(state, {
+  //     duration: 1,
+  //     ease: "power1.inOut",
+  //     absolute: true,
+  //   });
+  // });
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+  // animate from the previous state to the current one:
+
+  // const handleHover = () => {
+  //   setVideoPrevActive(!videoPrev);
+  //   console.log("This should be running ");
+  //   // Add your hover logic here
+  // };
+  useLayoutEffect(() => {
+    gsap.set(".vibe-select-container", {
+      xPercent: -100,
+      yPercent: -50,
+      opacity: 1,
+    });
   }, []);
+  const toggleMenu = () => {
+    if (isOpen) {
+      setIsOpen(!isOpen);
+      gsap.to(".vibe-select-container", {
+        xPercent: 0,
+        duration: 0.3,
+        ease: "sine.inOut",
+        // onStart: () => document.body.classList.remove("menu-open"),
+      });
+      console.log(isOpen);
+    } else {
+      setIsOpen(true);
+
+      gsap.to(".vibe-select-container", {
+        xPercent: -100,
+        duration: 0.6,
+        ease: "power3.out",
+        // onStart: () => document.body.classList.add("menu-open"),
+      });
+    }
+  };
+  const handleVibeClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+    const target = e.target as HTMLElement;
+    const vibe = target.dataset.vibe;
+    if (!vibe) return;
+    if (vibe === "dark") {
+      setVibeSelect("dark");
+      dRef.current?.classList.add("vibe-highlight");
+
+      pRef.current?.classList.remove("vibe-highlight");
+      mRef.current?.classList.remove("vibe-highlight");
+
+      console.log("Vibeset:", vibe);
+    } else if (vibe === "main") {
+      setVibeSelect("main");
+      mRef.current?.classList.add("vibe-highlight");
+      pRef.current?.classList.remove("vibe-highlight");
+      dRef.current?.classList.remove("vibe-highlight");
+    } else if (vibe === "hustle") {
+      setVibeSelect("hustle");
+      pRef.current?.classList.add("vibe-highlight");
+      mRef.current?.classList.remove("vibe-highlight");
+      dRef.current?.classList.remove("vibe-highlight");
+    }
+  };
+
+  // Listen for window resize
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  //     console.log(
+  //       "Window resized:",
+  //       window.innerWidth,
+  //       "x",
+  //       window.innerHeight
+  //     );
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   // useLayoutEffect(() => {
   //   const ctx = gsap.context(() => {
-  //     const tl = gsap.timeline({
-  //       yPercent: -100, // slides the pinned section up
-
-  //       scrollTrigger: {
-  //         trigger: grid.current,
-  //         pin: true,
-  //         start: "top top",
-  //         end: "+=1000",
-  //         scrub: true,
-  //         pinSpacing: true,
-  //         anticipatePin: 1,
-  //         invalidateOnRefresh: true,
-  //       },
-  //     });
-
-  //     const el = elementFiveRef.current!;
-
-  //     // ---- Animations that run at 0.001 ----
-
-  //     // Element Five
-  //     if (!isSmallDevice) {
-  //       tl.to(
-  //         el,
-  //         {
-  //           height: "auto",
-  //           width: "auto",
-  //           gridColumn: "4 / span 3",
-  //           gridRow: "2 / span 4",
-  //           position: "relative",
-  //           borderRadius: "20px",
-  //           duration: 0.3,
-  //           ease: "power3.inOut",
-  //           clearProps: "none",
-  //         },
-  //         0.001
-  //       );
-  //     } else {
-  //       tl.to(el, { height: "50dvh" }, 0.001);
-  //     }
-
-  //     // Grid
-  //     if (isSmallDevice) {
-  //       tl.to(gridRef.current!, { y: 60 }, 0.001);
-  //     }
-
-  //     // else {
-  //     //   // Reset animation for small devices (optional)
-  //     //   tl.to(
-  //     //     headerRef.current!,
-  //     //     {
-  //     //       color: "#b3b3b3",
-  //     //       borderRadius: "0px",
-  //     //       duration: 0.6,
-  //     //       ease: "power3.out",
-  //     //     },
-  //     //     0.001
-  //     //   );
-  //     // }
-
-  //     tl.to(
-  //       headerRef.current!,
-  //       {
-  //         color: "#000000",
-  //         backgroundColor: "hsl(0, 0%, 80%, 0.9)",
-  //         duration: 0.1,
-  //         ease: "power2.out",
-  //         borderRadius: "10px",
-  //       },
-  //       0.001
+  //     gsap.fromTo(
+  //       elementFiveRef.current!,
+  //       { opacity: 0, y: 100 },
+  //       { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: 0.2 }
   //     );
-  //     if (!isSmallDevice) {
-  //       tl.to(
-  //         headerRef.current!,
-  //         {
-  //           width: "50%",
-  //         },
-  //         0.001
-  //       );
-  //     }
-
-  //     tl.to(
-  //       gridRef.current!,
-  //       {
-  //         backgroundColor: "#0d0d0d",
-  //         duration: 0.1,
-  //         ease: "power2.out",
-  //       },
-  //       0.001
-  //     );
-
-  //     // Burger
-  //     if (isSmallDevice) {
-  //       tl.to(
-  //         burgerRef.current!,
-  //         {
-  //           color: "blue",
-  //           duration: 0.1,
-  //           ease: "power2.out",
-  //         },
-  //         0.001
-  //       );
-  //     }
-
-  //     tl.to(
-  //       burgerRef.current!,
-  //       {
-  //         color: "#ffffff",
-  //         duration: 0.1,
-  //         ease: "power2.out",
-  //       },
-  //       0.001
-  //     );
-
-  //     // Content + Instruction fade out
-  //     tl.to(
-  //       contentRef.current!,
-  //       {
-  //         opacity: 0,
-  //         duration: 0.1,
-  //         scale: 0.55,
-  //       },
-  //       0.001
-  //     );
-
-  //     tl.to(
-  //       instructionRef.current!,
-  //       {
-  //         opacity: 0,
-  //         duration: 0.1,
-  //         scale: 0.55,
-  //       },
-  //       0.001
-  //     );
-
-  //     // ---- Profile ----
-  //     tl.to(
-  //       profileRef.current!,
-  //       {
-  //         y: "0",
-  //         opacity: 1,
-  //       },
-  //       0.003
-  //     );
-
-  //     // ---- Grid elements fly in (desktop only) ----
-  //     if (!isSmallDevice) {
-  //       tl.fromTo(
-  //         elementRef.current!,
-  //         { y: 200, x: -600, opacity: 0 },
-  //         { y: 0, x: 0, duration: 0.4, ease: "power3.out", opacity: 1 },
-  //         0.3
-  //       );
-  //       tl.fromTo(
-  //         elementFourRef.current!,
-  //         { y: 200, x: -600, opacity: 0 },
-  //         { y: 0, x: 0, duration: 0.4, ease: "power3.out", opacity: 1 },
-  //         0.35
-  //       );
-  //       tl.fromTo(
-  //         elementSixRef.current!,
-  //         { y: 300, opacity: 0 },
-  //         { y: 0, duration: 0.4, ease: "power3.out", opacity: 1 },
-  //         0.35
-  //       );
-  //       tl.fromTo(
-  //         elementThreeRef.current!,
-  //         { y: 200, x: 600, opacity: 0 },
-  //         { y: 0, x: 0, duration: 0.4, ease: "power3.out", opacity: 1 },
-  //         0.4
-  //       );
-  //       tl.fromTo(
-  //         elementTwoRef.current!,
-  //         { y: 200, x: 600, opacity: 0 },
-  //         { y: 0, x: 0, duration: 0.4, ease: "power3.out", opacity: 1 },
-  //         0.45
-  //       );
-  //     }
   //   });
 
-  //   ScrollTrigger.refresh();
-
   //   return () => ctx.revert();
-  // }, [isSmallDevice, windowSize]);
-
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        elementFiveRef.current!,
-        { opacity: 0, y: 100 },
-        { opacity: 1, y: 0, duration: 1.5, ease: "power2.out", delay: 0.2 }
-      );
-    });
-
-    return () => ctx.revert();
-  }, []);
+  // }, []);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
@@ -379,6 +273,15 @@ export default function Home() {
         },
         0.001
       );
+      tl.to(
+        vibeRef.current!,
+        {
+          opacity: 0,
+          duration: 0.1,
+          scale: 0.55,
+        },
+        0.001
+      );
 
       tl.to(
         profileRef.current!,
@@ -431,187 +334,216 @@ export default function Home() {
   return (
     <>
       <Header ref={headerRef} menuRef={burgerRef} />
-      <section ref={grid} id="grid-section" className="">
-        <div ref={gridRef} className="grid-container">
-          <div ref={elementFiveRef} className="grid-element el-5">
-            <div className="bg-video">
-              <Image
-                loading="eager"
-                src="/snowy.jpg"
-                fill
-                alt="Profile Pic"
-                style={{ objectFit: "cover", borderRadius: "20px" }}
+      <main>
+        <section ref={grid} id="grid-section" className="">
+          <div ref={gridRef} className="grid-container">
+            <div ref={elementFiveRef} className="grid-element el-5">
+              <div className="bg-video">
+                {/* <Image
+                  priority
+                  src="/snowy.jpg"
+                  fill
+                  alt="Profile Pic"
+                  style={{ objectFit: "cover", borderRadius: "20px" }}
+                /> */}
+              </div>
+
+              <div ref={profileRef} className="profile-pic">
+                <Image
+                  src="/images/profile.png"
+                  fill
+                  alt="Profile Pic"
+                  style={{ objectFit: "cover", borderRadius: "20px" }}
+                />
+              </div>
+
+              <div ref={contentRef} className="element-content">
+                <div className="hero-heading">
+                  <h1 className="hero-lead neon-text23">
+                    <span
+                      style={{
+                        color: vibeSelect === "dark" ? "purple" : "#97d4d4",
+                        transition: "all 0.8s ease",
+                      }}
+                    >
+                      {" "}
+                      Creative{" "}
+                    </span>
+                    Engineer
+                  </h1>
+
+                  <div className="super-script">[2433]</div>
+                </div>
+                <div className="hero-tag">
+                  <span>{""}</span>
+                </div>
+              </div>
+            </div>
+            <div ref={elementSixRef} className="grid-element el-6">
+              <span className="text-[#4dc9c9]">Hunter Mann</span>
+            </div>
+
+            <div ref={elementRef} className="grid-element el-1">
+              <h3 className="text-[#4dc9c9]">About Me</h3>
+              <p className="text-[#c8c8c8]">
+                {" "}
+                Just an engineer that likes to make things look and feel cool.
+              </p>
+            </div>
+
+            <div ref={elementTwoRef} className="grid-element el-2">
+              <h3 className="text-[#4dc9c9]">Offerings</h3>
+              <ul className="text-[#c8c8c8]">
+                <li>ThreeJS/WebGL Development</li>
+                <li>Web + Motion Design</li>
+                <li>3D Experiences</li>
+                <li>Vision Creation</li>
+                <li>Product Visualization</li>
+              </ul>
+            </div>
+
+            <div ref={elementThreeRef} className="grid-element el-3">
+              <video
+                src="/videos/Rough_Draft.mp4"
+                // autoPlay
+                muted
+                loop
+                poster="/snowy.jpg"
+                preload="auto"
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
+              />
+            </div>
+            <div ref={elementFourRef} className="grid-element el-4">
+              <video
+                src="/videos/site.mp4"
+                poster="/snowy.jpg"
+                // autoPlay
+                muted
+                loop
+                preload="auto"
+                playsInline
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  objectFit: "cover",
+                  borderRadius: "20px",
+                }}
               />
             </div>
 
-            <div ref={profileRef} className="profile-pic">
-              <Image
-                src="/images/profile.png"
-                fill
-                alt="Profile Pic"
-                style={{ objectFit: "cover", borderRadius: "20px" }}
-              />
-            </div>
-
-            <div ref={contentRef} className="element-content">
-              <div className="hero-heading">
-                <h1 className="hero-lead">
-                  Design <span className="text-[#4dc9c9]">Engineer</span>
-                </h1>
-
-                {/* <StockTicker /> */}
-
-                <div className="super-script">[2433]</div>
-              </div>
-              <div className="hero-tag">
-                <span>
-                  Multi-disciplined engineer that builds across different
-                  domains
-                </span>
-              </div>
+            {/* Bottom Half of Hero Section */}
+            <div
+              ref={instructionRef}
+              id="instructions"
+              className="animate-bounce"
+            >
+              <span style={{ fontSize: "2.5em" }}>
+                <TiArrowDown />
+              </span>
+              <span>Scroll Down</span>
             </div>
           </div>
-          <div ref={elementSixRef} className="grid-element el-6">
-            <span className="text-[#4dc9c9]">Hunter Mann</span>
-          </div>
-
-          <div ref={elementRef} className="grid-element el-1">
-            <h3 className="text-[#4dc9c9]">About Me</h3>
-            <p className="text-[#c8c8c8]">
-              {" "}
-              Your favorite engineer&apos;s favorite engineer — I build, design,
-              and solve whatever you need.
-            </p>
-          </div>
-
-          <div ref={elementTwoRef} className="grid-element el-2">
-            <h3 className="text-[#4dc9c9]">Offerings</h3>
-            <ul className="text-[#c8c8c8]">
-              <li>Web Design</li>
-              <li>Web Development</li>
-              <li>Graphic Design</li>
-              <li>Vision Creation</li>
-              <li>Product Visualization</li>
+          <div ref={vibeRef} className="vibe-select-container">
+            <ul className="vibe-select">
+              <li
+                ref={mRef}
+                onClick={handleVibeClick}
+                className="vibe vibe-highlight"
+                data-vibe="main"
+              >
+                M-Mode
+              </li>
+              <li
+                ref={pRef}
+                onClick={handleVibeClick}
+                className="vibe"
+                data-vibe="hustle"
+              >
+                H-Mode
+              </li>
+              <li
+                ref={dRef}
+                onClick={handleVibeClick}
+                className="vibe"
+                data-vibe="dark"
+              >
+                D-Mode
+              </li>
             </ul>
+            <button onClick={toggleMenu} className="vibe-o-c">
+              Click
+            </button>
           </div>
+          <InteractiveGradient option={vibeSelect} />
+        </section>
 
-          <div ref={elementThreeRef} className="grid-element el-3">
-            <video
-              src="/videos/Rough_Draft.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "20px",
-              }}
-            />
-          </div>
-          <div ref={elementFourRef} className="grid-element el-4">
-            <video
-              src="/videos/site.mp4"
-              autoPlay
-              muted
-              loop
-              playsInline
-              style={{
-                width: "100%",
-                height: "100%",
-                objectFit: "cover",
-                borderRadius: "20px",
-              }}
-            />
-          </div>
+        {/* <WhoWeAre /> */}
+        {/* <section className="relative min-h-screen w-screen">
           <div
-            ref={instructionRef}
-            id="instructions"
-            className="animate-bounce"
+            id="scene-data-container"
+            className="absolute border  text-[#4dc9c9] rounded-[10px] top-20 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10"
           >
-            <span style={{ fontSize: "2.5em" }}>
-              <TiArrowDown />
+            <span id="scene-data" className="lg:text-[2.2em] text-[1.2em]">
+              Design is the backbone of creativity, the unseen force that
+              connects everything together...
             </span>
-            <span>Scroll Down</span>
           </div>
-        </div>
-        {/* <InteractiveGradient
-              brushSize={50.0}
-              brushStrength={0.5}
-              distortionAmount={5.5}
-              fluidDecay={0.98}
-              trailLength={0.2}
-              stopDecay={0.85}
-              color1="#000000"  // mint / light cyan
-              color2="#000000"  // deep purple
-              color3="#ffffff"  // electric blue
-              color4="#66d1fe"  // sky blue
-              colorIntensity={1.0}
-              softness={8.0}
-            /> */}
-      </section>
+          <Scene />
+        </section> */}
+        {/* <section id="services" className="section-info">
+          <h2>Offerings</h2>
+          <SimpleMenu />
+        </section> */}
+        {/* <RecentWork /> */}
+        {/* <VideoPlayer /> */}
+        {/* <Mockups /> */}
+        {/* Desing is invisible Section */}
+        {/* <section className="section-content-2">
+          <motion.h2
+            initial={{
+              opacity: 0,
+              y: 20,
+              filter: "blur(8px)",
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+            }}
+            exit={{
+              opacity: 0,
+              y: -20,
+              filter: "blur(8px)",
+            }}
+            transition={{
+              duration: 1,
+              ease: [0.25, 0.1, 0.25, 1],
+            }}
+            viewport={{
+              once: false,
+              amount: 0.6,
+            }}
+          >
+            The best design is invisible...
+          </motion.h2>
+        </section> */}
 
-      <WhoWeAre />
-      <section className="relative min-h-screen w-screen">
-        <div
-          id="scene-data-container"
-          className="absolute border  text-[#4dc9c9] rounded-[10px] top-20 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10"
-        >
-          <span id="scene-data" className="lg:text-[2.2em] text-[1.2em]">
-            Design is the backbone of creativity, the unseen force that connects
-            everything together...
-          </span>
-        </div>
-        <Scene />
-      </section>
-      <section id="services" className="section-info">
-        <h2>Offerings</h2>
-        <SimpleMenu />
-      </section>
-      <RecentWork />
-      {/* <VideoPlayer /> */}
-      <Mockups />
-      {/* Desing is invisible Section */}
-      <section className="section-content-2">
-        <motion.h2
-          initial={{
-            opacity: 0,
-            y: 20,
-            filter: "blur(8px)",
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-          }}
-          exit={{
-            opacity: 0,
-            y: -20,
-            filter: "blur(8px)",
-          }}
-          transition={{
-            duration: 1,
-            ease: [0.25, 0.1, 0.25, 1],
-          }}
-          viewport={{
-            once: false,
-            amount: 0.6,
-          }}
-        >
-          The best design is invisible...
-        </motion.h2>
-      </section>
+        {/* Call To Action Section */}
+        {/* <CTA /> */}
 
-      {/* Call To Action Section */}
-      <CTA />
+        {/* <SocialCTASection /> */}
 
-      <SocialCTASection />
-
-      <div className="absolute border">
-        <span>{windowSize.width} px</span>
-      </div>
-      <Footer />
+        {/* <div className="absolute border">
+          <span>{windowSize.width} px</span>
+        </div> */}
+      </main>
+      {/* <Footer /> */}
     </>
   );
 }

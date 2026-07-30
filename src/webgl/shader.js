@@ -158,3 +158,16 @@ export const displayShader = `
     gl_FragColor = vec4(col, 1.0);
   }
 `;
+
+export const pixelShader = `
+
+uniform float uTime;
+vec4 color = vec4(0.7, 0.1, 0.4, 1.0)
+
+void main() {
+
+  gl_FragColor = color;
+
+}
+
+`;

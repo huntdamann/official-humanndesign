@@ -16,12 +16,13 @@ const geistMono = Geist_Mono({
 const orbitron = Orbitron({
   variable: "--font-orbitron",
   subsets: ["latin"],
-  weight: ["400"]
-})
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
-  title: "Hunter Mann | Design Engineer",
-  description: "Just a regular guy that likes to make things look cool for people.",
+  title: "Hunter Mann | Creative Engineer",
+  description:
+    "Just a regular guy that likes to make things look cool for people.",
 };
 
 export default function RootLayout({
@@ -34,9 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${orbitron.variable} ${geistMono.variable} antialiased`}
       >
-        <SmoothScroll>
-        {children}
-        </SmoothScroll>
+        <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
   );
