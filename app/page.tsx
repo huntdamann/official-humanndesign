@@ -49,10 +49,24 @@ export default function Home() {
   const elementThreeRef = useRef<HTMLDivElement>(null);
   const elementTwoRef = useRef<HTMLDivElement>(null);
   const text = "Checkout The Blog";
+  const [screenSize, setScreenSize] = useState(0);
+
+  // useEffect(() => {
+  //   // Get screen size on load
+  //   const handleSet = () => {
+  //     // const width = window.innerWidth;
+  //     setScreenSize(window.innerWidth);
+  //     console.log("Screen Size Set:", window.innerWidth);
+  //   };
+
+  //   window.addEventListener("resize", handleSet);
+  //   return () => window.removeEventListener("resize", handleSet);
+  // }, []); // Empty dependency array ensures this runs only once on load
 
   // Small Device Media Query
-  const isSmallDevice = useMediaQuery("(max-width: 800px)");
-
+  const isSmallDevice = (screenSize ?? 0) <= 1023;
+  const isDesktopBreak = (screenSize ?? 0) <= 1024;
+  console.log(isSmallDevice);
   const headerRef = useRef<HTMLElement>(null);
   const elementFiveRef = useRef<HTMLDivElement>(null);
   const elementSixRef = useRef<HTMLDivElement>(null);
@@ -61,49 +75,15 @@ export default function Home() {
 
   const [windowSize, setWindowSize] = useState({ width: 1024, height: 0 });
 
-  // useLayoutEffect(() => {
-  //   if (!videoPrevRef.current) return;
-  //   const state = Flip.getState(videoPrevRef.current);
-  //   Flip.from(state, {
-  //     duration: 1,
-  //     ease: "power1.inOut",
-  //     absolute: true,
-  //   });
-  // });
-
   // animate from the previous state to the current one:
 
-  // const handleHover = () => {
-  //   setVideoPrevActive(!videoPrev);
-  //   console.log("This should be running ");
-  //   // Add your hover logic here
-  // };
-  useLayoutEffect(() => {
-    gsap.set(".vibe-select-container", {
-      xPercent: -100,
-      yPercent: -50,
-      opacity: 1,
-    });
-  }, []);
   const toggleMenu = () => {
     if (isOpen) {
       setIsOpen(!isOpen);
-      gsap.to(".vibe-select-container", {
-        xPercent: 0,
-        duration: 0.3,
-        ease: "sine.inOut",
-        // onStart: () => document.body.classList.remove("menu-open"),
-      });
-      console.log(isOpen);
+      console.log("Menu Open");
     } else {
       setIsOpen(true);
-
-      gsap.to(".vibe-select-container", {
-        xPercent: -100,
-        duration: 0.6,
-        ease: "power3.out",
-        // onStart: () => document.body.classList.add("menu-open"),
-      });
+      console.log("Menu Closed");
     }
   };
   const handleVibeClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
@@ -177,12 +157,13 @@ export default function Home() {
 
       const el = elementFiveRef.current!;
 
-      if (windowSize.width > 768) {
+      if (window.innerWidth >= 1024) {
         // Desktop animations
         tl.to(
           el,
           {
             height: "auto",
+
             width: "auto",
             gridColumn: "4 / span 3",
             gridRow: "2 / span 6",
@@ -194,105 +175,79 @@ export default function Home() {
           },
           0.001
         );
-      } else {
-        // Mobile animations
-        tl.to(el, { height: "50dvh" }, 0.001);
-        tl.to(gridRef.current!, { y: 60 }, 0.001);
-      }
+        tl.to(
+          gridRef.current!,
+          {
+            backgroundColor: "#0d0d0d",
+            opacity: 0.9,
+            duration: 0.1,
+            ease: "power3.out",
+          },
+          0.001
+        );
 
-      tl.to(
-        headerRef.current!,
-        {
-          color: "#000000",
-          backgroundColor: "hsl(0, 0%, 80%, 0.9)",
-          duration: 0.1,
-          ease: "power2.out",
-          borderRadius: "10px",
-        },
-        0.001
-      );
-
-      if (windowSize.width > 768) {
         tl.to(
           headerRef.current!,
           {
+            color: "#000000",
+            backgroundColor: "hsl(0, 0%, 80%, 0.9)",
+            duration: 0.1,
+            ease: "power2.out",
+            borderRadius: "10px",
             width: "50%",
           },
           0.001
         );
-      }
 
-      tl.to(
-        gridRef.current!,
-        {
-          backgroundColor: "#0d0d0d",
-          duration: 0.1,
-          ease: "power2.out",
-        },
-        0.001
-      );
-
-      if (windowSize.width <= 768) {
         tl.to(
           burgerRef.current!,
           {
-            color: "blue",
+            color: "#ffffff",
             duration: 0.1,
             ease: "power2.out",
           },
           0.001
         );
-      }
 
-      tl.to(
-        burgerRef.current!,
-        {
-          color: "#ffffff",
-          duration: 0.1,
-          ease: "power2.out",
-        },
-        0.001
-      );
+        tl.to(
+          contentRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
 
-      tl.to(
-        contentRef.current!,
-        {
-          opacity: 0,
-          duration: 0.1,
-          scale: 0.55,
-        },
-        0.001
-      );
+        tl.to(
+          instructionRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
 
-      tl.to(
-        instructionRef.current!,
-        {
-          opacity: 0,
-          duration: 0.1,
-          scale: 0.55,
-        },
-        0.001
-      );
-      tl.to(
-        vibeRef.current!,
-        {
-          opacity: 0,
-          duration: 0.1,
-          scale: 0.55,
-        },
-        0.001
-      );
+        tl.to(
+          vibeRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
 
-      tl.to(
-        profileRef.current!,
-        {
-          y: "0",
-          opacity: 1,
-        },
-        0.003
-      );
+        tl.to(
+          profileRef.current!,
+          {
+            y: "0",
+            opacity: 1,
+          },
+          0.003
+        );
 
-      if (windowSize.width > 768) {
         tl.fromTo(
           elementRef.current!,
           { y: 200, x: -600, opacity: 0 },
@@ -324,6 +279,187 @@ export default function Home() {
           0.45
         );
       }
+
+      // Mobile animations
+      if (window.innerWidth < 1024) {
+        tl.to(el, {}, 0.001);
+        tl.to(gridRef.current!, { y: 75 }, 0.001);
+        console.log("Mobile Breakpoint Reached");
+        tl.to(
+          headerRef.current!,
+          {
+            color: "#ffffff",
+
+            backgroundColor: "hsl(0, 0%, 80%, 0.9)",
+            duration: 0.1,
+            ease: "power2.out",
+            borderRadius: "10px",
+          },
+          0.001
+        );
+
+        tl.to(
+          gridRef.current!,
+          {
+            backgroundColor: "#0d0d0d",
+            duration: 0.1,
+            ease: "power2.out",
+          },
+          0.001
+        );
+
+        tl.to(
+          elementTwoRef.current!,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.002
+        );
+        tl.to(
+          elementFiveRef.current!,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.002
+        );
+
+        tl.to(
+          elementFourRef.current!,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.002
+        );
+        tl.to(elementThreeRef.current!, {
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+        tl.to(
+          elementRef.current!,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.002
+        );
+        tl.to(
+          elementSixRef.current!,
+          {
+            opacity: 1,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+          0.002
+        );
+        tl.to(
+          burgerRef.current!,
+          {
+            color: "blue",
+            duration: 0.1,
+            ease: "power2.out",
+          },
+          0.001
+        );
+
+        tl.to(
+          burgerRef.current!,
+          {
+            color: "#ffffff",
+            duration: 0.1,
+            ease: "power2.out",
+          },
+          0.001
+        );
+
+        tl.to(
+          contentRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
+
+        tl.to(
+          instructionRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
+
+        tl.to(
+          vibeRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
+
+        tl.to(
+          profileRef.current!,
+          {
+            y: "0",
+            opacity: 1,
+          },
+          0.003
+        );
+      }
+
+      // if (isDesktopBreak) {
+      //   console.log("Desktop Breakpoint Reached");
+      //   tl.to(
+      //     gridRef.current!,
+      //     {
+      //       y: 0,
+      //       backgroundColor: "#0d0d0d",
+      //       duration: 0.1,
+      //       ease: "power3.out",
+      //     },
+      //     0.001
+      //   );
+
+      //   tl.to(
+      //     headerRef.current!,
+      //     {
+      //       color: "#000000",
+      //       backgroundColor: "hsl(0, 0%, 80%, 0.9)",
+      //       duration: 0.1,
+      //       ease: "power2.out",
+      //       borderRadius: "10px",
+      //       width: "50%",
+      //     },
+      //     0.001
+      //   );
+      //   tl.to(
+      //     el,
+      //     {
+      //       height: "auto",
+      //       width: "auto",
+      //       gridColumn: "4 / span 3",
+      //       gridRow: "2 / span 6",
+      //       position: "relative",
+      //       borderRadius: "20px",
+      //       duration: 0.3,
+      //       ease: "power3.inOut",
+      //       clearProps: "none",
+      //     },
+      //     0.001
+      //   );
+      // }
     });
 
     ScrollTrigger.refresh();
@@ -331,29 +467,43 @@ export default function Home() {
     return () => ctx.revert();
   }, [windowSize]);
 
+  useLayoutEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    const handleResize = () => {
+      clearTimeout(timeoutId); // Clear the previous timeout
+      timeoutId = setTimeout(() => {
+        setScreenSize(window.innerWidth); // Update screen size after delay
+      }, 800); // D
+      setIsOpen(false); // Reset menu state on resize
+      console.log("screen changed");
+
+      console.log("Screen Size Set:", screenSize);
+      gsap.to(".vibe-select-container", { xPercent: 0 }); // Reset position
+    };
+
+    handleResize(); // Call it once to set the initial sizexd
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <>
       <Header ref={headerRef} menuRef={burgerRef} />
       <main>
         <section ref={grid} id="grid-section" className="">
+          {/* Scrollable Grid */}
           <div ref={gridRef} className="grid-container">
             <div ref={elementFiveRef} className="grid-element el-5">
-              <div className="bg-video">
-                {/* <Image
-                  priority
-                  src="/snowy.jpg"
-                  fill
-                  alt="Profile Pic"
-                  style={{ objectFit: "cover", borderRadius: "20px" }}
-                /> */}
-              </div>
-
               <div ref={profileRef} className="profile-pic">
                 <Image
                   src="/images/profile.png"
                   fill
                   alt="Profile Pic"
-                  style={{ objectFit: "cover", borderRadius: "20px" }}
+                  style={{
+                    objectFit: "cover",
+                    objectPosition: "50% 20%",
+                    borderRadius: "20px",
+                  }}
                 />
               </div>
 
@@ -449,7 +599,11 @@ export default function Home() {
               <span>Scroll Down</span>
             </div>
           </div>
-          <div ref={vibeRef} className="vibe-select-container">
+          {/* Vibe Select Container */}
+          <div
+            ref={vibeRef}
+            className={`vibe-select-container ${isOpen ? "open-vibe" : ""}`}
+          >
             <ul className="vibe-select">
               <li
                 ref={mRef}
@@ -480,8 +634,9 @@ export default function Home() {
               Click
             </button>
           </div>
-          <InteractiveGradient option={vibeSelect} />
+          {/* <InteractiveGradient option={vibeSelect} size={isSmallDevice} /> */}
         </section>
+        <InteractiveGradient option={vibeSelect} size={isSmallDevice} />
 
         {/* <WhoWeAre /> */}
         {/* <section className="relative min-h-screen w-screen">
@@ -543,7 +698,7 @@ export default function Home() {
           <span>{windowSize.width} px</span>
         </div> */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

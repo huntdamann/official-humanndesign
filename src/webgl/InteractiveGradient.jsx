@@ -2,7 +2,7 @@
 import { useEffect, useRef } from "react";
 import { memo } from "react";
 
-const InteractiveGradient = ({ option }) => {
+const InteractiveGradient = ({ option, size }) => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const workerRef = useRef(null);
@@ -82,7 +82,13 @@ const InteractiveGradient = ({ option }) => {
 
   return (
     <div
-      style={{ width: "100vw", height: "100vh", position: "relative" }}
+      style={{
+        width: "100vw",
+        height: size ? "100%" : "100vh",
+        position: "fixed",
+        top: 0,
+        zIndex: 1,
+      }}
       ref={containerRef}
     />
   );
