@@ -180,6 +180,7 @@ export default function Home() {
           {
             backgroundColor: "#0d0d0d",
             opacity: 0.9,
+
             duration: 0.1,
             ease: "power3.out",
           },
@@ -283,7 +284,7 @@ export default function Home() {
       // Mobile animations
       if (window.innerWidth < 1024) {
         tl.to(el, {}, 0.001);
-        tl.to(gridRef.current!, { y: 75 }, 0.001);
+        tl.to(grid.current!, { paddingTop: 30, paddingBottom: 50 }, 0.001);
         console.log("Mobile Breakpoint Reached");
         tl.to(
           headerRef.current!,
@@ -586,18 +587,17 @@ export default function Home() {
                 }}
               />
             </div>
-
-            {/* Bottom Half of Hero Section */}
-            <div
-              ref={instructionRef}
-              id="instructions"
-              className="animate-bounce"
-            >
-              <span style={{ fontSize: "2.5em" }}>
-                <TiArrowDown />
-              </span>
-              <span>Scroll Down</span>
-            </div>
+          </div>
+          {/* Bottom Half of Hero Section */}
+          <div
+            ref={instructionRef}
+            id="instructions"
+            className="animate-bounce"
+          >
+            <span style={{ fontSize: "2.5em" }}>
+              <TiArrowDown />
+            </span>
+            <span>Scroll Down</span>
           </div>
           {/* Vibe Select Container */}
           <div

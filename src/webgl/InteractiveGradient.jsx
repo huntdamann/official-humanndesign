@@ -1,11 +1,21 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { memo } from "react";
 
 const InteractiveGradient = ({ option, size }) => {
   const containerRef = useRef(null);
   const canvasRef = useRef(null);
   const workerRef = useRef(null);
+  const [screenSize, setScreenSize] = useState(0);
+
+  useLayoutEffect(() => {
+    const handleResize = () => {
+      setScreenSize(window.innerWidth);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -84,7 +94,7 @@ const InteractiveGradient = ({ option, size }) => {
     <div
       style={{
         width: "100vw",
-        height: size ? "100%" : "100vh",
+        height: screenSize <= 1023 ? "100%" : "100vh",
         position: "fixed",
         top: 0,
         zIndex: 1,
