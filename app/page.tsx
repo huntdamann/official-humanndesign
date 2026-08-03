@@ -634,7 +634,6 @@ export default function Home() {
               Click
             </button>
           </div>
-          {/* <InteractiveGradient option={vibeSelect} size={isSmallDevice} /> */}
         </section>
         <InteractiveGradient option={vibeSelect} size={isSmallDevice} />
 
