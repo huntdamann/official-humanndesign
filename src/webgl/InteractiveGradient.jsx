@@ -12,6 +12,7 @@ const InteractiveGradient = ({ option, size }) => {
     const handleResize = () => {
       setScreenSize(window.innerWidth);
     };
+    console.log("Log this running");
     handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -94,7 +95,7 @@ const InteractiveGradient = ({ option, size }) => {
     <div
       style={{
         width: "100vw",
-        height: screenSize <= 1023 ? "100%" : "100vh",
+        height: "100vh",
         position: "fixed",
         top: 0,
         zIndex: 1,

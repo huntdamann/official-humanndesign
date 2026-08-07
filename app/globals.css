@@ -6,7 +6,7 @@
   initial-value: -1%;
 }
 :root {
-  --background: #ffffff;
+  --background: red;
   --foreground: #171717;
 }
 * {
@@ -146,7 +146,7 @@ header {
   justify-content: space-evenly;
   position: fixed;
   top: 10px;
-  z-index: 150;
+  z-index: 1000;
   width: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -348,7 +348,7 @@ header {
   width: 100%;
   height: 100%;
   position: relative;
-  /* border: 1px red solid; */
+  /* border: x1px red solid; */
   border-radius: 20px;
 }
 
@@ -359,7 +359,7 @@ header {
   border-radius: 20px;
   /* overflow: hidden; */
   /* border: 1px red solid; */
-  z-index: 1000;
+  /* z-index: 1200; */
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -379,13 +379,15 @@ header {
     0 0 20px #59c1c1,
     0 0 40px #59c1c1,
     0 0 80px #59c1c1;
+  position: relative;
+  z-index: 600;
 }
 .world-entry {
   position: relative;
   width: 100%;
   /* border: 1px green solid; */
   height: 100%;
-  z-index: 500;
+  z-index: 600;
 }
 .entry-prompt {
   position: absolute;
@@ -409,6 +411,7 @@ header {
 }
 .entry-prompt.show {
   opacity: 1;
+  z-index: 1200;
 }
 .world-image-preview {
   object-fit: cover;
@@ -427,7 +430,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 500;
+  z-index: 1100;
 }
 .wrld-overlay {
   position: absolute;
@@ -442,7 +445,7 @@ header {
   color: white;
   /* border: 2px red solid; */
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 900;
+  z-index: 1000;
 }
 .wrld-overlay:hover {
   background-color: #59c1c1;
@@ -504,7 +507,7 @@ header {
 .element-expanded {
   position: unset;
   position: fixed;
-  z-index: 1000;
+  z-index: 1200;
   height: 100dvh;
   top: 0;
   width: 100dvw;
@@ -970,6 +973,7 @@ body {
   width: 100%;
   position: relative;
 
+  /* background-color: red; */
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -998,7 +1002,7 @@ h3 {
   padding: 2rem;
   position: fixed;
   width: 100%;
-  top: 50%;
+  top: 70%;
   /* left: 50%; */
   /* border: 1px red solid; */
   /* top: 50rem; */
