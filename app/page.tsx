@@ -2,7 +2,8 @@
 
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
-import { motion } from "motion/react";
+
+import Flip from "gsap/src/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { TiArrowDown } from "react-icons/ti";
@@ -24,6 +25,7 @@ import InteractiveGradient from "../src/webgl/InteractiveGradient";
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(Flip);
 
 export default function Home() {
   // const containerRef = useRef<HTMLDivElement>(null)
@@ -36,6 +38,7 @@ export default function Home() {
 
   const videoPrevRef = useRef<HTMLDivElement>(null);
   const [videoPrev, setVideoPrevActive] = useState(false);
+  const [userClicked, setUserClicked] = useState(false);
   const [isOpen, setIsOpen] = useState(true);
   const [vibeSelect, setVibeSelect] = useState("main");
   const profileRef = useRef<HTMLDivElement>(null);
@@ -72,6 +75,13 @@ export default function Home() {
   const elementSixRef = useRef<HTMLDivElement>(null);
   const burgerRef = useRef<HTMLSpanElement>(null);
   const createRef = useRef<HTMLSpanElement>(null);
+  const worldOneRef = useRef<HTMLDivElement>(null);
+  const entryRef = useRef<HTMLDivElement>(null);
+  const previewRef = useRef<HTMLImageElement>(null);
+  const entryButtonRef = useRef<HTMLButtonElement>(null);
+  const sectionWorldRef = useRef<HTMLElement>(null);
+  const exitRef = useRef<HTMLButtonElement>(null);
+  const promptRef = useRef<HTMLDivElement>(null);
 
   const [windowSize, setWindowSize] = useState({ width: 1024, height: 0 });
 
@@ -147,7 +157,7 @@ export default function Home() {
           trigger: grid.current,
           pin: true,
           start: "top top",
-          end: "+=1000",
+          end: "+=800",
           scrub: true,
           pinSpacing: true,
           anticipatePin: 1,
@@ -487,6 +497,45 @@ export default function Home() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleWorldClick = () => {
+    console.log("World Clicked");
+    if (!worldOneRef.current) return;
+
+    const state = Flip.getState(worldOneRef.current);
+    worldOneRef.current.classList.toggle("element-expanded");
+    Flip.from(state, {
+      duration: 0.8,
+      ease: "power1.inOut",
+      absolute: true,
+      onComplete: () => {
+        console.log("Flip Animation Complete");
+        if (!entryRef.current || !previewRef.current) return;
+        entryRef.current.classList.toggle("show");
+        previewRef.current.classList.toggle("hide");
+        entryButtonRef.current?.classList.toggle("add-pointer");
+        setUserClicked(true);
+      },
+    });
+  };
+
+  const handleEntryClick = () => {
+    if (!sectionWorldRef.current || !exitRef.current) return;
+    sectionWorldRef.current.classList.toggle("hide");
+    exitRef.current.classList.toggle("show");
+    promptRef.current?.classList.toggle("show");
+  };
+
+  const handleExitClick = () => {
+    if (!sectionWorldRef.current || !exitRef.current || !promptRef.current)
+      return;
+
+    setUserClicked(false);
+    promptRef.current.classList.toggle("show");
+    exitRef.current.classList.toggle("show");
+    sectionWorldRef.current.classList.toggle("hide");
+  };
+
   return (
     <>
       <Header ref={headerRef} menuRef={burgerRef} />
@@ -553,24 +602,17 @@ export default function Home() {
               </ul>
             </div>
 
-            <div ref={elementThreeRef} className="grid-element el-3">
-              <video
-                src="/videos/Rough_Draft.mp4"
-                // autoPlay
-                muted
-                loop
-                poster="/snowy.jpg"
-                preload="auto"
-                playsInline
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                  borderRadius: "20px",
-                }}
-              />
-            </div>
-            <div ref={elementFourRef} className="grid-element el-4">
+            {/* <div ref={elementThreeRef} className="grid-element el-3">
+              <div className="element-container">
+                <Image
+                  style={{ objectFit: "cover", borderRadius: "20px" }}
+                  src="/snowy.jpg"
+                  fill
+                  alt="snowy background"
+                ></Image>
+              </div>
+            </div> */}
+            {/* <div ref={elementFourRef} className="grid-element el-4">
               <video
                 src="/videos/site.mp4"
                 poster="/snowy.jpg"
@@ -586,7 +628,7 @@ export default function Home() {
                   borderRadius: "20px",
                 }}
               />
-            </div>
+            </div> */}
           </div>
           {/* Bottom Half of Hero Section */}
           <div
@@ -635,11 +677,52 @@ export default function Home() {
             </button>
           </div>
         </section>
+        <section ref={sectionWorldRef} className="three-d-world">
+          <h2 className="immersive-scene-header">3D Worlds</h2>
+          <div className="world-entry-container">
+            <div
+              ref={worldOneRef}
+              onClick={handleWorldClick}
+              className="world-entry"
+            >
+              <div ref={entryRef} className="entry-prompt">
+                <button
+                  ref={entryButtonRef}
+                  onClick={handleEntryClick}
+                  className="entry-button"
+                >
+                  Click to Enter
+                </button>
+              </div>
+              <Image
+                src="/snowy.jpg"
+                fill
+                ref={previewRef}
+                alt="snowy background"
+                className="world-image-preview"
+              ></Image>
+            </div>
+          </div>
+        </section>
+        <section className="wrld-holder">
+          <button
+            onClick={handleExitClick}
+            ref={exitRef}
+            className="wrld-overlay"
+          >
+            Click to exit
+          </button>
+          <Scene clicked={userClicked} />
+          <div ref={promptRef} className="wrld-text">
+            <span>Move Around</span>
+          </div>
+        </section>
+
         <InteractiveGradient option={vibeSelect} size={isSmallDevice} />
 
         {/* <WhoWeAre /> */}
-        {/* <section className="relative min-h-screen w-screen">
-          <div
+        {/* <section className="relative min-h-screen w-screen"> */}
+        {/* <div
             id="scene-data-container"
             className="absolute border  text-[#4dc9c9] rounded-[10px] top-20 lg:w-[500px] lg:h-[500px] w-[250px] h-[250px] z-50 left-10"
           >
@@ -647,9 +730,9 @@ export default function Home() {
               Design is the backbone of creativity, the unseen force that
               connects everything together...
             </span>
-          </div>
-          <Scene />
-        </section> */}
+          </div> */}
+        {/* <Scene /> */}
+        {/* </section> */}
         {/* <section id="services" className="section-info">
           <h2>Offerings</h2>
           <SimpleMenu />

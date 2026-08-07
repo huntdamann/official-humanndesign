@@ -9,38 +9,8 @@ export const Model = React.memo(function Model({ active, ...props }) {
     "/3dassets/cave_on_an_alien_planet_skybox.glb"
   );
 
-  const groupRef = useRef();
-  const targetRotation = Math.PI * 1.5; // how far to rotate (adjust this)
-  const hasReached = useRef(false);
-  const isSmallDevice = useMediaQuery(
-    "(min-width: 320px) and (max-width: 425px)"
-  );
-
-  useFrame((_, delta) => {
-    if (!groupRef.current || !active || hasReached.current) return;
-
-    const current = groupRef.current.rotation.y;
-    const remaining = targetRotation - current;
-
-    if (Math.abs(remaining) < 0.01) {
-      // Snap to exact target and stop
-      groupRef.current.rotation.y = targetRotation;
-      hasReached.current = true;
-      return;
-    }
-
-    // Lerp toward target — higher factor = faster
-    const t = 1 - Math.pow(0.001, delta); // frame-rate-independent damping factor
-
-    groupRef.current.rotation.y = THREE.MathUtils.lerp(
-      current,
-      targetRotation,
-      t
-    );
-  });
-
   return (
-    <group {...props} ref={groupRef} dispose={null}>
+    <group {...props} dispose={null}>
       <group scale={0.01}>
         <mesh
           // castShadow
