@@ -613,6 +613,7 @@ header {
   background-color: black;
   cursor: pointer;
   top: 50%;
+  font-family: var(--font-orbitron), sans-serif;
   writing-mode: sideways-rl;
   border-radius: 5px;
   text-align: center;
@@ -897,8 +898,15 @@ header {
   }
 }
 .burger {
-  color: black;
+  color: white;
   cursor: pointer;
+}
+#header-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
 }
 .burger-container:hover .burger {
   transition: all 0.1s ease;
@@ -973,7 +981,7 @@ body {
   width: 100%;
   position: relative;
 
-  /* background-color: red; */
+  background-color: black;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
@@ -997,18 +1005,29 @@ h3 {
 }
 #instructions {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
+  /* padding: 2rem; */
   position: fixed;
-  width: 100%;
-  top: 70%;
-  /* left: 50%; */
+  min-width: 180px;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 10px;
+  top: 80%;
+  color: white;
+  background-color: black;
+  border-radius: 4px;
+  font-family: var(--font-orbitron), sans-serif;
+  left: 50%;
+  transform: translateX(-50%);
   /* border: 1px red solid; */
   /* top: 50rem; */
   transform: translateX(-50%);
+  font-size: 12px;
 }
-
+.line {
+  font-family: monospace;
+  font-size: 28px;
+  text-shadow: 3px 3px 0 #5ea0ae;
+}
 #grid-section {
   min-height: 100dvh;
   position: relative;

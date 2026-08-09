@@ -96,7 +96,7 @@ const InteractiveGradient = ({ option, size }) => {
       style={{
         width: "100vw",
         height: "100vh",
-        position: "fixed",
+        position: "absolute",
         top: 0,
         zIndex: 1,
       }}

@@ -41,7 +41,8 @@ const Header = forwardRef<HTMLElement, HeaderProps>(function Header(
         <button
           onClick={() => setOpen((prev) => !prev)}
           aria-label="Toggle menu"
-          className="px-3 rounded shrink-0"
+          id="header-menu"
+          className="rounded shrink-0"
         >
           <span
             ref={menuRef}

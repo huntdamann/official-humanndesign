@@ -2,12 +2,13 @@
 
 import { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { gsap } from "gsap";
-
 import Flip from "gsap/src/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrambleTextPlugin } from "gsap/all";
 
 import { TiArrowDown } from "react-icons/ti";
 
+import HeroWorld from "../src/components/3d/HeroWorld";
 import WhoWeAre from "@/src/slices/WhoWeAre";
 import RecentWork from "@/src/slices/RecentWork";
 import CTA from "@/src/slices/CTA";
@@ -23,19 +24,21 @@ import useMediaQuery from "../src/hooks/useMediaQuery";
 import InteractiveGradient from "../src/webgl/InteractiveGradient";
 
 import Image from "next/image";
+import { motion } from "motion/react";
 
 gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(Flip);
+gsap.registerPlugin(ScrambleTextPlugin);
 
 export default function Home() {
   // const containerRef = useRef<HTMLDivElement>(null)
   const gridRef = useRef<HTMLDivElement>(null);
   const grid = useRef<HTMLDivElement>(null);
-
+  const heroWorldRef = useRef(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const instructionRef = useRef<HTMLDivElement>(null);
   const vibeRef = useRef<HTMLDivElement>(null);
-
+  const lineRef = useRef<HTMLParagraphElement>(null);
   const videoPrevRef = useRef<HTMLDivElement>(null);
   const [videoPrev, setVideoPrevActive] = useState(false);
   const [userClicked, setUserClicked] = useState(false);
@@ -239,6 +242,15 @@ export default function Home() {
           },
           0.001
         );
+        tl.to(
+          heroWorldRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
 
         tl.to(
           vibeRef.current!,
@@ -296,6 +308,7 @@ export default function Home() {
         tl.to(el, {}, 0.001);
         tl.to(grid.current!, { paddingTop: 30, paddingBottom: 50 }, 0.001);
         console.log("Mobile Breakpoint Reached");
+
         tl.to(
           headerRef.current!,
           {
@@ -409,6 +422,15 @@ export default function Home() {
           },
           0.001
         );
+        tl.to(
+          heroWorldRef.current!,
+          {
+            opacity: 0,
+            duration: 0.1,
+            scale: 0.55,
+          },
+          0.001
+        );
 
         tl.to(
           vibeRef.current!,
@@ -498,6 +520,32 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  const sentences = ["Creative Engineer."];
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // gsap.context scopes selectors to this component and
+    // gives you a single cleanup function — essential in React
+    // since effects can re-run (e.g. StrictMode double-invokes in dev)
+    const ctx = gsap.context(() => {
+      const lines = gsap.utils.toArray<HTMLElement>(".line");
+
+      lines.forEach((line, i) => {
+        gsap.to(line, {
+          scrambleText: { text: sentences[i], chars: "█▓▒░" },
+          duration: 5.5,
+
+          ease: "sine.inOut",
+          delay: i * 2,
+          repeat: -1,
+          yoyo: true,
+        });
+      });
+    }, containerRef); // scope: only finds .line inside this ref
+
+    return () => ctx.revert(); // cleanup: kills tweens, restores DOM on unmount
+  }, []); // empty deps = run once on mount
+
   const handleWorldClick = () => {
     console.log("World Clicked");
     if (!worldOneRef.current) return;
@@ -558,9 +606,10 @@ export default function Home() {
               </div>
 
               <div ref={contentRef} className="element-content">
-                <div className="hero-heading">
-                  <h1 className="hero-lead neon-text23">
-                    <span
+                <div ref={containerRef} className="hero-heading">
+                  <h1 className="">
+                    {/* <span
+                  
                       style={{
                         color: vibeSelect === "dark" ? "purple" : "#97d4d4",
                         transition: "all 0.8s ease",
@@ -569,11 +618,12 @@ export default function Home() {
                       {" "}
                       Creative{" "}
                     </span>
-                    Engineer
+                    Engineer */}
                   </h1>
-
-                  <div className="super-script">[2433]</div>
+                  <p className="line">█▓▒░ ▒█▓░ █▒▓░ ▓█▒░</p>
                 </div>
+                <div className="super-script">[2433]</div>
+
                 <div className="hero-tag">
                   <span>{""}</span>
                 </div>
@@ -587,7 +637,8 @@ export default function Home() {
               <h3 className="text-[#4dc9c9]">About Me</h3>
               <p className="text-[#c8c8c8]">
                 {" "}
-                Just an engineer that likes to make things look and feel cool.
+                Just an engineer that likes to make problem solving and
+                solutions not only look cool, but also feel right.
               </p>
             </div>
 
@@ -631,15 +682,10 @@ export default function Home() {
             </div> */}
           </div>
           {/* Bottom Half of Hero Section */}
-          <div
-            ref={instructionRef}
-            id="instructions"
-            className="animate-bounce"
-          >
-            <span style={{ fontSize: "2.5em" }}>
-              <TiArrowDown />
-            </span>
-            <span>Scroll Down</span>
+          <HeroWorld container={heroWorldRef} />
+
+          <div ref={instructionRef} id="instructions" className="">
+            <span>Scroll Into My World</span>
           </div>
           {/* Vibe Select Container */}
           <div
@@ -718,7 +764,7 @@ export default function Home() {
           </div>
         </section>
 
-        <InteractiveGradient option={vibeSelect} size={isSmallDevice} />
+        {/* <InteractiveGradient option={vibeSelect} size={isSmallDevice} /> */}
 
         {/* <WhoWeAre /> */}
         {/* <section className="relative min-h-screen w-screen"> */}
@@ -741,7 +787,7 @@ export default function Home() {
         {/* <VideoPlayer /> */}
         {/* <Mockups /> */}
         {/* Desing is invisible Section */}
-        {/* <section className="section-content-2">
+        <section className="section-content-2">
           <motion.h2
             initial={{
               opacity: 0,
@@ -769,7 +815,7 @@ export default function Home() {
           >
             The best design is invisible...
           </motion.h2>
-        </section> */}
+        </section>
 
         {/* Call To Action Section */}
         {/* <CTA /> */}

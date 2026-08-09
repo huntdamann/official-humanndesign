@@ -333,6 +333,73 @@ gl_FragColor = texture2D(u_gradient, vec2(lightness, 0.5));
     // gl_FragColor = vec4(color, 1.0); // solid orange
   }
 `;
+
+const testShader = `
+
+float noise(vec3 p) //Thx to Las^Mercury
+{
+	vec3 i = floor(p);
+	vec4 a = dot(i, vec3(1., 57., 21.)) + vec4(0., 57., 21., 78.);
+	vec3 f = cos((p-i)*acos(-1.))*(-.5)+.5;
+	a = mix(sin(cos(a)*a),sin(cos(1.+a)*(1.+a)), f.x);
+	a.xy = mix(a.xz, a.yw, f.y);
+	return mix(a.x, a.y, f.z);
+}
+
+float sphere(vec3 p, vec4 spr)
+{
+	return length(spr.xyz-p) - spr.w;
+}
+
+float flame(vec3 p)
+{
+	float d = sphere(p*vec3(1.,.5,1.), vec4(.0,-1.,.0,1.));
+	return d + (noise(p+vec3(.0,iTime*2.,.0)) + noise(p*3.)*.5)*.25*(p.y) ;
+}
+
+float scene(vec3 p)
+{
+	return min(100.-length(p) , abs(flame(p)) );
+}
+
+vec4 raymarch(vec3 org, vec3 dir)
+{
+	float d = 0.0, glow = 0.0, eps = 0.02;
+	vec3  p = org;
+	bool glowed = false;
+	
+	for(int i=0; i<64; i++)
+	{
+		d = scene(p) + eps;
+		p += d * dir;
+		if( d>eps )
+		{
+			if(flame(p) < .0)
+				glowed=true;
+			if(glowed)
+       			glow = float(i)/64.;
+		}
+	}
+	return vec4(p,glow);
+}
+
+void main()
+{
+	vec2 v = -1.0 + 2.0 * fragCoord.xy / iResolution.xy;
+	v.x *= iResolution.x/iResolution.y;
+	
+	vec3 org = vec3(0., -2., 4.);
+	vec3 dir = normalize(vec3(v.x*1.6, -v.y, -1.5));
+	
+	vec4 p = raymarch(org, dir);
+	float glow = p.w;
+	
+	vec4 col = mix(vec4(1.,.5,.1,1.), vec4(0.1,.5,1.,1.), p.y*.02+.4);
+	
+	fragColor = mix(vec4(0.), col, pow(glow*2.,4.));
+	//fragColor = mix(vec4(1.), mix(vec4(1.,.5,.1,1.),vec4(0.1,.5,1.,1.),p.y*.02+.4), pow(glow*2.,4.));
+
+}`;
 const vibes = {
   moneyGetter: ["hsl(139deg 88% 21%)", "hsl(38deg 45% 55%)"],
   main: [
@@ -385,14 +452,14 @@ function init({ canvas, width: w, height: h, dpr: d, option }) {
 
   const geometry = new THREE.PlaneGeometry(2, 2);
   material = new THREE.ShaderMaterial({
-    uniforms: {
-      CANVAS_W: { value: width * dpr },
-      CANVAS_H: { value: height * dpr },
-      u_Time: { value: 0 },
-      u_gradient: { value: gradientTexture },
-    },
+    // uniforms: {
+    //   CANVAS_W: { value: width * dpr },
+    //   CANVAS_H: { value: height * dpr },
+    //   u_Time: { value: 0 },
+    //   u_gradient: { value: gradientTexture },
+    // },
     vertexShader,
-    fragmentShader,
+    testShader,
   });
   bg = new THREE.Mesh(geometry, material);
 
@@ -403,7 +470,6 @@ function init({ canvas, width: w, height: h, dpr: d, option }) {
 function animate() {
   if (!running) return;
   const time = performance.now() * 0.001;
-  material.uniforms.u_Time.value = time;
 
   renderer.render(bg, camera);
 
@@ -428,8 +494,8 @@ self.onmessage = (e) => {
     dpr = e.data.dpr;
     renderer.setPixelRatio(dpr);
     renderer.setSize(width, height, false);
-    material.uniforms.CANVAS_W.value = width * dpr;
-    material.uniforms.CANVAS_H.value = height * dpr;
+    // material.uniforms.CANVAS_W.value = width * dpr;
+    // material.uniforms.CANVAS_H.value = height * dpr;
   }
 
   if (type === "pause") {
