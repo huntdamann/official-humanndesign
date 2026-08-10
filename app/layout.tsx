@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Orbitron } from "next/font/google";
+import {
+  Geist,
+  Geist_Mono,
+  Orbitron,
+  Monsieur_La_Doulaise,
+} from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/src/providers/SmoothScroll";
 
@@ -18,6 +23,11 @@ const orbitron = Orbitron({
   subsets: ["latin"],
   weight: ["400"],
 });
+const monsieur = Monsieur_La_Doulaise({
+  variable: "--font-monsieur",
+  subsets: ["latin"],
+  weight: ["400"],
+});
 
 export const metadata: Metadata = {
   title: "Hunter Mann | Creative Engineer",
@@ -33,7 +43,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${orbitron.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${orbitron.variable} ${geistMono.variable} ${monsieur.variable} antialiased`}
       >
         <SmoothScroll>{children}</SmoothScroll>
       </body>

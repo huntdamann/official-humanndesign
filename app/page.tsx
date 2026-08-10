@@ -10,6 +10,7 @@ import { TiArrowDown } from "react-icons/ti";
 
 import HeroWorld from "../src/components/3d/HeroWorld";
 import WhoWeAre from "@/src/slices/WhoWeAre";
+import Worlds from "@/src/slices/Worlds";
 import RecentWork from "@/src/slices/RecentWork";
 import CTA from "@/src/slices/CTA";
 import { SocialCTASection } from "@/src/slices/SocialCTA";
@@ -164,6 +165,7 @@ export default function Home() {
           scrub: true,
           pinSpacing: true,
           anticipatePin: 1,
+          // markers: true,
           invalidateOnRefresh: true,
         },
       });
@@ -562,7 +564,7 @@ export default function Home() {
         entryRef.current.classList.toggle("show");
         previewRef.current.classList.toggle("hide");
         entryButtonRef.current?.classList.toggle("add-pointer");
-        setUserClicked(true);
+        // setUserClicked(true);
       },
     });
   };
@@ -572,6 +574,7 @@ export default function Home() {
     sectionWorldRef.current.classList.toggle("hide");
     exitRef.current.classList.toggle("show");
     promptRef.current?.classList.toggle("show");
+    setUserClicked(true);
   };
 
   const handleExitClick = () => {
@@ -607,19 +610,6 @@ export default function Home() {
 
               <div ref={contentRef} className="element-content">
                 <div ref={containerRef} className="hero-heading">
-                  <h1 className="">
-                    {/* <span
-                  
-                      style={{
-                        color: vibeSelect === "dark" ? "purple" : "#97d4d4",
-                        transition: "all 0.8s ease",
-                      }}
-                    >
-                      {" "}
-                      Creative{" "}
-                    </span>
-                    Engineer */}
-                  </h1>
                   <p className="line">█▓▒░ ▒█▓░ █▒▓░ ▓█▒░</p>
                 </div>
                 <div className="super-script">[2433]</div>
@@ -723,14 +713,21 @@ export default function Home() {
             </button>
           </div>
         </section>
-        <section ref={sectionWorldRef} className="three-d-world">
-          <h2 className="immersive-scene-header">3D Worlds</h2>
-          <div className="world-entry-container">
+        <WhoWeAre />
+        <Worlds world={sectionWorldRef} entrySetter={handleEntryClick} />
+
+        {/* <section ref={sectionWorldRef} className="three-d-world"> */}
+        {/* <h2 className="immersive-scene-header">3D Worlds</h2> */}
+        {/* <div className="world-entry-container">
             <div
               ref={worldOneRef}
               onClick={handleWorldClick}
               className="world-entry"
             >
+              <div className="description-world">
+                <span>Cave</span>
+                <span>A small cave to explore</span>
+              </div>
               <div ref={entryRef} className="entry-prompt">
                 <button
                   ref={entryButtonRef}
@@ -749,7 +746,8 @@ export default function Home() {
               ></Image>
             </div>
           </div>
-        </section>
+        </section> */}
+        {/* Actual Cave */}
         <section className="wrld-holder">
           <button
             onClick={handleExitClick}
@@ -764,9 +762,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* <InteractiveGradient option={vibeSelect} size={isSmallDevice} /> */}
-
-        {/* <WhoWeAre /> */}
         {/* <section className="relative min-h-screen w-screen"> */}
         {/* <div
             id="scene-data-container"

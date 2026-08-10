@@ -1,31 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "../css/WhoWeAre.css";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { SplitText } from "gsap/SplitText";
 
-const fadeUp = {
-  initial: { opacity: 0, y: 40 },
-  exit: { opacity: 0 },
-  whileInView: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      easing: [0.25, 0.1, 0.25, 1],
-    },
-  },
-  viewport: { margin: "-20px" },
-};
-
-const staggerContainer = {
-  initial: {},
-  whileInView: {
-    transition: { staggerChildren: 0.15 },
-  },
-  viewport: { margin: "-120px" },
-};
+gsap.registerPlugin(SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   {
@@ -69,70 +52,98 @@ export default function WhoWeAre() {
   const [activePillar, setActivePillar] = useState<(typeof pillars)[0] | null>(
     null
   );
+  const testRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    if (!testRef.current) return;
+
+    const split = new SplitText(testRef.current, { type: "words" });
+    gsap.from(split.words, {
+      opacity: 0,
+      y: 20,
+      stagger: 0.05,
+      duration: 0.6,
+      scrollTrigger: {
+        trigger: ".who-am-i",
+        start: "top 80%",
+        once: true,
+      },
+    });
+  });
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.section
-        className="section-content-1 noise"
-        id="about"
-        {...staggerContainer}
-      >
-        <p className="ham">
-          At HumannDesign, our values are inspired by the principles of the
-          Human Design system. From this, we&apos;ve built our agency around
-          five core pillars. Click to learn more about them!
-        </p>
-
-        {/* Logo */}
-        <motion.div className="" {...fadeUp}>
-          <Image
-            src="/images/Humann_design_logo.png"
-            alt="Second Logo"
-            width={300}
-            height={300}
-          />
-        </motion.div>
-
-        {/* Pillars */}
-        <div className="flex flex-wrap gap-2">
-          {pillars.map((pillar) => (
-            <motion.span
-              key={pillar.header}
-              className={`pillars ${pillar.className}`}
-              {...fadeUp}
-              onClick={() => setActivePillar(pillar)}
-            >
-              {pillar.label}
-            </motion.span>
-          ))}
-        </div>
-
-        <AnimatePresence>
-          {activePillar && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.3 }}
-              style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
-              className="absolute flex flex-col rounded-lg border-[rgba(77,201,201,0.1)] items-center shadow-md p-8 gap-6 w-100 h-100 border"
-            >
-              <span id="pillar-description-header" className="text-[2em]">
-                {activePillar.header}
-              </span>
-              <p id="pillar-description">{activePillar.description}</p>
-              <button
-                onClick={() => setActivePillar(null)}
-                className="mt-10"
-                id="pillar-close"
-              >
-                {" "}
-                Close
-              </button>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.section>
-    </AnimatePresence>
+    <section ref={testRef} className="who-am-i">
+      <p className="essence">The ESSENCE of HUMANNDESIGN</p>
+      <p className="second-line">
+        where <span className="second-word">Creativity</span>
+      </p>
+      <p className="second-line">
+        meets <span className="second-word"> Engineering</span>
+      </p>
+    </section>
   );
 }
+
+// <AnimatePresence mode="wait">
+//   <motion.section
+//     className="section-content-1 noise"
+//     id="about"
+//     {...staggerContainer}
+//   >
+//     <p className="ham">
+//       At HumannDesign, our values are inspired by the principles of the
+//       Human Design system. From this, we&apos;ve built our agency around
+//       five core pillars. Click to learn more about them!
+//     </p>
+
+//     {/* Logo */}
+//     <motion.div className="" {...fadeUp}>
+//       <Image
+//         src="/images/Humann_design_logo.png"
+//         alt="Second Logo"
+//         width={300}
+//         height={300}
+//       />
+//     </motion.div>
+
+//     {/* Pillars */}
+//     <div className="flex flex-wrap gap-2">
+//       {pillars.map((pillar) => (
+//         <motion.span
+//           key={pillar.header}
+//           className={`pillars ${pillar.className}`}
+//           {...fadeUp}
+//           onClick={() => setActivePillar(pillar)}
+//         >
+//           {pillar.label}
+//         </motion.span>
+//       ))}
+//     </div>
+
+//     <AnimatePresence>
+//       {activePillar && (
+//         <motion.div
+//           initial={{ opacity: 0, y: 10 }}
+//           animate={{ opacity: 1, y: 0 }}
+//           exit={{ opacity: 0, y: 10 }}
+//           transition={{ duration: 0.3 }}
+//           style={{ backgroundColor: "hsl(0, 0%, 80%, 0.9)" }}
+//           className="absolute flex flex-col rounded-lg border-[rgba(77,201,201,0.1)] items-center shadow-md p-8 gap-6 w-100 h-100 border"
+//         >
+//           <span id="pillar-description-header" className="text-[2em]">
+//             {activePillar.header}
+//           </span>
+//           <p id="pillar-description">{activePillar.description}</p>
+//           <button
+//             onClick={() => setActivePillar(null)}
+//             className="mt-10"
+//             id="pillar-close"
+//           >
+//             {" "}
+//             Close
+//           </button>
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   </motion.section>
+// </AnimatePresence>
