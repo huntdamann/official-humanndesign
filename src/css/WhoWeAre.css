@@ -22,8 +22,9 @@
 
 .who-am-i {
   /* border: 3px green solid; */
-  height: 50dvh;
+  height: 50svh;
   padding: 50px;
+  margin-top: 50px;
   margin-bottom: 25px;
   text-align: center;
   color: white;

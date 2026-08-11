@@ -548,26 +548,26 @@ export default function Home() {
     return () => ctx.revert(); // cleanup: kills tweens, restores DOM on unmount
   }, []); // empty deps = run once on mount
 
-  const handleWorldClick = () => {
-    console.log("World Clicked");
-    if (!worldOneRef.current) return;
+  // const handleWorldClick = () => {
+  //   console.log("World Clicked");
+  //   if (!worldOneRef.current) return;
 
-    const state = Flip.getState(worldOneRef.current);
-    worldOneRef.current.classList.toggle("element-expanded");
-    Flip.from(state, {
-      duration: 0.8,
-      ease: "power1.inOut",
-      absolute: true,
-      onComplete: () => {
-        console.log("Flip Animation Complete");
-        if (!entryRef.current || !previewRef.current) return;
-        entryRef.current.classList.toggle("show");
-        previewRef.current.classList.toggle("hide");
-        entryButtonRef.current?.classList.toggle("add-pointer");
-        // setUserClicked(true);
-      },
-    });
-  };
+  //   const state = Flip.getState(worldOneRef.current);
+  //   worldOneRef.current.classList.toggle("element-expanded");
+  //   Flip.from(state, {
+  //     duration: 0.8,
+  //     ease: "power1.inOut",
+  //     absolute: true,
+  //     onComplete: () => {
+  //       console.log("Flip Animation Complete");
+  //       if (!entryRef.current || !previewRef.current) return;
+  //       entryRef.current.classList.toggle("show");
+  //       previewRef.current.classList.toggle("hide");
+  //       entryButtonRef.current?.classList.toggle("add-pointer");
+  //       // setUserClicked(true);
+  //     },
+  //   });
+  // };
 
   const handleEntryClick = () => {
     if (!sectionWorldRef.current || !exitRef.current) return;

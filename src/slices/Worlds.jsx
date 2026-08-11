@@ -2,6 +2,7 @@ import Image from "next/image";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/src/ScrollTrigger";
 import { useLayoutEffect } from "react";
+import { TbDivide } from "react-icons/tb";
 
 gsap.registerPlugin(ScrollTrigger);
 export default function Worlds({ world, entrySetter }) {
@@ -9,14 +10,14 @@ export default function Worlds({ world, entrySetter }) {
     const context = gsap.context(() => {
       const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".three-d-world",
+          trigger: ".section-contain",
           pin: true,
           start: "top top",
-          end: "+=3000",
+          end: "+=2000",
           scrub: true,
-          pinSpacing: true,
+          // pinSpacing: true,
           anticipatePin: 1,
-          invalidateOnRefresh: true,
+          // invalidateOnRefresh: true,
         },
       });
 
@@ -113,74 +114,79 @@ export default function Worlds({ world, entrySetter }) {
   });
   return (
     <>
-      <section ref={world} className="three-d-world">
-        <div className="world-entry-container">
-          <div className="world-entry world-one">
-            <div className="description-world">
-              <div className="desc-back"></div>
-              <div className="desc desc-1">
-                <h3 className="world-title">Cave</h3>
-                <span>A small cave to explore</span>
-                <button onClick={entrySetter} className="enter-world">
-                  Enter
-                </button>
+      <section
+        style={{ height: "100dvh", width: "100%", position: "relative" }}
+        className="section-contain"
+      >
+        <div ref={world} className="three-d-world">
+          <div className="world-entry-container">
+            <div className="world-entry world-one">
+              <div className="description-world">
+                <div className="desc-back"></div>
+                <div className="desc desc-1">
+                  <h3 className="world-title">Cave</h3>
+                  <span>A small cave to explore</span>
+                  <button onClick={entrySetter} className="enter-world">
+                    Enter
+                  </button>
+                </div>
+              </div>
+
+              <div className="backdrop-container">
+                <Image
+                  src="/images/dark_cave.jpeg"
+                  fill
+                  // ref={previewRef}
+                  alt="snowy background"
+                  className="world-image-preview"
+                ></Image>
               </div>
             </div>
+            <div className="world-entry world-two">
+              <div className="description-world">
+                <div className="desc-back"></div>
+                <div className="desc desc-2">
+                  <h3 className="world-title">Mars</h3>
+                  <span>Under Construction</span>
+                  {/* <button className="enter-world"></button> */}
+                </div>
+              </div>
 
-            <div className="backdrop-container">
-              <Image
-                src="/images/dark_cave.jpeg"
-                fill
-                // ref={previewRef}
-                alt="snowy background"
-                className="world-image-preview"
-              ></Image>
-            </div>
-          </div>
-          <div className="world-entry world-two">
-            <div className="description-world">
-              <div className="desc-back"></div>
-              <div className="desc desc-2">
-                <h3 className="world-title">Mars</h3>
-                <span>Under Construction</span>
-                {/* <button className="enter-world"></button> */}
+              <div className="backdrop-container">
+                <Image
+                  src="/images/mars.jpeg"
+                  fill
+                  // ref={previewRef}
+                  alt="Mars background"
+                  className="world-image-preview"
+                ></Image>
               </div>
             </div>
+            <div className="world-entry world-three">
+              <div className="description-world">
+                <div className="desc-back"></div>
+                <div className="desc">
+                  <h3 className="world-title">Loading...</h3>
+                  <span>More experiences soon to come</span>
+                </div>
+              </div>
 
-            <div className="backdrop-container">
-              <Image
-                src="/images/mars.jpeg"
-                fill
-                // ref={previewRef}
-                alt="Mars background"
-                className="world-image-preview"
-              ></Image>
-            </div>
-          </div>
-          <div className="world-entry world-three">
-            <div className="description-world">
-              <div className="desc-back"></div>
-              <div className="desc">
-                <h3 className="world-title">Loading...</h3>
-                <span>More experiences soon to come</span>
+              <div className="backdrop-container">
+                <Image
+                  src="/snowy.jpg"
+                  fill
+                  // ref={previewRef}
+                  alt="snowy background"
+                  className="world-image-preview"
+                ></Image>
               </div>
             </div>
-
-            <div className="backdrop-container">
-              <Image
-                src="/snowy.jpg"
-                fill
-                // ref={previewRef}
-                alt="snowy background"
-                className="world-image-preview"
-              ></Image>
-            </div>
           </div>
-        </div>
-        <div className="ass-controls">
-          <div className="square square-1"></div>
-          <div className="square square-2"></div>
-          <div className="square square-3"></div>
+          <div className="ass-controls">
+            <div className="square square-1"></div>
+            <div className="square square-2"></div>
+            <div className="square square-3"></div>
+          </div>
         </div>
       </section>
     </>
