@@ -28,6 +28,8 @@
   margin-bottom: 25px;
   text-align: center;
   color: white;
+  justify-content: center;
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 20px;

@@ -464,6 +464,8 @@ header {
 .world-image-preview {
   object-fit: cover;
   z-index: 200;
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
   transition: all 0.3s ease;
 }
@@ -651,22 +653,22 @@ header {
 } */
 .vibe-select-container {
   position: fixed;
-  top: 30dvh;
-  left: -112.5px;
-  /* border: 1px red solid; */
+  /* top: 30dvh; */
+  transform: translate3d(-50vw, 0, 0);
   z-index: 100;
+  left: 0;
   opacity: 1;
   padding: 20px;
   height: 300px;
   background-color: black;
   border-radius: 5px;
-  will-change: left;
+  will-change: transform;
   transition: all 0.3s ease;
 
   /* Offset by 50% of its own width and height */
 }
-.open-vibe {
-  left: 0;
+.vibe-select-container.open-vibe {
+  transition: all 0.3s ease;
 }
 .vibe-select {
   display: flex;
@@ -703,7 +705,7 @@ header {
   border: 1px rgb(139, 133, 133) solid;
   border-radius: 30px;
   padding: 4px;
-  color: rgb(141, 140, 140);
+  color: rgb(231, 224, 224);
   transition: all 0.3s ease;
 }
 

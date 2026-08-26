@@ -23,6 +23,7 @@ import VideoPlayer from "@/src/components/ui/VideoPlayer";
 import Footer from "../src/slices/Footer";
 import useMediaQuery from "../src/hooks/useMediaQuery";
 import InteractiveGradient from "../src/webgl/InteractiveGradient";
+import VibePicker from "../src/components/ui/VibePicker";
 
 import Image from "next/image";
 import { motion } from "motion/react";
@@ -47,10 +48,6 @@ export default function Home() {
   const [vibeSelect, setVibeSelect] = useState("main");
   const profileRef = useRef<HTMLDivElement>(null);
 
-  const mRef = useRef<HTMLLIElement>(null);
-  const pRef = useRef<HTMLLIElement>(null);
-  const dRef = useRef<HTMLLIElement>(null);
-
   const elementRef = useRef<HTMLDivElement>(null);
   const elementFourRef = useRef<HTMLDivElement>(null);
   const elementThreeRef = useRef<HTMLDivElement>(null);
@@ -73,7 +70,6 @@ export default function Home() {
   // Small Device Media Query
   const isSmallDevice = (screenSize ?? 0) <= 1023;
   const isDesktopBreak = (screenSize ?? 0) <= 1024;
-  console.log(isSmallDevice);
   const headerRef = useRef<HTMLElement>(null);
   const elementFiveRef = useRef<HTMLDivElement>(null);
   const elementSixRef = useRef<HTMLDivElement>(null);
@@ -100,30 +96,30 @@ export default function Home() {
       console.log("Menu Closed");
     }
   };
-  const handleVibeClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
-    const target = e.target as HTMLElement;
-    const vibe = target.dataset.vibe;
-    if (!vibe) return;
-    if (vibe === "dark") {
-      setVibeSelect("dark");
-      dRef.current?.classList.add("vibe-highlight");
+  // const handleVibeClick = (e: React.MouseEvent<HTMLLIElement, MouseEvent>) => {
+  //   const target = e.target as HTMLElement;
+  //   const vibe = target.dataset.vibe;
+  //   if (!vibe) return;
+  //   if (vibe === "dark") {
+  //     setVibeSelect("dark");
+  //     dRef.current?.classList.add("vibe-highlight");
 
-      pRef.current?.classList.remove("vibe-highlight");
-      mRef.current?.classList.remove("vibe-highlight");
+  //     pRef.current?.classList.remove("vibe-highlight");
+  //     mRef.current?.classList.remove("vibe-highlight");
 
-      console.log("Vibeset:", vibe);
-    } else if (vibe === "main") {
-      setVibeSelect("main");
-      mRef.current?.classList.add("vibe-highlight");
-      pRef.current?.classList.remove("vibe-highlight");
-      dRef.current?.classList.remove("vibe-highlight");
-    } else if (vibe === "hustle") {
-      setVibeSelect("hustle");
-      pRef.current?.classList.add("vibe-highlight");
-      mRef.current?.classList.remove("vibe-highlight");
-      dRef.current?.classList.remove("vibe-highlight");
-    }
-  };
+  //     console.log("Vibeset:", vibe);
+  //   } else if (vibe === "main") {
+  //     setVibeSelect("main");
+  //     mRef.current?.classList.add("vibe-highlight");
+  //     pRef.current?.classList.remove("vibe-highlight");
+  //     dRef.current?.classList.remove("vibe-highlight");
+  //   } else if (vibe === "hustle") {
+  //     setVibeSelect("hustle");
+  //     pRef.current?.classList.add("vibe-highlight");
+  //     mRef.current?.classList.remove("vibe-highlight");
+  //     dRef.current?.classList.remove("vibe-highlight");
+  //   }
+  // };
 
   // Listen for window resize
   // useEffect(() => {
@@ -163,7 +159,7 @@ export default function Home() {
           start: "top top",
           end: "+=800",
           scrub: true,
-          pinSpacing: true,
+          // pinSpacing: true,
           anticipatePin: 1,
           // markers: true,
           invalidateOnRefresh: true,
@@ -453,48 +449,6 @@ export default function Home() {
           0.003
         );
       }
-
-      // if (isDesktopBreak) {
-      //   console.log("Desktop Breakpoint Reached");
-      //   tl.to(
-      //     gridRef.current!,
-      //     {
-      //       y: 0,
-      //       backgroundColor: "#0d0d0d",
-      //       duration: 0.1,
-      //       ease: "power3.out",
-      //     },
-      //     0.001
-      //   );
-
-      //   tl.to(
-      //     headerRef.current!,
-      //     {
-      //       color: "#000000",
-      //       backgroundColor: "hsl(0, 0%, 80%, 0.9)",
-      //       duration: 0.1,
-      //       ease: "power2.out",
-      //       borderRadius: "10px",
-      //       width: "50%",
-      //     },
-      //     0.001
-      //   );
-      //   tl.to(
-      //     el,
-      //     {
-      //       height: "auto",
-      //       width: "auto",
-      //       gridColumn: "4 / span 3",
-      //       gridRow: "2 / span 6",
-      //       position: "relative",
-      //       borderRadius: "20px",
-      //       duration: 0.3,
-      //       ease: "power3.inOut",
-      //       clearProps: "none",
-      //     },
-      //     0.001
-      //   );
-      // }
     });
 
     ScrollTrigger.refresh();
@@ -672,81 +626,17 @@ export default function Home() {
             </div> */}
           </div>
           {/* Bottom Half of Hero Section */}
-          <HeroWorld container={heroWorldRef} />
+          <HeroWorld container={heroWorldRef} userSelection={vibeSelect} />
 
           <div ref={instructionRef} id="instructions" className="">
             <span>Scroll Into My World</span>
           </div>
-          {/* Vibe Select Container */}
-          <div
-            ref={vibeRef}
-            className={`vibe-select-container ${isOpen ? "open-vibe" : ""}`}
-          >
-            <ul className="vibe-select">
-              <li
-                ref={mRef}
-                onClick={handleVibeClick}
-                className="vibe vibe-highlight"
-                data-vibe="main"
-              >
-                M-Mode
-              </li>
-              <li
-                ref={pRef}
-                onClick={handleVibeClick}
-                className="vibe"
-                data-vibe="hustle"
-              >
-                H-Mode
-              </li>
-              <li
-                ref={dRef}
-                onClick={handleVibeClick}
-                className="vibe"
-                data-vibe="dark"
-              >
-                D-Mode
-              </li>
-            </ul>
-            <button onClick={toggleMenu} className="vibe-o-c">
-              Click
-            </button>
-          </div>
+
+          <VibePicker openHandle={isOpen} />
         </section>
         <WhoWeAre />
         <Worlds world={sectionWorldRef} entrySetter={handleEntryClick} />
 
-        {/* <section ref={sectionWorldRef} className="three-d-world"> */}
-        {/* <h2 className="immersive-scene-header">3D Worlds</h2> */}
-        {/* <div className="world-entry-container">
-            <div
-              ref={worldOneRef}
-              onClick={handleWorldClick}
-              className="world-entry"
-            >
-              <div className="description-world">
-                <span>Cave</span>
-                <span>A small cave to explore</span>
-              </div>
-              <div ref={entryRef} className="entry-prompt">
-                <button
-                  ref={entryButtonRef}
-                  onClick={handleEntryClick}
-                  className="entry-button"
-                >
-                  Click to Enter
-                </button>
-              </div>
-              <Image
-                src="/snowy.jpg"
-                fill
-                ref={previewRef}
-                alt="snowy background"
-                className="world-image-preview"
-              ></Image>
-            </div>
-          </div>
-        </section> */}
         {/* Actual Cave */}
         <section className="wrld-holder">
           <button
